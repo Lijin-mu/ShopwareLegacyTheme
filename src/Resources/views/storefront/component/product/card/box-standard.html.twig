@@ -1,0 +1,137 @@
+
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{% block component_product_box %}
+    {% if product %}
+        {% set name = product.translated.name %}
+        {% set id = product.id %}
+        {% set cover = product.cover.media %}
+        {% set variation = product.variation %}
+        {% set displayParent = product.variantListingConfig.displayParent and product.parentId === null %}
+        {% set headlineLevel = element.config.boxHeadlineLevel.value %}
+        {% set headlineClasses = "product-name-headline mb-0" %}
+        {% set variantEnable = config('ShopwareLegacyTheme.config.enableVariantCharacteristics') %}
+        {% set descriptionEnable = config('ShopwareLegacyTheme.config.enableProductDescription') %}
+        {% set addCartEnable = config('ShopwareLegacyTheme.config.enableProductAddCart') %}
+        {% set wishlistEnable = config('ShopwareLegacyTheme.config.enableProductWishlist') %}
+        {% set compareEnable = config('ShopwareLegacyTheme.config.enableProductCompare') %}
+
+        <div class="card product-box box-{{ layout }}" data-product-information="{{ {id, name}|json_encode }}">
+            {% block component_product_box_content %}
+                <div class="card-body">
+                    {% block component_product_box_badges %}
+                        {% sw_include '@Storefront/storefront/component/product/card/badges.html.twig' %}
+                    {% endblock %}
+
+                    {% block component_product_box_image %}
+                        <div class="product-image-wrapper">
+                            {# fallback if display mode is not set #}
+                            {% set displayMode = displayMode ?: 'standard' %}
+
+                            {# set display mode 'cover' for box-image with standard display mode #}
+                            {% if layout == 'image' and displayMode == 'standard' %}
+                                {% set displayMode = 'cover' %}
+                            {% endif %}
+
+                            {% block component_product_box_image_inner %}
+                                {{ parent() }}
+                            {% endblock %}
+                        </div>
+                    {% endblock %}
+
+                    {% block component_product_box_info %}
+                        <div class="product-info">
+                            {% block component_product_box_rating %}
+                          
+                                {% if config('core.listing.showReview') %}
+                                    <div class="product-rating">
+                                            {% if product.ratingAverage %}
+                                                {% sw_include '@Storefront/storefront/component/review/rating.html.twig' with {
+                                                    points: product.ratingAverage,
+                                                    style: 'text-primary'
+                                                } %}
+                                            {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+
+                            {% block component_product_box_name %}
+                                {% if headlineLevel is not empty %}
+                                    {{ "<h#{headlineLevel} class=\"#{headlineClasses}\">"|raw }}
+                                        <a href="{{ seoUrl('frontend.detail.page', { productId: id }) }}"
+                                           class="product-name stretched-link">
+                                            {{ name }}
+                                        </a>
+                                    {{ "</h#{headlineLevel}>"|raw }}
+                                {% else %}
+                                    <a href="{{ seoUrl('frontend.detail.page', { productId: id }) }}"
+                                       class="product-name stretched-link">
+                                        {{ name }}
+                                    </a>
+                                {% endif %}
+                            {% endblock %}
+
+                            {% block component_product_box_variant_characteristics %}
+                                {% if variantEnable %}
+                                    {{ parent() }}
+                                {% endif %}
+                            {% endblock %}
+
+                            {% block component_product_box_description %}
+                                {% if descriptionEnable %}
+                                  <p class="product-description mb-0">
+                                    {{ product.translated.description|striptags|raw }}
+                                </p>
+                                {% endif %}
+                            {% endblock %}
+
+                            {% block component_product_content_info %}
+                                <div class="product-content-info">
+                                    {% block content_info_label %}
+                                        <span class="price-unit-label">
+                                            {{ 'detail.priceUnitName'|trans|sw_sanitize }}
+                                        </span>
+                                    {% endblock %}
+                                    {% block content_info_price_unit_content %}
+                                        <span class="price-unit-content">
+                                            {{ product.purchaseUnit }} {{ product.unit.translated.name }}
+                                        </span>
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+
+
+
+                            {% block component_product_box_price %}
+                                {% sw_include '@Storefront/storefront/component/product/card/price-unit.html.twig' %}
+                            {% endblock %}
+
+                            {% block component_product_box_compare_wishlist %}
+                                {% if wishlistEnable %}
+                                    <div class="product-wishlist-compare">
+                                        {% if compareEnable %}
+                                        {% block component_product_box_compare %}
+                                            {% sw_include '@Storefront/storefront/component/product/card/compare-button.html.twig' %}
+                                        {% endblock %}
+                                        {% endif %}
+                                        {% if config('core.cart.wishlistEnabled') %}
+                                            {% block component_product_box_wishlist_action %}
+                                                {{ parent() }}
+                                            {% endblock %}
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+
+                            {% block component_product_box_action %}
+                                {% if addCartEnable %}
+                                  {{ parent() }}
+                                {% endif %}
+                            {% endblock %}
+                        </div>
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}

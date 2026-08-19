@@ -1,0 +1,29 @@
+.header-main {
+  background-color: $header-background-color;
+  .header-search {
+    .input-group {
+      button,
+      input {
+        border: none;
+        background: $input-gray-color;
+      }
+      input {
+        box-shadow: none;
+      }
+    }
+
+    @include max-mini-tablet {
+      margin-top: rem(5);
+    }
+  }
+}
+.nav-main {
+  background-color: $header-navigation-background-color;
+}
+.header-minimal {
+  background-color: $header-background-color;
+  border-bottom: 1px solid $primary-color;
+  .header-minimal-back-to-shop {
+    width: auto;
+  }
+}

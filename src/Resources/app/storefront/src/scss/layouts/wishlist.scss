@@ -1,0 +1,60 @@
+.wishlist-page {
+  padding: 0 rem(25) rem(25);
+  .wishlist-headline {
+    height: rem(70);
+    @include max-large-tablet {
+      padding-top: rem(35);
+    }
+  }
+  .cms-listing-row {
+    .cms-listing-col {
+      width: 100%;
+      .card-body-wishlist {
+        display: flex;
+        padding: rem(10);
+      }
+      .product-box {
+        .product-image-wrapper {
+          max-width: rem(120);
+          flex-basis: rem(120);
+          height: rem(130);
+          @include max-mobile {
+            max-width: rem(75);
+            flex-basis: rem(75);
+            height: rem(90);
+          }
+        }
+        .product-name {
+          &.stretched-link {
+            &::after {
+              width: rem(120);
+              @include max-mobile {
+                width: rem(75);
+              }
+            }
+          }
+        }
+        .product-wishlist-info-item {
+          min-height: 0;
+        }
+        .product-info {
+          flex: 1;
+          padding: 0 rem(10);
+          padding-right: rem(50);
+        }
+        .product-action {
+          max-width: rem(300);
+        }
+        .product-wishlist {
+          .product-wishlist-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: rem(10);
+            padding: rem(8);
+          }
+        }
+      }
+    }
+  }
+}

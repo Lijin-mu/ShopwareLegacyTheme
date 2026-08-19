@@ -1,0 +1,33 @@
+{% block component_privacy_notice %}
+    <fieldset class="form-text privacy-notice">
+        {% block component_privacy_dpi %}
+            {% set cmsPath = 'frontend.cms.page' %}
+            {% set privacyNoticeSnippet = 'legacytheme.general.privacyNoticeMinimalTextModal' %}
+            {% if config('core.loginRegistration.requireDataProtectionCheckbox') == 1 %}
+
+                {% set dataProtectionLabel = privacyNoticeSnippet|trans({
+                    '%privacyModalTagOpen%': '<button type="button" class="btn btn-link-inline" data-ajax-modal="true" data-url="' ~ path(cmsPath, { id: config('core.basicInformation.privacyPage') }) ~ '">',
+                    '%privacyModalTagClose%': '</button>',
+                })|raw %}
+
+                {% sw_include '@Storefront/storefront/component/form/form-checkbox.html.twig' with {
+                    label: dataProtectionLabel,
+                    id: 'acceptedDataProtection',
+                    name: 'acceptedDataProtection',
+                    validationRules: 'required',
+                } %}
+            {% else %}
+                <div class="data-protection-information">
+                    {% block component_privacy_label %}
+                        <p>
+                            {{ privacyNoticeSnippet|trans({
+                                '%privacyModalTagOpen%': '<button type="button" class="btn btn-link-inline" data-ajax-modal="true" data-url="' ~ path(cmsPath, { id: config('core.basicInformation.privacyPage') }) ~ '">',
+                                '%privacyModalTagClose%': '</button>',
+                            })|raw }}
+                        </p>
+                    {% endblock %}
+                </div>
+            {% endif %}
+        {% endblock %}
+    </fieldset>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-listing.html.twig' %}
+
+
+
+
+{% block element_product_listing_wrapper %}
+{% set boxStyle = config('ShopwareLegacyTheme.config.productBoxStyle') %}
+
+    {% set listingColumns = 'product-box-wrapper list-' ~ boxStyle %}
+    {% if section and section.type == 'sidebar' %}
+        {% set listingColumns = 'product-box-wrapper-sidebar list-' ~ boxStyle %}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}

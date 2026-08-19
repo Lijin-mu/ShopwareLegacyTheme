@@ -1,0 +1,20 @@
+{
+  "name": "legacytheme/shopware-legacy-theme",
+  "description": "Shopware Legacy Theme",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "version": "0.1.12",
+  "autoload": {
+    "psr-4": {
+      "ShopwareLegacyTheme\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "ShopwareLegacyTheme\\ShopwareLegacyTheme",
+    "plugin-icon": "src/Resources/config/plugin.png",
+    "label": {
+      "de-DE": "Shopware Legacy Theme",
+      "en-GB": "Shopware Legacy Theme"
+    }
+  }
+}

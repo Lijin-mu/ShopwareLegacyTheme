@@ -1,0 +1,237 @@
+{
+  "name": "Shopware Legacy Theme",
+  "author": "Shopware AG",
+  "views": [
+     "@Storefront",
+     "@Plugins",
+     "@ShopwareLegacyTheme"
+  ],
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@Storefront",
+    "app/storefront/src/scss/base.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "app/storefront/dist/storefront/js/shopware-legacy-theme/shopware-legacy-theme.js"
+  ],
+  "asset": [
+    "@Storefront",
+    "app/storefront/src/assets"
+  ],
+    "config": {
+    "fields": {
+      "sw-color-brand-primary": {
+        "type": "color",
+        "value": "#0042a0",
+        "editable": true,
+        "block": "themeColors",
+        "order": 100
+      },
+      "sw-color-brand-secondary": {
+        "type": "color",
+        "value": "#474a57",
+        "editable": true,
+        "block": "themeColors",
+        "order": 200
+      },
+      "sw-border-color": {
+        "type": "color",
+        "value": "#798490",
+        "editable": true,
+        "block": "themeColors",
+        "order": 300
+      },
+      "sw-background-color": {
+        "type": "color",
+        "value": "#fff",
+        "editable": true,
+        "block": "themeColors",
+        "order": 400
+      },
+       "sw-header-background-color": {
+         "label": {
+                "en-GB": "Header Background Color",
+                "de-DE": "Header Hintergrundfarbe"
+            },
+        "type": "color",
+        "value": "#fff",
+        "editable": true,
+        "block": "themeColors",
+        "order": 500
+      },
+       "sw-navbar-background-color": {
+         "label": {
+                "en-GB": "Navbar Background Color",
+                "de-DE": "Navbar Hintergrundfarbe"
+            },
+        "type": "color",
+        "value": "#fff",
+        "editable": true,
+        "block": "themeColors",
+        "order": 600
+      },
+      "sw-footer-background-color": {
+         "label": {
+                "en-GB": "Footer Background Color",
+                "de-DE": "Footer Hintergrundfarbe"
+            },
+        "type": "color",
+        "value": "#fff",
+        "editable": true,
+        "block": "themeColors",
+        "order": 700
+      },
+       "sw-footer-bottom-background-color": {
+         "label": {
+                "en-GB": "Footer Bottom Background Color",
+                "de-DE": "Footer Hintergrundfarbe unten"
+            },
+        "type": "color",
+        "value": "#fff",
+        "editable": true,
+        "block": "themeColors",
+        "order": 700
+      },
+      "sw-color-success": {
+        "type": "color",
+        "value": "#08a100",
+        "editable": true,
+        "block": "statusColors",
+        "order": 100
+      },
+      "sw-color-info": {
+        "type": "color",
+        "value": "#f1c40f",
+        "editable": true,
+        "block": "statusColors",
+        "order": 200
+      },
+      "sw-color-warning": {
+        "type": "color",
+        "value": "#fd8c00",
+        "editable": true,
+        "block": "statusColors",
+        "order": 300
+      },
+      "sw-color-danger": {
+        "type": "color",
+        "value": "#f60000",
+        "editable": true,
+        "block": "statusColors",
+        "order": 400
+      },
+      "sw-font-family-base": {
+        "type": "fontFamily",
+        "value": "'Open Sans', sans-serif",
+        "editable": true,
+        "block": "typography",
+        "order": 100
+      },
+      "sw-text-color": {
+        "type": "color",
+        "value": "#2b3136",
+        "editable": true,
+        "block": "typography",
+        "order": 200
+      },
+      "sw-font-family-headline": {
+        "type": "fontFamily",
+        "value": "'Open Sans', sans-serif",
+        "editable": true,
+        "block": "typography",
+        "order": 300
+      },
+      "sw-headline-color": {
+        "type": "color",
+        "value": "#2b3136",
+        "editable": true,
+        "block": "typography",
+        "order": 400
+      },
+      "sw-color-price": {
+        "type": "color",
+        "value": "#2b3136",
+        "editable": true,
+        "block": "eCommerce",
+        "order": 100
+      },
+      "sw-color-buy-button": {
+        "type": "color",
+        "value": "#0042a0",
+        "editable": true,
+        "block": "eCommerce",
+        "order": 200
+      },
+      "sw-color-buy-button-text": {
+        "type": "color",
+        "value": "#fff",
+        "editable": true,
+        "block": "eCommerce",
+        "order": 300
+      },
+      "sw-logo-desktop": {
+        "type": "media",
+        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 100,
+        "fullWidth": true
+      },
+      "sw-logo-tablet": {
+        "type": "media",
+        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 200,
+        "fullWidth": true
+      },
+      "sw-logo-mobile": {
+        "type": "media",
+        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 300,
+        "fullWidth": true
+      },
+      "sw-logo-share": {
+        "type": "media",
+        "value": "",
+        "editable": true,
+        "block": "media",
+        "order": 400
+      },
+      "sw-logo-favicon": {
+        "type": "media",
+        "value": "app/storefront/dist/assets/logo/favicon.png",
+        "editable": true,
+        "block": "media",
+        "order": 500
+      },
+       "sw-background-pattern-image": {
+        "type": "media",
+        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 600,
+        "fullWidth": true
+      },
+        "sw-background-image": {
+        "type": "media",
+        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 600,
+        "fullWidth": true
+      },
+      "sw-background-image-mobile": {
+        "type": "media",
+        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 600,
+        "fullWidth": true
+      }
+    }
+  }
+}

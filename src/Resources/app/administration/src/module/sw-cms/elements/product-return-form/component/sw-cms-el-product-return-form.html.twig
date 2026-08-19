@@ -1,0 +1,66 @@
+{% block sw_cms_element_product_return_form %}
+    <div class="sw-cms-el-product-return-form">
+        <div class="sw-cms-el-product-return-form__preview">
+            <h3 v-if="title" class="sw-cms-el-product-return-form__title">{{ title }}</h3>
+            <p v-if="subtitle" class="sw-cms-el-product-return-form__subtitle">{{ subtitle }}</p>
+
+            <div class="sw-cms-el-product-return-form__form">
+                <div class="sw-cms-el-product-return-form__row">
+                    <div class="sw-cms-el-product-return-form__field">
+                        <label>Order number *</label>
+                        <input type="text" disabled placeholder="10000" />
+                    </div>
+                    <div v-if="showProductNumber" class="sw-cms-el-product-return-form__field">
+                        <label>Product number</label>
+                        <input type="text" disabled placeholder="SW10001" />
+                    </div>
+                </div>
+
+                <div class="sw-cms-el-product-return-form__row">
+                    <div v-if="showSalutation" class="sw-cms-el-product-return-form__field">
+                        <label>Salutation</label>
+                        <select disabled>
+                            <option>Please select</option>
+                        </select>
+                    </div>
+                    <div class="sw-cms-el-product-return-form__field">
+                        <label>First name *</label>
+                        <input type="text" disabled placeholder="Jane" />
+                    </div>
+                    <div class="sw-cms-el-product-return-form__field">
+                        <label>Last name *</label>
+                        <input type="text" disabled placeholder="Doe" />
+                    </div>
+                </div>
+
+                <div class="sw-cms-el-product-return-form__row">
+                    <div class="sw-cms-el-product-return-form__field">
+                        <label>Email *</label>
+                        <input type="email" disabled placeholder="jane@example.com" />
+                    </div>
+                    <div v-if="showPhone" class="sw-cms-el-product-return-form__field">
+                        <label>Phone</label>
+                        <input type="tel" disabled placeholder="+44 123 456" />
+                    </div>
+                </div>
+
+                <div v-if="showReason" class="sw-cms-el-product-return-form__field">
+                    <label>Reason *</label>
+                    <select disabled>
+                        <option>Wrong size</option>
+                    </select>
+                </div>
+
+                <div v-if="showDescription" class="sw-cms-el-product-return-form__field">
+                    <label>Description</label>
+                    <textarea disabled placeholder="Describe the issue"></textarea>
+                </div>
+
+                <button disabled class="sw-cms-el-product-return-form__button">
+                    {{ buttonText }}
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,27 @@
+.mail-submit-container {
+  display: flex;
+  align-items: flex-start;
+  .form-group {
+    &.footer-newsletter-group {
+      margin-bottom: 0;
+      flex: 1;
+      .form-control {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+  .btn {
+    height: 40px;
+    line-height: 1;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+  }
+}
+
+.footer-newsletter {
+  .privacy-notice {
+    margin-top: 10px;
+  }
+}

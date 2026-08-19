@@ -1,0 +1,519 @@
+// Responsive Mixins
+@mixin tablet() {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin tablet-large() {
+    @media (min-width: 1000px) {
+        @content;
+    }
+}
+
+@mixin desktop-small() {
+    @media (min-width: 1260px) {
+        @content;
+    }
+}
+
+@mixin desktop() {
+    @media (min-width: 1400px) {
+        @content;
+    }
+}
+
+@mixin desktop-medium() {
+    @media (min-width: 1600px) {
+        @content;
+    }
+}
+
+@mixin desktop-large() {
+    @media (min-width: 2000px) {
+        @content;
+    }
+}
+
+@mixin mobile-small() {
+    @media (max-width: 395px) {
+        @content;
+    }
+}
+
+@mixin mobile-medium() {
+    @media (max-width: 420px) {
+        @content;
+    }
+}
+
+
+@mixin min-desktop() {
+    @media (min-width: 1260px) {
+        @content;
+    }
+}
+@mixin min-tablet() {
+    @media (min-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin min-small-tablet() {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin min-small-device() {
+    @media (min-width: 480px) {
+        @content;
+    }
+}
+@mixin max-large-tablet() {
+    @media (max-width: 1259.98px) {
+        @content;
+    }
+}
+@mixin max-tablet() {
+    @media (max-width: 1023.98px) {
+        @content;
+    }
+}
+
+@mixin max-mini-tablet() {
+    @media (max-width: 991.98px) {
+        @content;
+    }
+}
+
+@mixin max-mobile() {
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin max-mobile-medium() {
+    @media (max-width: 575.98px) {
+        @content;
+    }
+}
+
+@mixin min-tablet-only() {
+    @media (min-width: 1024px) and (max-width: 1259px) {
+        @content;
+    }
+}
+
+@mixin min-small-tablet-only() {
+    @media (min-width: 768px) and (max-width: 1023px) {
+        @content;
+    }
+}
+
+@mixin min-mobile-large-only() {
+    @media (min-width: 480px) and (max-width: 767px) {
+        @content;
+    }
+}
+
+
+
+@mixin mobile-landscape() {
+    @media (orientation: landscape) and (max-height: 580px) and (max-width: 820px) {
+        @content;
+    }
+}
+
+@mixin tablet-portrait() {
+    @media (orientation : Portrait) and (min-device-width: 768px) and (max-device-height: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+        @content;
+    }
+}
+
+@mixin desktop-portrait() {
+    @media (orientation : Portrait) and (min-width: 820px) and (min-height: 1220px) and (-webkit-min-device-pixel-ratio: 1.5){
+        @content;
+    }
+}
+
+@mixin ipad-pro(){
+@media only screen and (min-width: 1024px) and (orientation: portrait){
+    @content;
+}
+}
+
+@mixin retina-screen(){
+    @media 
+(-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) { 
+    @content;
+}
+}
+
+
+
+@mixin below($value) {
+    @media (max-width: $value) {
+        @content;
+    }
+}
+
+@mixin above($value) {
+    @media (min-width: $value) {
+        @content;
+    }
+}
+
+@mixin between($min, $max) {
+    @media (min-width: $min) and (max-width: $max) {
+        @content;
+    }
+}
+
+@mixin all-tablets-only{
+    @media (min-width: 768px) and (max-width:1259px){
+        @content;
+    }
+}
+
+@mixin tablet-only() {
+    @media (min-width: 768px)  and (max-width:999px) {
+        @content;
+    }
+}
+
+@mixin tablet-large-only() {
+    @media (min-width: 1000px) and (max-width:1259px) {
+        @content;
+    }
+}
+
+
+
+
+@mixin allheading {
+    h1,h2,h3,h4,h5,h6,
+    .h1,.h2,.h3,.h4,.h5,.h6{
+        @content;
+    }
+}
+
+@mixin h-p-margin {
+    h1 + p,
+    h2 + p,
+    h3 + p,
+    h4 + p,
+    h5 + p,
+    h6 + p,
+    .h1 + p,
+    .h2 + p,
+    .h3 + p,
+    .h4 + p,
+    .h5 + p,
+    .h6 + p{
+        @content;
+    }
+}
+
+@mixin p-h-margin {
+   p +  h1,
+   p +  h2,
+   p +  h3,
+   p +  h4,
+   p +  h5,
+   p +  h6,
+    p + .h1,
+    p + .h2,
+    p + .h3,
+    p + .h4,
+    p + .h5,
+    p + .h6{
+        @content;
+    }
+}
+
+
+//Font. Face
+@mixin font-face($name, $variant, $type, $weight, $style) {
+
+    $font-full-path: '#{$theme-font-path}/#{$variant}/#{$variant}';
+
+    @font-face {
+        font-family: '#{$name}';
+        src: local('#{$name}'),
+        url('#{$font-full-path}-#{$type}.woff2') format('woff2'),
+        url('#{$font-full-path}-#{$type}.woff') format('woff');
+        font-weight: $weight;
+        font-style: $style;
+        font-display: swap;
+    }
+}
+
+
+// PX to REM Mixins
+@function rem($value) {
+    $remValue: ($value / 16) + rem;
+    @return $remValue;
+}
+
+
+/**
+Pseudo
+div::after {
+    @include pseudo;
+    top: -1rem; left: -1rem;
+    width: 1rem; height: 1rem;
+}
+*/
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+/**
+Responsive ratio
+div {
+    @include responsive-ratio(16,9);
+}
+*/
+@mixin responsive-ratio($x, $y, $pseudo: false) {
+    $padding: unquote(($y / $x) * 100 + '%');
+
+    @if $pseudo {
+        &:before {
+            @include pseudo($pos: relative);
+            width: 100%;
+            padding-top: $padding;
+        }
+    }
+
+    @else {
+        padding-top: $padding;
+    }
+}
+
+
+/**
+CSS Triangle
+*/
+@mixin css-triangle($color, $direction, $size: 6px, $position: absolute, $round: false) {
+    @include pseudo($pos: $position);
+    width: 0;
+    height: 0;
+
+    @if $round {
+        border-radius: 3px;
+    }
+
+    @if $direction==down {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-top: $size solid $color;
+        margin-top: 0 - round($size / 2.5);
+    }
+
+    @else if $direction==up {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+        margin-bottom: 0 - round($size / 2.5);
+    }
+
+    @else if $direction==right {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left: $size solid $color;
+        margin-right: -$size;
+    }
+
+    @else if $direction==left {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-right: $size solid $color;
+        margin-left: -$size;
+    }
+}
+
+/**
+Font styles
+*/
+@mixin font-calibri($size: false, $colour: false, $weight: false, $lh: false) {
+    font-family: $base-font-family;
+
+    @if $size {
+        font-size: $size;
+    }
+
+    @if $colour {
+        color: $colour;
+    }
+
+    @if $weight {
+        font-weight: $weight;
+    }
+
+    @if $lh {
+        line-height: $lh;
+    }
+}
+
+@mixin iconfont{
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+}
+
+/**
+Placeholders
+input,  
+textarea {  
+    @include input-placeholder {
+        color: $grey;
+    }
+}
+*/
+@mixin input-placeholder {
+    &.placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        @content;
+    }
+
+    &::-moz-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+
+    &::-webkit-input-placeholder {
+        @content;
+    }
+}
+
+/**
+Truncate - Ellipsis
+*/
+@mixin truncate($truncation-boundary) {
+    max-width: $truncation-boundary;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/**
+Center flex
+*/
+@mixin flex($x: center, $y: center) {
+    display: flex;
+    align-items: $x;
+    justify-content: $y;
+}
+
+
+/**
+Transition
+@include transition(height width transform, 0.2s 0.3s, linear, 0s);
+*/
+
+@mixin transition($prop, $time, $easing: $ease1, $delay: 0s) {
+    $transition: ();
+
+    @for $i from 1 through length($prop) {
+        @for $j from 0 to (length($prop)) - (length($time)) {
+            $time: join($time, nth($time, -1));
+        }
+
+        @for $j from 0 to (length($prop)) - (length($easing)) {
+            $easing: join($easing, nth($easing, -1));
+        }
+
+        @for $j from 0 to (length($prop)) - (length($delay)) {
+            $delay: join($delay, nth($delay, -1));
+        }
+
+        $transition: append($transition,
+            (nth($prop, $i) nth($time, $i) nth($easing, $i) nth($delay, $i)),
+            $separator: comma);
+    }
+
+    transition: $transition;
+}
+
+
+/**
+Max Lines
+*/
+
+@mixin max-lines($lines) {
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+/**
+Overflow X scroll 
+*/
+@mixin scroll() {
+
+    display: flex;
+    justify-content: flex-start;
+    transform: none !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-appearance: none;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+
+    /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari and Opera */
+    }
+}
+
+/**
+Hide scrollBar
+*/
+@mixin hideScroll() {
+
+    -webkit-appearance: none;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+
+    /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari and Opera */
+    }
+}
+
+/**
+Add Blur filter
+*/
+@mixin blur($q) {
+    position: fixed !important;
+    overflow-y: scroll !important;
+    width: 100%;
+
+    .header-main,
+    .content-main,
+    .footer-main {
+        filter: blur(rem($q));
+    }
+}

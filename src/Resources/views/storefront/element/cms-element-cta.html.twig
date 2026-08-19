@@ -1,0 +1,115 @@
+{% block cms_element_cta %}
+
+{% set config = element.translated.config %}
+
+<div class="content-cta {{ config.customClass.value|default('') }}">
+
+    {% block component_cotent_cta_inner %}
+    <div class="content-cta-inner{% if config.active.value %} is-active{% endif %}
+            cta-align-{{ config.alignment.value|default('center') }}">
+            
+            {% block component_cotent_cta_media %}
+                {% set desktopMedia =  element.data.mediaDesktop %}
+                {% set tabletMedia =  element.data.mediaTablet %}
+                {% set mobileMedia =  element.data.mediaMobile %}
+                {% set lazyLoadImage = config.lazyLoad.value %}
+
+                
+
+                <div class="content-cta-image">
+                    <div class="content-cta-image-shadow"></div>
+                    {% if desktopMedia %}
+                        {% sw_include '@Storefront/storefront/component/media/responsive-media.html.twig' with {
+                                    desktopMedia: desktopMedia,
+                                    tabletMedia: tabletMedia,
+                                    mobileMedia: mobileMedia,
+                                    lazyLoad: lazyLoadImage,
+                                } %}
+                    {% endif %}
+                </div>
+
+            {% endblock %}
+
+            {% block component_cotent_cta_content %}
+            <div class="cta-content cta-content--{{ config.titlePosition.value|default('center') }}">
+
+                {% block component_cotent_cta_subtitle %}
+                {% if config.subTitle.value %}
+                <span class="cta-subtitle {{ config.subTitleHeading.value|default('') }}">
+                    {{ config.subTitle.value }}
+                </span>
+                {% endif %}
+                {% endblock %}
+
+                {% block component_cotent_cta_title %}
+                {% if config.title.value %}
+                <{{ config.titleHeading.value|default('h1') }} class="cta-title">
+                    {{ config.title.value }}
+                </{{ config.titleHeading.value|default('h1') }}>
+                {% endif %}
+                {% endblock %}
+
+                {% block component_cotent_cta_description %}
+                {% if config.shortDescription.value %}
+                <p class="cta-description">
+                    {{ config.shortDescription.value }}
+                </p>
+                {% endif %}
+                {% endblock %}
+
+                {% block component_cotent_cta_text %}
+                {% if config.content.value %}
+                <div class="cta-text">
+                    {{ config.content.value|raw }}
+                </div>
+                {% endif %}
+                {% endblock %}
+
+                {% block component_cotent_cta_buttons %}
+                {% if config.buttonText1.value
+                   or config.buttonText2.value
+                   or config.buttonText3.value %}
+
+                <div class="cta-buttons">
+
+                    {% block component_cotent_cta_button_primary %}
+                    {% if config.buttonText1.value and config.url1.value %}
+                    <a href="{{ config.url1.value }}"
+                       class="btn btn-{{ config.buttonType1.value|default('primary') }}"
+                       {% if config.newTab1.value %}target="_blank" rel="noopener"{% endif %}>
+                        {{ config.buttonText1.value }}
+                    </a>
+                    {% endif %}
+                    {% endblock %}
+
+                    {% block component_cotent_cta_button_secondary %}
+                    {% if config.buttonText2.value and config.url2.value %}
+                    <a href="{{ config.url2.value }}"
+                       class="btn btn-{{ config.buttonType2.value|default('secondary') }}"
+                       {% if config.newTab2.value %}target="_blank" rel="noopener"{% endif %}>
+                        {{ config.buttonText2.value }}
+                    </a>
+                    {% endif %}
+                    {% endblock %}
+
+                    {% block component_cotent_cta_button_tertiary %}
+                    {% if config.buttonText3.value and config.url3.value %}
+                    <a href="{{ config.url3.value }}"
+                       class="btn btn-{{ config.buttonType3.value|default('tertiary') }}"
+                       {% if config.newTab3.value %}target="_blank" rel="noopener"{% endif %}>
+                        {{ config.buttonText3.value }}
+                    </a>
+                    {% endif %}
+                    {% endblock %}
+
+                </div>
+                {% endif %}
+                {% endblock %}
+
+            </div>
+            {% endblock %}
+
+    </div>
+    {% endblock %}
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% sw_extends '@Framework/mail/mail.html.twig' %}
+
+{% block mail_header %}
+	<h2>{{ "legacytheme.email.enquiryForm.header"|trans }}</h2>
+{% endblock %}
+
+{% block mail_content %}
+	<p>{{ "legacytheme.email.enquiryForm.intro"|trans }}</p>
+
+	<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+		<tr>
+			<td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold; width: 30%;">
+				{{ "legacytheme.email.enquiryForm.name"|trans }}
+			</td>
+			<td style="padding: 10px; border: 1px solid #ddd;">
+				{{ name }}
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">
+				{{ "legacytheme.email.enquiryForm.email"|trans }}
+			</td>
+			<td style="padding: 10px; border: 1px solid #ddd;">
+				<a href="mailto:{{ email }}">{{ email }}</a>
+			</td>
+		</tr>
+		{% if phone %}
+			<tr>
+				<td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">
+					{{ "legacytheme.email.enquiryForm.phone"|trans }}
+				</td>
+				<td style="padding: 10px; border: 1px solid #ddd;">
+					{{ phone }}
+				</td>
+			</tr>
+		{% endif %}
+		{% if message %}
+			<tr>
+				<td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold; vertical-align: top;">
+					{{ "legacytheme.email.enquiryForm.message"|trans }}
+				</td>
+				<td style="padding: 10px; border: 1px solid #ddd;">
+					{{ message|nl2br }}
+				</td>
+			</tr>
+		{% endif %}
+	</table>
+
+	<p style="margin-top: 20px; color: #666;">
+		{{ "legacytheme.email.enquiryForm.footer"|trans }}
+	</p>
+{% endblock %}

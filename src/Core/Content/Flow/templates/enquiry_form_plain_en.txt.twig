@@ -1,0 +1,12 @@
+New Enquiry from {{ firstName }} {{ lastName }}
+
+{% if salutationDisplay %}Salutation: {{ salutationDisplay }}{% endif %}
+First Name: {{ firstName }}
+Last Name: {{ lastName }}
+Email: {{ email }}
+{% if phone %}Phone: {{ phone }}{% endif %}
+{% if productName %}Product: {{ productName }}{% endif %}
+{% if description %}Description: {{ description }}{% endif %}
+
+This is an automated message from your enquiry form.
+

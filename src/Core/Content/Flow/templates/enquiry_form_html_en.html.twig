@@ -1,0 +1,47 @@
+<div style="font-family: arial; font-size: 12px;">
+    <h2>New Enquiry Form Submission</h2>
+
+    <p>You have received a new enquiry from your website:</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        {% if salutationDisplay %}
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold; width: 30%;">Salutation:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ salutationDisplay }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold; width: 30%;">First Name:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ firstName }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">Last Name:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ lastName }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">Email:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;"><a href="mailto:{{ email }}">{{ email }}</a></td>
+        </tr>
+        {% if phone %}
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">Phone:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ phone }}</td>
+        </tr>
+        {% endif %}
+        {% if productName %}
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">Product:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>{{ productName }}</strong></td>
+        </tr>
+        {% endif %}
+        {% if description %}
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold; vertical-align: top;">Description:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ description|nl2br }}</td>
+        </tr>
+        {% endif %}
+    </table>
+
+    <p style="color: #666;">This is an automated message from your enquiry form.</p>
+</div>
+

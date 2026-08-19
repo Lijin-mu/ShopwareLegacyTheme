@@ -1,0 +1,28 @@
+.is-act-finishpage,
+.is-active-route-frontend-checkout-finish-page {
+  .checkout {
+    @include max-tablet {
+      padding: rem(25);
+    }
+  }
+}
+
+.cart-table-header {
+  font-size: rem(14);
+}
+
+.container-main {
+  & > .checkout {
+    padding: rem(25);
+  }
+}
+.checkout-aside {
+  .paypal-buttons {
+    margin-top: rem(16);
+  }
+}
+
+.checkout-aside-products {
+  border: 1px solid $border-color;
+  margin-top: rem(16);
+}

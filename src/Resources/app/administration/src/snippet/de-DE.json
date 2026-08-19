@@ -1,0 +1,87 @@
+{
+  "sw-cms": {
+    "blocks": {
+      "form": {
+        "enquiryForm": {
+          "label": "Anfrageformular"
+        },
+        "productReturnForm": {
+          "label": "Retourenformular"
+        }
+      }
+    },
+    "elements": {
+      "enquiryForm": {
+        "label": "Anfrageformular",
+        "config": {
+          "title": {
+            "label": "Titel",
+            "placeholder": "Formulartitel eingeben"
+          },
+          "subtitle": {
+            "label": "Untertitel",
+            "placeholder": "Formularuntertitel eingeben"
+          },
+          "showPhone": {
+            "label": "Telefonfeld anzeigen"
+          },
+          "showMessage": {
+            "label": "Nachrichtenfeld anzeigen"
+          },
+          "buttonText": {
+            "label": "Button-Text",
+            "placeholder": "Anfrage absenden"
+          },
+          "successMessage": {
+            "label": "Erfolgsmeldung",
+            "placeholder": "Vielen Dank für Ihre Anfrage!"
+          }
+        }
+      },
+      "productReturnForm": {
+        "label": "Retourenformular",
+        "config": {
+          "title": {
+            "label": "Titel",
+            "placeholder": "Formulartitel eingeben"
+          },
+          "subtitle": {
+            "label": "Untertitel",
+            "placeholder": "Formularuntertitel eingeben"
+          },
+          "showLabel": {
+            "label": "Feldbeschriftungen anzeigen"
+          },
+          "showSalutation": {
+            "label": "Anrede anzeigen"
+          },
+          "showPhone": {
+            "label": "Telefonfeld anzeigen"
+          },
+          "showProductNumber": {
+            "label": "Artikelnummer anzeigen"
+          },
+          "showReason": {
+            "label": "Retourengrund anzeigen"
+          },
+          "showDescription": {
+            "label": "Beschreibungsfeld anzeigen"
+          },
+          "buttonText": {
+            "label": "Button-Text",
+            "placeholder": "Retoure absenden"
+          },
+          "successMessage": {
+            "label": "Erfolgsmeldung",
+            "placeholder": "Wir haben Ihre Retoure erhalten."
+          },
+          "reasonOptions": {
+            "label": "Retourengründe",
+            "placeholder": "Pro Zeile einen Grund eingeben",
+            "helpText": "Jede Zeile erscheint als Option in der Auswahl."
+          }
+        }
+      }
+    }
+  }
+}

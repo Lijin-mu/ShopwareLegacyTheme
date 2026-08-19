@@ -1,0 +1,59 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-form/form-types/newsletter-form.html.twig' %}
+
+{% block cms_form_newsletter %}
+	<div class="widget-newsletter">
+		{% set formPrefix = 'cms-form-newsletter' %}
+		<form action="{{ path(action|default('frontend.form.newsletter.register.handle')) }}" method="post" data-form-handler="true" data-newsletter-form="true" id="cms-form-newsletter" aria-label="{{ 'newsletter.headline'|trans }}" novalidate="true">
+
+			<div class="newsletter-response mb-3" data-newsletter-response aria-live="polite"></div>
+
+			<div class="form-content">
+				<div class="row g-2 d-none">
+					{% block cms_form_newsletter_select_action %}
+						{{ parent() }}
+					{% endblock %}
+				</div>
+
+				<div class="mail-submit-container">
+					{% block cms_form_newsletter_input_email %}
+						{% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+                        with {
+                        fieldName: 'email',
+                        autocomplete: 'email',
+                        type: 'email',
+                        required: true,
+                        additionalClass: 'footer-newsletter-group',
+                        placeholder: 'newsletter.placeholderMail'
+                    }
+                    %}
+					{% endblock %}
+
+					{% block cms_form_newsletter_submit %}
+						<button type="submit" class="btn btn-primary float-end d-flex align-items-center gap-2">
+							<span class="newsletter-button-spinner loader d-none" role="status" aria-hidden="true" data-newsletter-spinner>
+								<span class="visually-hidden">{{ 'general.loadingText'|trans }}</span>
+							</span>
+							<i class="icon--mail" aria-hidden="true"></i>
+							<span class="visually-hidden">{{ 'general.loadingText'|trans }}</span>
+						</button>
+					{% endblock %}
+				</div>
+
+				{% block cms_form_newsletter_captcha %}
+					{% sw_include '@Storefront/storefront/component/captcha/base.html.twig' %}
+				{% endblock %}
+
+				{% block cms_form_newsletter_privacy %}
+					{% sw_include '@Storefront/storefront/component/newsletter/newsletter-privacy-notice.html.twig' %}
+				{% endblock %}
+
+			</div>
+
+			{% block cms_form_newsletter_hidden_fields %}
+				<div class="form-hidden-fields">
+					<input type="submit" class="submit--hidden d-none">
+				</div>
+			{% endblock %}
+		</form>
+	</div>
+{% endblock %}

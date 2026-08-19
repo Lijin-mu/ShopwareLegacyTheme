@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/component/product/card/wishlist.html.twig' %}
+           
+{% block component_product_wishlist_button %}
+    <button
+        class="product-wishlist-{{ productId }} product-wishlist-action{% if appearance == 'circle' %}-circle product-wishlist-btn btn btn-light{% endif %} product-wishlist-not-added product-wishlist-loading z-2"
+        title="{{ 'listing.addToWishlist'|trans|sw_sanitize }}"
+        data-add-to-wishlist="true"
+        data-add-to-wishlist-options="{{ addToWishlistOptions|json_encode }}"
+    >
+        {% block component_product_wishlist_icon %}
+        <i class="icon icon--heart wishlist icon-wishlist-added"></i>
+        <i class="icon icon--heart wishlist icon-wishlist-not-added"></i>
+            <span class="product-wishlist-text">
+            {{ 'legacytheme.general.detaillinkwishlistshort'|trans|sw_sanitize }}
+        </span>
+        {% endblock %}
+    </button>
+{% endblock %}

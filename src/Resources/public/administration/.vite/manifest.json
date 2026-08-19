@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/shopware-legacy-theme-BY6MQY_z.js",
+    "name": "shopware-legacy-theme",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/shopware-legacy-theme-D_kyW9kn.css"
+    ]
+  }
+}

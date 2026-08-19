@@ -1,0 +1,158 @@
+{% block element_product_return_form %}
+    {% set data = element.data %}
+    {% set productName = data.productName ?? (page.product is defined and page.product ? page.product.translated.name : '') %}
+    {% set productNumber = data.productNumber ?? (page.product is defined and page.product ? page.product.productNumber : '') %}
+
+    <div class="cms-element-product-return-form" data-product-return-form="true">
+        <div class="product-return-form-wrapper">
+            {% if data.title %}
+                <h2 class="product-return-form-title">{{ data.title }}</h2>
+            {% endif %}
+
+            {% if data.subtitle %}
+                <p class="product-return-form-subtitle">{{ data.subtitle }}</p>
+            {% endif %}
+
+            <form class="product-return-form" method="post" data-product-return-form-submit>
+                <div class="product-return-form-success-alert d-none">
+                    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                        type: 'success',
+                        heading: 'legacytheme.productReturnForm.successTitle'|trans,
+                        content: data.successMessage ?: 'legacytheme.productReturnForm.successMessage'|trans,
+                        dismissible: true
+                    } %}
+                </div>
+
+                <div class="product-return-form-error-alert d-none">
+                    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                        type: 'danger',
+                        heading: 'legacytheme.productReturnForm.errorTitle'|trans,
+                        content: 'legacytheme.productReturnForm.generalErrorMessage'|trans,
+                        dismissible: true
+                    } %}
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        {% if data.showLabel %}
+                            <label for="return-customer-number" class="form-label">
+                                {{ "legacytheme.productReturnForm.customerNumber"|trans }}*
+                            </label>
+                        {% endif %}
+                        <input type="text"
+                               class="form-control"
+                               id="return-customer-number"
+                               name="customerNumber"
+                               required
+                               placeholder="{{ data.showLabel ? 'legacytheme.productReturnForm.customerNumberPlaceholder'|trans : 'legacytheme.productReturnForm.customerNumber'|trans }}">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        {% if data.showLabel %}
+                            <label for="return-email" class="form-label">
+                                {{ "legacytheme.productReturnForm.email"|trans }}*
+                            </label>
+                        {% endif %}
+                        <input type="email"
+                               class="form-control"
+                               id="return-email"
+                               name="email"
+                               required
+                               placeholder="{{ data.showLabel ? 'legacytheme.productReturnForm.emailPlaceholder'|trans : 'legacytheme.productReturnForm.email'|trans }}">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        {% if data.showLabel %}
+                            <label for="return-invoice-number" class="form-label">
+                                {{ "legacytheme.productReturnForm.invoiceNumber"|trans }}*
+                            </label>
+                        {% endif %}
+                        <input type="text"
+                               class="form-control"
+                               id="return-invoice-number"
+                               name="invoiceNumber"
+                               required
+                               placeholder="{{ data.showLabel ? 'legacytheme.productReturnForm.invoiceNumberPlaceholder'|trans : 'legacytheme.productReturnForm.invoiceNumber'|trans }}">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        {% if data.showLabel %}
+                            <label for="return-item-numbers" class="form-label">
+                                {{ "legacytheme.productReturnForm.itemNumbers"|trans }}*
+                            </label>
+                        {% endif %}
+                        <input type="text"
+                               class="form-control"
+                               id="return-item-numbers"
+                               name="itemNumbers"
+                               required
+                               placeholder="{{ data.showLabel ? 'legacytheme.productReturnForm.itemNumbersPlaceholder'|trans : 'legacytheme.productReturnForm.itemNumbers'|trans }}">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        {% if data.showLabel %}
+                            <label for="return-comment" class="form-label">
+                                {{ "legacytheme.productReturnForm.comment"|trans }}
+                            </label>
+                        {% endif %}
+                        <textarea class="form-control"
+                                  id="return-comment"
+                                  name="comment"
+                                  rows="5"
+                                  placeholder="{{ 'legacytheme.productReturnForm.commentPlaceholder'|trans }}"></textarea>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                {% if productName %}
+                    <input type="hidden" name="productName" value="{{ productName }}">
+                {% endif %}
+
+                <div class="form-group">
+                    <p class="product-return-form-required-note">{{ "legacytheme.productReturnForm.requiredFieldsNote"|trans }}</p>
+                    
+                    <div class="form-check product-return-form-privacy-check">
+                        <input class="form-check-input" type="checkbox" id="return-privacy-check" name="privacyCheck" required>
+                        <label class="form-check-label" for="return-privacy-check">
+                            {{ "legacytheme.productReturnForm.privacyCheck"|trans }}
+                        </label>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary product-return-form-submit">
+                        <span class="button-text">{{ data.buttonText ?: 'legacytheme.productReturnForm.submit'|trans }}</span>
+                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        {% block product_return_form_validation_messages %}
+            {% set validationMessages = {
+                customerNumber: "legacytheme.productReturnForm.validation.customerNumber"|trans,
+                email: "legacytheme.productReturnForm.validation.email"|trans,
+                invoiceNumber: "legacytheme.productReturnForm.validation.invoiceNumber"|trans,
+                itemNumbers: "legacytheme.productReturnForm.validation.itemNumbers"|trans,
+                privacyCheck: "legacytheme.productReturnForm.validation.privacyCheck"|trans
+            } %}
+            <script>
+                window.legacyThemeReturnForm = window.legacyThemeReturnForm || {};
+                window.legacyThemeReturnForm.validation = {{ validationMessages|json_encode|raw }};
+            </script>
+        {% endblock %}
+    </div>
+{% endblock %}

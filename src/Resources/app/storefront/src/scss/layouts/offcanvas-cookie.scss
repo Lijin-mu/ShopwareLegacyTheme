@@ -1,0 +1,23 @@
+.offcanvas-cookie {
+  .offcanvas-cookie-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    .form-check {
+      max-width: calc(100% - 25px);
+      display: inline-block;
+    }
+    .offcanvas-cookie-entries-toggle {
+      display: inline-block;
+      .icon-sm,
+      .icon {
+        width: rem(14);
+        height: rem(14);
+        & > svg {
+          top: rem(2);
+        }
+      }
+    }
+  }
+}

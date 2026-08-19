@@ -1,0 +1,61 @@
+{% block element_product_list_cta %}
+
+{% set config = element.translated.config %}
+{% set productList = element.data.products %}
+{% set products = productList.elements %}
+{% set boxStyle = config('ShopwareLegacyTheme.config.productBoxStyle') %}
+{% set listingColumns = 'product-box-wrapper list-' ~ boxStyle %}
+
+<div class="product-list-cta {{ config.customClass.value|default('') }} alignment-{{ config.alignment.value|default('left') }} list-{{boxStyle}}">
+    
+    <div class="product-list-cta-header">
+
+        {% if config.title.value %}
+        <{{ config.titleHeading.value|default('h2') }}
+            class="product-list-cta-title">
+            {{ config.title.value }}
+        </{{ config.titleHeading.value|default('h2') }}>
+    {% endif %}
+
+    {% if config.subTitle.value %}
+        <{{ config.subTitleHeading.value|default('h3') }} class="product-list-cta-subtitle">
+            {{ config.subTitle.value }}
+        </{{ config.subTitleHeading.value|default('h3') }}>
+    {% endif %}
+
+    {% if config.shortDescription.value %}
+        <p class="product-list-cta-description">
+            {{ config.shortDescription.value }}
+        </p>
+    {% endif %}
+    
+    </div>
+
+
+    {% if products is not empty %}
+        <div class="product-list-cta-products">
+            {% for product in products %}
+            <div class="product-list-item">
+                {% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+                                                    'layout': sliderConfig.boxLayout.value,
+                                                    'displayMode': sliderConfig.displayMode.value
+                                                } %}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+    {% if config.buttonText1.value and config.url1.value %}
+        <div class="product-list-cta-footer">
+            <a href="{{ config.url1.value }}"
+            class="btn btn-{{ config.buttonType1.value|default('primary') }}"
+            {% if config.newTab1.value %}target="_blank" rel="noopener"{% endif %}>
+                {{ config.buttonText1.value }}
+            </a>
+        </div>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}

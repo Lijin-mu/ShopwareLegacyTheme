@@ -1,0 +1,39 @@
+<div style="font-family: arial; font-size: 12px;">
+    <h2>Neue Retourenanfrage</h2>
+
+    <p>Sie haben eine neue Retourenanfrage über Ihre Website erhalten:</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold; width: 30%;">Kundennummer:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ customerNumber }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">E-Mail:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;"><a href="mailto:{{ email }}">{{ email }}</a></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">Rechnungsnummer:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ invoiceNumber }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">Artikelnummer(n):</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ itemNumbers }}</td>
+        </tr>
+        {% if productName %}
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">Produkt:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>{{ productName }}</strong></td>
+        </tr>
+        {% endif %}
+        {% if comment %}
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold; vertical-align: top;">Kommentar:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ comment|nl2br }}</td>
+        </tr>
+        {% endif %}
+    </table>
+
+    <p style="color: #666;">Dies ist eine automatische Nachricht von Ihrem Retourenformular.</p>
+</div>
+

@@ -1,0 +1,91 @@
+{% block block_hero_slider %}
+	<div class="col-12">
+		<div class="legacy-hero-slider">
+			{% block block_slider_content %}
+				{% if sliderLazyload is not defined %}
+					{% set sliderLazyload = true %}
+				{% endif %}
+				{% set navigationArrows = ' inside'%}
+				{% set baseSliderOptions = {
+						slider: {
+							navPosition: 'bottom',
+							speed: 1200,
+							lazyload:true,
+							lazyloadSelector:'.cms-image',
+							autoplay: true,
+							autoplayButtonOutput: false,
+							nav: true,
+							loop: true,
+							rewind:true,
+							controls: true,
+							mouseDrag: true,
+							autoHeight: false,
+							responsive: {
+								xs: {
+									nav: true,
+								},
+								sm: {
+									nav: true,
+								},
+								md: {
+									nav: true,
+								}
+							}
+						}
+					} %}
+				<div class="legacy-hero-slider-wrapper{% if navigationArrows == " outside" %} has-nav-outside{% endif %}{% if navigationDots == " outside" %} has-dots-outside{% endif %}" data-gallery-slider="true" data-gallery-slider-options='{{ baseSliderOptions|json_encode }}'>
+					<div class="base-slider legacy-hero-slider">
+						<div class="legacy-hero-slider-container" data-gallery-slider-container="true">
+							{% set totalslides = 6 %}
+							{% for i in 1..totalslides %}
+								{% set slotName = "slot0"~ i %}
+								{% set slide = 'block_slider_slide_' ~ i %}
+								{% set slideInner = 'block_slider_slide_inner_' ~ i %}
+								{% block slide %}
+									{% set element = block.slots.getSlot(slotName) %}
+									{% if element.translated.config.active.value && element.translated.config.active.value === true %}
+										<div class="slider-item">
+											{% block slideInner %}
+												{% set sizes = {
+												'desktop': '1680',
+												'tablet': '800',
+												'mobile': '500'
+											} %}
+												{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing with { sliderLazyload: false , sizes:sizes } %}
+											{% endblock %}
+										</div>
+									{% endif %}
+								{% endblock %}
+							{% endfor %}
+						</div>
+                                <div class="image-slider-controls-container">
+                                    <div class="base-slider-controls"
+                                        data-gallery-slider-controls="true">
+                                        {% block element_image_slider_controls_items %}
+                                            {% block element_image_slider_controls_items_arrows %}
+                                                <button class="base-slider-controls-prev image-slider-controls-prev{% if navigationArrows == " outside" %} is-nav-prev-outside{% elseif navigationArrows == " inside" %} is-nav-prev-inside{% endif %}" aria-label="{{ 'general.previous'|trans|striptags }}">
+														{% block element_image_slider_controls_items_prev_icon %}
+															<span class="icon-arrow-rounded-left">
+																<span class="path1"></span>
+																<span class="path2"></span>
+															</span>
+														{% endblock %}
+													</button>
+													<button class="base-slider-controls-next image-slider-controls-next{% if navigationArrows == " outside" %} is-nav-next-outside{% elseif navigationArrows == " inside" %} is-nav-next-inside{% endif %}" aria-label="{{ 'general.next'|trans|striptags }}">
+														{% block element_image_slider_controls_items_next_icon %}
+															<span class="icon-arrow-rounded-right">
+																<span class="path1"></span>
+																<span class="path2"></span>
+															</span>
+														{% endblock %}
+													</button>
+                                            {% endblock %}
+                                        {% endblock %}
+                                    </div>
+                                </div>
+					</div>
+				</div>
+			{% endblock %}
+		</div>
+	</div>
+{% endblock %}

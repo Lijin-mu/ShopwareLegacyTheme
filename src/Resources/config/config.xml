@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Global settings</title>
+        <title lang="de-DE">Globale Einstellungen</title>
+        <component name="sw-switch-field">
+            <name>enableFilterCountButton</name>
+            <bordered>bordered</bordered>
+            <label>Enable filter product count button</label>
+            <label lang="de-DE">Schaltfläche „Filter-Produktanzahl“ aktivieren</label>
+            <helpText>Enable Count button inside filter panel</helpText>
+            <helpText lang="de-DE">Schaltfläche „Zählen“ im Filterfeld aktivieren</helpText>
+            <defaultValue>false</defaultValue>
+        </component>
+        <component name="sw-switch-field">
+            <name>enableNewsletterOnFooterTop</name>
+            <bordered>bordered</bordered>
+            <label>Enable newsletter on the top of the footer</label>
+            <label lang="de-DE">Newsletter oben in der Fußzeile aktivieren</label>
+            <helpText>Enables the newsletter on the top of the footer in full width</helpText>
+            <helpText lang="de-DE">Aktiviert den Newsletter oben in der Fußzeile in voller Breite.</helpText>
+            <defaultValue>false</defaultValue>
+        </component>
+        <component name="sw-switch-field">
+            <name>enableNewsletterOnFooterColumn</name>
+            <bordered>bordered</bordered>
+            <label>Enable newsletter on the top of the footer column</label>
+            <label lang="de-DE">Newsletter oben in der Fußzeilenspalte aktivieren</label>
+            <helpText>Enables the newsletter on the footer column</helpText>
+            <helpText lang="de-DE">Aktiviert den Newsletter in der Fußzeilenspalte</helpText>
+            <defaultValue>true</defaultValue>
+        </component>
+         <component name="sw-switch-field">
+            <name>enableCustomHotLineContent</name>
+            <bordered>bordered</bordered>
+            <label>Enable custom hotline content</label>
+            <label lang="de-DE">Benutzerdefinierte Hotline-Inhalte aktivieren</label>
+            <helpText>Enables custom hotline information added via snippets</helpText>
+            <helpText lang="de-DE">AErmöglicht das Hinzufügen benutzerdefinierter Hotline-Informationen über Snippets</helpText>
+            <defaultValue>false</defaultValue>
+        </component>
+        <component name="sw-switch-field">
+            <name>enableFooterBottomPaymentLogos</name>
+            <bordered>bordered</bordered>
+            <label>Enable default footer payment logos in bottom</label>
+            <label lang="de-DE">Fußzeilen-Zahlungslogos unten aktivieren</label>
+            <helpText>Enables default footer payment logos in bottom</helpText>
+            <helpText lang="de-DE">Aktiviert Standard-Zahlungslogos in der Fußzeile unten</helpText>
+            <defaultValue>false</defaultValue>
+        </component>
+        <component name="sw-switch-field">
+            <name>enableFooterBottomShippingLogos</name>
+            <bordered>bordered</bordered>
+            <label>Enable default footer Shipping logos in bottom</label>
+            <label lang="de-DE">Standard-Fußzeile aktivieren Versandlogos unten</label>
+            <helpText>Enables default footer Shipping logos in bottom</helpText>
+            <helpText lang="de-DE">Aktiviert Standard-Fußzeile Versandlogos unten</helpText>
+            <defaultValue>false</defaultValue>
+        </component>
+        <component name="sw-switch-field">
+            <name>enableCustomVatText</name>
+            <bordered>bordered</bordered>
+            <label>Enable custom VAT text</label>
+            <label lang="de-DE">Benutzerdefinierten Mehrwertsteuersatz aktivieren</label>
+            <helpText>Enables custom VAT text in the footer</helpText>
+            <helpText lang="de-DE">Aktiviert benutzerdefinierten Mehrwertsteuersatz in der Fußzeile</helpText>
+            <defaultValue>false</defaultValue>
+        </component>
+        <component name="sw-switch-field">
+            <name>enableCustomCopyRightText</name>
+            <bordered>bordered</bordered>
+            <label>Enable custom copyright text</label>
+            <label lang="de-DE">Benutzerdefinierten Copyright-Text aktivieren</label>
+            <helpText>Enables custom copyright text in the footer</helpText>
+            <helpText lang="de-DE">Aktiviert benutzerdefinierten Copyright-Text in der Fußzeile</helpText>
+            <defaultValue>false</defaultValue>
+        </component>
+    </card>
+    <card>
+        <title>Product box settings</title>
+        <title lang="de-DE">Produktbox-Einstellungen</title>
+        <component name="sw-switch-field">
+            <name>enableVariantCharacteristics</name>
+            <bordered>bordered</bordered>
+            <label>Enable variant characteristics</label>
+            <label lang="de-DE">Varianteneigenschaften aktivieren</label>
+            <helpText>Enables the display of variant characteristics in the product box.</helpText>
+            <helpText lang="de-DE">Aktiviert die Anzeige von Varianteneigenschaften in der Produktbox.</helpText>
+            <defaultValue>false</defaultValue>
+        </component>
+         <component name="sw-switch-field">
+            <name>enableProductDescription</name>
+            <bordered>bordered</bordered>
+            <label>Enable product description</label>
+            <label lang="de-DE">Produktbeschreibung aktivieren</label>
+            <helpText>Enables the display of product description in the product box.</helpText>
+            <helpText lang="de-DE">Aktiviert die Anzeige der Produktbeschreibung in der Produktbox.</helpText>
+            <defaultValue>false</defaultValue>
+        </component>
+        <component name="sw-switch-field">
+            <name>enableProductAddCart</name>
+            <bordered>bordered</bordered>
+            <label>Enable product add to cart</label>
+            <label lang="de-DE">Warenkorb für Produkte aktivieren</label>
+            <helpText>Enables the display of product add to cart in the product box.</helpText>
+            <helpText lang="de-DE">Aktiviert die Anzeige des Warenkorbs für Produkte in der Produktbox.</helpText>
+            <defaultValue>true</defaultValue>
+        </component>
+         <component name="sw-switch-field">
+            <name>enableProductWishlist</name>
+            <bordered>bordered</bordered>
+            <label>Enable product wishlist</label>
+            <label lang="de-DE">Warenkorb für Produkte aktivieren</label>
+            <helpText>Enables the display of product wishlist in the product box.</helpText>
+            <helpText lang="de-DE">Aktiviert die Anzeige des Warenkorbs für Produkte in der Produktbox.</helpText>
+            <defaultValue>true</defaultValue>
+        </component>
+         <component name="sw-switch-field">
+            <name>enableProductCompare</name>
+            <bordered>bordered</bordered>
+            <label>Enable product compare</label>
+            <label lang="de-DE">Produktvergleich aktivieren</label>
+            <helpText>Enables the display of product compare in the product box.</helpText>
+            <helpText lang="de-DE">Aktiviert die Anzeige des Produktvergleichs in der Produktbox.</helpText>
+            <defaultValue>true</defaultValue>
+        </component>
+        <input-field type="single-select">
+            <name>productBoxStyle</name>
+            <label>Product Box Style</label>
+            <label lang="de-DE">Produktbox-Stil</label>
+            <defaultValue>grid</defaultValue>
+            <options>
+                <option>
+                    <id>grid</id>
+                    <name>Grid type</name>
+                    <name lang="de-DE">Gittertyp</name>
+                </option>
+                <option>
+                    <id>column</id>
+                    <name>Column type</name>
+                    <name lang="de-DE">Spaltenlayout</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+    
+    <card>
+        <title>Listing Layout</title>
+        <title lang="de-DE">Listing Layout</title>
+        <input-field type="single-select">
+            <name>themeListingLayout</name>
+            <label>Listing Layout</label>
+            <label lang="de-DE">Listing Layout</label>
+            <defaultValue>Layout1</defaultValue>
+            <options>
+                <option>
+                    <id>Layout1</id>
+                    <name>Layout 1 Column</name>
+                    <name lang="de-DE">Layout 1 Spalte</name>
+                </option>
+                <option>
+                    <id>Layout2</id>
+                    <name>Layout 2 Column</name>
+                    <name lang="de-DE">Layout 2 Spalte</name>
+                </option>
+                <option>
+                    <id>Layout3</id>
+                    <name>Layout 3 Column</name>
+                    <name lang="de-DE">Layout 3 Spalte</name>
+                </option>
+                 <option>
+                    <id>Layout4</id>
+                    <name>Layout 4 Column</name>
+                    <name lang="de-DE">Layout 4 Spalte</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Product Detail Page Settings</title>
+        <title lang="de-DE">Produktdetail-Einstellungen</title>
+        <component name="sw-entity-single-select">
+            <name>productQuestionsLink</name>
+            <entity>category</entity>
+            <pageType>product</pageType>
+            <label>Product Questions Link</label>
+            <label lang="de-DE">Produktdetail-Kategorie</label>
+            <placeholder>Assign category...</placeholder>
+            <placeholder lang="de-DE">Kategorie zuweisen ...</placeholder>
+            <helpText>URL for "Do you have questions about this product?" link. Leave empty for default enquiry form.</helpText>
+            <helpText lang="de-DE">URL für den Link "Fragen zum Artikel?". Leer lassen für Standard-Anfrageformular.</helpText>
+        </component>
+
+        <component name="sw-entity-single-select">
+            <name>productManufacturerLink</name>
+            <entity>category</entity>
+            <pageType>product</pageType>
+            <label>Product Manufacturer Link</label>
+            <label lang="de-DE">Produktdetail-Link</label>
+            <placeholder>Assign category...</placeholder>
+            <placeholder lang="de-DE">Kategorie zuweisen ...</placeholder>
+            <helpText>URL for "Do you have questions about this product?" link. Leave empty for default enquiry form.</helpText>
+            <helpText lang="de-DE">URL für den Link "Fragen zum Artikel?". Leer lassen für Standard-Anfrageformular.</helpText>
+        </component>
+    </card>
+</config>

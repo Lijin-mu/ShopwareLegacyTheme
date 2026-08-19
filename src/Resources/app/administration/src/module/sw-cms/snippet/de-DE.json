@@ -1,0 +1,244 @@
+{
+  "sw-cms": {
+    "blocks": {
+      "form": {
+        "enquiryForm": {
+          "label": "Anfrageformular"
+        }
+      },
+      "recently-viewed-product-slider": {
+        "label": "Zuletzt angesehene Produkt Slider"
+      },
+      "hero-slider": {
+        "label": "Hero CTA Slider"
+      },
+      "column-cta":{
+        "label":"column cta"
+      },
+      "product-list": {
+        "label": "Product List"
+      }
+    },
+    "elements": {
+      "enquiryForm": {
+        "label": "Anfrageformular",
+        "config": {
+          "title": {
+            "label": "Titel",
+            "placeholder": "Formulartitel eingeben"
+          },
+          "subtitle": {
+            "label": "Untertitel",
+            "placeholder": "Formularuntertitel eingeben"
+          },
+          "showLabel": {
+            "label": "Etikett anzeigen"
+          },
+          "showSalutation": {
+            "label": "Anredefeld anzeigen"
+          },
+          "showPhone": {
+            "label": "Telefonfeld anzeigen"
+          },
+          "showDescription": {
+            "label": "Beschreibungsfeld anzeigen"
+          },
+          "buttonText": {
+            "label": "Button-Text",
+            "placeholder": "Anfrage absenden"
+          },
+          "successMessage": {
+            "label": "Erfolgsmeldung",
+            "placeholder": "Vielen Dank für Ihre Anfrage!"
+          }
+        }
+      },
+      "cta": {
+        "label": "CTA",
+        "componentLabel": "CTA-Element",
+        "general": {
+          "tabs": {
+            "title": "Titel & Einleitung",
+            "content": "Inhalt",
+            "media": "Bilder",
+            "button": "Buttons",
+            "settings": "Anzeigeeinstellungen"
+          },
+          "config": {
+            "title": "Überschrift",
+            "title-tag": "Überschriften-Tag",
+            "sub-title": "Unterüberschrift",
+            "sub-title-tag": "Unterüberschriften-Tag",
+            "short-description": "Einleitungstext",
+            "desktop": "Desktop (Große Bildschirme)",
+            "tablet": "Tablet (Hochformat)",
+            "mobile": "Mobil (Smartphone)",
+            "button-text": "Button-Beschriftung",
+            "button-url": "Link / URL",
+            "button-type": "Button-Stil",
+            "add-more-button": "Sekundären Button hinzufügen",
+            "open-link-new-tab": "Link in neuem Tab öffnen",
+            "enable-lazy-load": "Lazy Loading aktivieren",
+            "enable-element": "Element aktivieren",
+            "horizontal-alignment": "Textausrichtung",
+            "custom-class": "Benutzerdefinierte CSS-Klasse",
+            "content": {
+              "label": "Hauptinhalt",
+              "placeholder": "Geben Sie hier Ihre detaillierte Beschreibung ein..."
+            }
+          }
+        }
+      },
+      "product-list-cta": {
+        "label": "Produktliste",
+        "componentLabel": "Produktlisten-CTA-Element",
+        "general": {
+          "tabs": {
+            "title": "Titel & Einleitung",
+            "button": "Buttons",
+            "settings": "Einstellungen",
+            "products": "Produkte",
+            "count": "Anzahl"
+          },
+          "config": {
+            "title": "Überschrift",
+            "title-tag": "Überschriften-Tag",
+            "sub-title": "Unterüberschrift",
+            "sub-title-tag": "Unterüberschriften-Tag",
+            "short-description": "Einleitungstext",
+            "button-text": "Button-Beschriftung",
+            "button-url": "Link / URL",
+            "button-type": "Button-Stil",
+            "add-more-button": "Sekundären Button hinzufügen",
+            "open-link-new-tab": "Link in neuem Tab öffnen",
+            "enable-lazy-load": "Lazy Loading aktivieren",
+            "enable-element": "Element aktivieren",
+            "horizontal-alignment": "Textausrichtung",
+            "custom-class": "Benutzerdefinierte CSS-Klasse",
+            "select-products": "Produkte auswählen",
+            "desktop-count": "Desktop-Anzahl",
+            "tablet-count": "Tablet-Anzahl",
+            "mobile-count": "Mobile-Anzahl",
+            "enable-autoplay": "Autoplay aktivieren",
+            "speed": "Animationsgeschwindigkeit (ms)",
+            "enable-controlls": "Navigationssteuerung aktivieren",
+            "enable-dots": "Punkte aktivieren",
+            "enable-loop": "Endlosschleife aktivieren",
+            "placeholder-select": "Produkte auswählen, die in der Produktliste angezeigt werden sollen.",
+            "heading-h1": "H1",
+            "heading-h2": "H2",
+            "heading-h3": "H3",
+            "heading-h4": "H4",
+            "heading-h5": "H5",
+            "heading-div": "DIV",
+            "heading-p": "Absatz",
+            "align-left": "Links",
+            "align-center": "Zentriert",
+            "align-right": "Rechts",
+            "align-top": "Oben",
+            "align-middle": "Mitte",
+            "align-bottom": "Unten",
+            "content": {
+              "label": "Hauptinhalt",
+              "placeholder": "Geben Sie hier Ihre detaillierte Beschreibung ein..."
+            },
+            "label": {
+              "displayMode": "Anzeigemodus",
+              "displayModeStandard": "Standard",
+              "displayModeCover": "Cover",
+              "displayModeContain": "Contain",
+              "alignment": "Ausrichtung",
+              "verticalAlign": "Vertikale Ausrichtung",
+              "verticalAlignTop": "Oben",
+              "verticalAlignCenter": "Zentriert",
+              "verticalAlignBottom": "Unten",
+              "layoutType": "Box-Layout",
+              "layoutTypeStandard": "Standard",
+              "layoutTypeImage": "Bild",
+              "layoutTypeMinimal": "Minimal",
+              "border": "Rahmen anzeigen"
+            }
+          }
+        }
+      },
+      "general": {
+        "config": {
+          "short-description": "Kurzbeschreibung",
+          "active": "Aktiv",
+          "image": "Bild",
+          "setting": "Einstellung",
+          "desktop": "Desktop",
+          "tablet": "Tablet",
+          "mobile": "Mobil",
+          "enable-lazy-load": "Lazy Load aktivieren",
+          "custom-class": "Benutzerdefinierte Klasse",
+          "enable-autoplay": "Autoplay aktivieren",
+          "background-color": "Hintergrundfarbe",
+          "speed": "Geschwindigkeit",
+          "enable-controlls": "Aktivieren Sie Pfeile",
+          "enable-dots": "Punkte aktivieren",
+          "enable-loop": "Schleife aktivieren",
+          "theme-color": "Themenfarbe",
+          "content-color": "Inhaltsfarbe",
+          "alignment": "Ausrichtung",
+          "open-link-new-tab": "Link in neuem Tab öffnen",
+          "button-text": "Schaltflächentext",
+          "button-type": "Schaltflächentyp",
+          "add-more-button": "Weitere Schaltfläche hinzufügen",
+          "category": "Kategorie",
+          "image-position": "Bildposition",
+          "title": "Titel",
+          "title-tag": "Titel-Überschrift-Tag",
+          "sub-title": "Untertitel",
+          "sub-title-tag": "Untertitel-Überschrift-Tag",
+          "title-position": "Titelposition",
+          "horizontal-alignment": "Horizontale Ausrichtung",
+          "content": {
+            "label": "Inhalt",
+            "placeholder": "Geben Sie den Bildtext-Link ein..."
+          },
+          "enable-cta": "Call To Action Button aktivieren",
+          "desktop-count": "Desktop-Anzahl",
+          "tablet-count": "Tablet-Anzahl",
+          "mobile-count": "Mobil-Anzahl",
+          "bestSeller": "Bestseller",
+          "productsPerPage": "Anzahl der Produkte pro Seite",
+          "max-height": "Maximale Höhe",
+          "object-fit": "Objektanpassung",
+          "contain": "Enthalten",
+          "cover": "Überdecken",
+          "fill": "Vollständig",
+          "scale": "Skalieren",
+          "none": "Nichts",
+          "linkTo": "Link zu",
+          "buttonText": "Schaltflächentext",
+          "slideTitle": "Folientitel",
+          "slideTag": "Folientag",
+          "addSliderItem": "Hinzufügen",
+          "sliderItems": "Folien",
+          "sliderItem": "Folie ",
+          "removeSliderItem": "Entfernen",
+          "sliderSettings": "Folien Einstellungen",
+          "navigation": "Navigation",
+          "remove-button": "Entfernen",
+          "add-button": "Hinzufügen",
+          "product": "Produkt"
+        },
+        "tabs": {
+          "background": "Hintergrund",
+          "settings": "Einstellungen",
+          "title": "Titel",
+          "content": "Inhalt",
+          "image": "Bild",
+          "button": "Schaltfläche",
+          "count": "Anzahl",
+          "content-settings": "Inhaltseinstellungen",
+          "slider-settings": "Slidereinstellungen",
+          "media": "Medien",
+          "options": "Optionen"
+        }
+      }
+    }
+  },
+  "apps.sw-cms.detail.label.blockCategory.legacy": "Vorgänger-Theme"
+}

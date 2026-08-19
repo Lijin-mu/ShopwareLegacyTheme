@@ -1,0 +1,46 @@
+.account-register {
+  padding: rem(30);
+}
+.account-welcome {
+  padding-top: 0;
+}
+
+.address {
+  margin-bottom: rem(16);
+}
+.badge {
+  &.order-item-status-badge {
+    margin: rem(5) 0;
+  }
+}
+.notification-dot.notification-dot-danger {
+  z-index: 1;
+}
+.container-main {
+  & > .account {
+    padding: rem(30) rem(5);
+    margin: 0;
+    @include min-tablet {
+      padding: rem(30) rem(20);
+    }
+    .account-content-aside {
+      .account-aside {
+        padding: rem(10);
+        border: 1px solid $border-color;
+        border-radius: rem(5);
+      }
+      .account-aside-item {
+        padding: rem(5) 0;
+      }
+      .account-aside-footer {
+        margin-top: rem(16);
+      }
+    }
+  }
+}
+.account-aside-btn {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,39 @@
+<div style="font-family: arial; font-size: 12px;">
+    <h2>New Product Return Request</h2>
+
+    <p>You have received a new product return request from your website:</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold; width: 30%;">Customer Number:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ customerNumber }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">Email:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;"><a href="mailto:{{ email }}">{{ email }}</a></td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">Invoice Number:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ invoiceNumber }}</td>
+        </tr>
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">Item Number(s):</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ itemNumbers }}</td>
+        </tr>
+        {% if productName %}
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold;">Product:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>{{ productName }}</strong></td>
+        </tr>
+        {% endif %}
+        {% if comment %}
+        <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f5f5f5; font-weight: bold; vertical-align: top;">Comment:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ comment|nl2br }}</td>
+        </tr>
+        {% endif %}
+    </table>
+
+    <p style="color: #666;">This is an automated message from your product return form.</p>
+</div>
+

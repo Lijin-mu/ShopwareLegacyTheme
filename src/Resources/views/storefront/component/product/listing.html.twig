@@ -1,0 +1,113 @@
+{% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
+
+
+{% set currentPage = ((searchResult.criteria.offset + 1) / searchResult.criteria.limit )|round(0, 'ceil') %}
+{% set paginationConfig = {
+    page: currentPage,
+    total: searchResult.total,
+    limit: searchResult.limit
+} %}
+
+{% if disableEmptyFilter is not defined %}
+	{% set disableEmptyFilter = config('core.listing.disableEmptyFilterOptions') %}
+{% endif %}
+
+{% set listingPagination = {
+    sidebar: sidebar,
+    params: params,
+    dataUrl: dataUrl,
+    filterUrl: filterUrl,
+    disableEmptyFilter: disableEmptyFilter,
+    snippets: {
+        resetAllButtonText: 'listing.filterPanelResetAll'|trans|sw_sanitize
+    }
+} %}
+
+
+{% set activeCategory = page.header.navigation.active %}
+{% set childCount = activeCategory.childCount %}
+{% set infinityScrollEnabled = true %}
+{% set infinityScrollOptions = {
+            "addNewPages" : true,
+            "stickyFooter" : false,
+            "renderPagination" : true,
+            "timeoutForScroll" : 10,
+            "maxPagesThreshold" : 1,
+            "scrollToTopOfPage" : false,
+            "timeoutForObserver" : 100,
+            "markLoadedPagesActive" : true,
+            "allowLoadingPastThreshold" : true,
+            "scrollToFirstPageAfterOrderUpdate" : true,
+            "scrollToFirstPageAfterFilterUpdate" : false 
+        } 
+    %}
+
+{% block product_listing %}
+	<div class="cms-element-product-listing-wrapper {% if infinityScrollOptions.stickyFooter %}has-sticky-footer{% endif %}" data-listing-pagination="true" data-listing-pagination-options='{{ paginationConfig|json_encode }}' data-listing="true" data-listing-options='{{ listingPagination|json_encode }}'
+		{% if infinityScrollEnabled %}
+            data-infinity-scroll="true"
+            data-infinity-scroll-options="{{ infinityScrollOptions|json_encode }}"
+        {% endif %}
+	>
+		{% block element_product_listing_wrapper_content %}
+			<div class="cms-element-product-listing">
+                {% block element_product_listing_pagination_nav_actions %}
+                    <div class="cms-element-product-listing-actions row justify-content-between">
+                        <div class="col-md-auto col-lg-7 col-md-6">
+                            {% block element_product_listing_pagination_nav_top %}
+                            {% endblock %}
+                        </div>
+
+                        <div class="col-md-auto d-flex align-items-lg-start align-items-center sorting-filter">
+                            <span>{{ 'listing.sorting'|trans|sw_sanitize }}</span>
+                            {% block element_product_listing_sorting %}
+                                {{ parent() }}
+                            {% endblock %}
+                        </div>
+                    </div>
+                {% endblock %}
+
+				{% block element_product_listing_row %}
+                    <div class="js-listing-wrapper">
+					<div class="row cms-listing-row" 
+						data-page="{{ searchResult.page }}"
+						data-total="{{ searchResult.total }}"
+						data-limit="{{ searchResult.limit }}"
+						data-product-count="{{ searchResult|length }}">
+						{% if searchResult.total > 0 %}
+                            <span class="loaded-data-total" data-total="{{ searchResult.total }}"></span>
+							{% block element_product_listing_col %}
+								{% for product in searchResult %}
+									<div class="cms-listing-col {{ listingColumns }} {{isWishlist}}">
+										{% block element_product_listing_box %}
+											{% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+                                                'layout': boxLayout,
+                                                'displayMode': displayMode
+                                            } %}
+										{% endblock %}
+									</div>
+								{% endfor %}
+							{% endblock %}
+						
+						{% endif %}
+                        
+					</div>
+					</div>
+				{% endblock %}
+			</div>
+		{% endblock %}
+
+        <div class="js-listing-load-more text-center {% if searchResult.total > 0 %}d-none{% endif %}">
+            <div class="infinite-scroll-end-message alert alert-info text-center my-4" role="alert">
+                <p class="mb-0">
+                    <strong>{{ 'legacytheme.general.noMoreProducts'|trans|sw_sanitize }}</strong>
+                </p>
+            </div>
+        </div>
+		{% block element_product_listing_load_next_page %}
+            <div class="js-listing-load-next"></div>
+		{% endblock %}
+
+	</div>
+	
+{% endblock %}

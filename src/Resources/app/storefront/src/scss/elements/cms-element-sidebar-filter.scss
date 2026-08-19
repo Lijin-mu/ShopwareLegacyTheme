@@ -1,0 +1,103 @@
+.cms-element-sidebar-filter {
+  border: 1px solid #dadae5;
+  border-radius: rem(4);
+  .filter-panel {
+    margin-bottom: 0;
+  }
+  &.is-open {
+    .listing--actions {
+      border-bottom: 1px solid #dadae5;
+    }
+    .filter-panel-toggle-container {
+      .btn {
+        color: $white-color;
+        background-color: $primary-color;
+        $gradient-start: $primary-color;
+        $gradient-end: lighten($primary-color, 10%);
+        background-image: linear-gradient(
+          to bottom,
+          $gradient-start 0%,
+          $gradient-end 100%
+        );
+      }
+    }
+  }
+
+  .listing--actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: rem(4);
+    background-clip: padding-box;
+    margin: 0;
+    padding: 0.625rem;
+    border: none;
+    background: $form-background-color;
+    @include max-mobile {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .filter-panel-toggle-container,
+    .filter-panel-sorting-container {
+      @include max-mobile {
+        width: 100%;
+      }
+      .select-field {
+        @include max-mobile {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+  .form-select-wrapper {
+    @include max-mobile {
+      width: 100%;
+    }
+  }
+  .filter--btn-apply {
+    margin-left: rem(10);
+    margin-bottom: rem(12);
+    height: rem(40);
+  }
+
+  .filter-panel-items-container {
+    margin-left: rem(12);
+    margin-right: rem(12);
+    margin-top: rem(12);
+  }
+  .filter-panel-active-container {
+    align-items: baseline;
+    gap: 0;
+    button {
+      margin-left: rem(12);
+      margin-bottom: rem(12);
+    }
+  }
+
+  .filter-panel-sorting-container {
+    display: flex;
+    align-items: center;
+    .sorting-text {
+      margin-right: rem(10);
+    }
+    .select-field {
+      height: rem(40);
+    }
+  }
+
+  .filter-panel {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    &.show {
+      max-height: 1000px;
+    }
+  }
+}
+
+.offcanvas-filter {
+  .filter--btn-apply {
+    display: none;
+  }
+}

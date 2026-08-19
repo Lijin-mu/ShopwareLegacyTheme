@@ -1,0 +1,8 @@
+.sw-cms-block-product-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    grid-gap: 20px;
+}
+.sw-cms-block-product-list__container{
+    display: flex;
+}

@@ -1,0 +1,11 @@
+{% block sw_cms_element_cta_element %}
+
+	<div class="sw-cms-el-cta" :class="element.config.customClass.value">
+		<component :is="element.config.titleHeading.value">
+			{{ element.config.title.value || $tc('sw-cms.elements.cta.componentLabel') }}
+		</component>
+
+		<div class="cta-content-preview" v-html="element.config.content.value"></div>
+	</div>
+
+{% endblock %}

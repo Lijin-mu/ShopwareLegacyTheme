@@ -1,0 +1,48 @@
+{% block sw_cms_element_enquiry_form_config %}
+    <div class="sw-cms-el-config-enquiry-form">
+        <sw-text-field
+            v-model:value="element.config.title.value"
+            :label="$tc('sw-cms.elements.enquiryForm.config.title.label')"
+            :placeholder="$tc('sw-cms.elements.enquiryForm.config.title.placeholder')"
+        ></sw-text-field>
+
+        <sw-text-field
+            v-model:value="element.config.subtitle.value"
+            :label="$tc('sw-cms.elements.enquiryForm.config.subtitle.label')"
+            :placeholder="$tc('sw-cms.elements.enquiryForm.config.subtitle.placeholder')"
+        ></sw-text-field>
+
+        <sw-switch-field
+            v-model:value="element.config.showLabel.value"
+            :label="$tc('sw-cms.elements.enquiryForm.config.showLabel.label')"
+        ></sw-switch-field>
+
+        <sw-switch-field
+            v-model:value="element.config.showSalutation.value"
+            :label="$tc('sw-cms.elements.enquiryForm.config.showSalutation.label')"
+        ></sw-switch-field>
+
+        <sw-switch-field
+            v-model:value="element.config.showPhone.value"
+            :label="$tc('sw-cms.elements.enquiryForm.config.showPhone.label')"
+        ></sw-switch-field>
+
+        <sw-switch-field
+            v-model:value="element.config.showDescription.value"
+            :label="$tc('sw-cms.elements.enquiryForm.config.showDescription.label')"
+        ></sw-switch-field>
+
+        <sw-text-field
+            v-model:value="element.config.buttonText.value"
+            :label="$tc('sw-cms.elements.enquiryForm.config.buttonText.label')"
+            :placeholder="$tc('sw-cms.elements.enquiryForm.config.buttonText.placeholder')"
+        ></sw-text-field>
+
+        <sw-text-field
+            v-model:value="element.config.successMessage.value"
+            :label="$tc('sw-cms.elements.enquiryForm.config.successMessage.label')"
+            :placeholder="$tc('sw-cms.elements.enquiryForm.config.successMessage.placeholder')"
+        ></sw-text-field>
+    </div>
+{% endblock %}
+

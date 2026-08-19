@@ -1,0 +1,76 @@
+.compare-product-content {
+  .comparison-table {
+    .comparison-item {
+      font-size: rem(10);
+      white-space: normal;
+      word-break: break-all;
+      .product-image-wrapper {
+        height: rem(140);
+      }
+      .compare-item-remove-button {
+        display: block;
+      }
+      .comparison-item-title {
+        font-size: rem(12);
+        font-weight: bold;
+        min-height: rem(36);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .compare-item-remove-button {
+        display: block;
+        background-image: none;
+        background-color: $primary-color;
+        padding: 6px;
+        line-height: 0.08;
+        .icon {
+          width: 14px;
+          height: 14px;
+          & > svg {
+            top: 0;
+          }
+        }
+      }
+    }
+    .product-action {
+      .btn-buy {
+        @include max-tablet {
+          font-size: 0;
+          padding-right: rem(12);
+        }
+        &::before {
+          @include max-tablet {
+            position: relative;
+            top: auto;
+            font-size: rem(14);
+            content: "\e64c";
+            font-family: "shopware";
+            margin: auto;
+            left: auto;
+            right: auto;
+          }
+        }
+      }
+    }
+  }
+}
+.is-act-comparepage {
+  .container-main {
+    padding: rem(25);
+  }
+  .compare-product-content {
+    border: 1px solid $border-color;
+  }
+  .comparison-table {
+    width: auto;
+    margin-right: -1px;
+    margin-top: -1px;
+
+    .table-bordered {
+      border-collapse: collapse;
+    }
+  }
+}

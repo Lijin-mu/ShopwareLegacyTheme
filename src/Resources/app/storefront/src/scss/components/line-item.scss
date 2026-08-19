@@ -1,0 +1,30 @@
+.line-item {
+  .line-item-quantity-select-wrapper {
+    .line-item-quantity-group {
+      input {
+        background: transparent;
+        background-color: $white-color;
+        box-shadow: none;
+        border-color: $dark-grey-color;
+        color: $text-color;
+        &:focus {
+          color: $text-color;
+        }
+      }
+      button {
+        background-image: none;
+        background-color: $white-color;
+        border-color: $dark-grey-color;
+      }
+    }
+  }
+  .product-wishlist-not-added {
+    .icon-wishlist-not-added {
+      height: auto;
+      animation: none;
+    }
+  }
+  .product-wishlist-text {
+    line-height: 1;
+  }
+}

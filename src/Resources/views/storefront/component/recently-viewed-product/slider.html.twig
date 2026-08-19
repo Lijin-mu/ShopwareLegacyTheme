@@ -1,0 +1,13 @@
+<div class="product-slider-container js-recently-viewed-product-slider">
+	{% for product in products %}
+		{% block element_product_slider_inner_item %}
+			<div class="recent-view-slider-item">
+				{% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+					'layout': 'minimal',
+					'displayMode': displayMode
+				} %}
+			</div>
+		{% endblock %}
+	{% endfor %}
+</div>
+

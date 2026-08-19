@@ -1,0 +1,23 @@
+.search-page{
+    .search-headline{
+        margin: 0;
+        padding: rem(24);
+        @include desktop-small{
+            padding-top: 0;
+        }
+    }
+    .cms-element-sidebar-filter{
+        .listing--actions{
+            padding: rem(12) rem(25);
+            @include desktop-small{
+                padding: rem(12) rem(35);
+            }
+        }
+    }
+    .cms-element-product-listing{
+        padding: rem(35) rem(25);
+        @include desktop-small{
+            padding: rem(35);
+        }
+    }
+}

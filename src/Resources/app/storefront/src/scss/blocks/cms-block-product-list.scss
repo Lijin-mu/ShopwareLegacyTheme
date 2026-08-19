@@ -1,0 +1,8 @@
+.cms-block-product-list {
+  padding-top: rem(30);
+  padding-bottom: rem(30);
+  @include desktop-medium {
+    padding-top: rem(60);
+    padding-bottom: rem(60);
+  }
+}

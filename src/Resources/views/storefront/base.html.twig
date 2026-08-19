@@ -1,0 +1,27 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_body_classes %}
+	{{parent()}}
+{% endblock %}
+{% block base_body_inner %}
+	{% if theme_config('sw-background-image') or theme_config('sw-background-pattern-image') %}
+		{% block body_background_image %}
+			{% set bgimage = theme_config('sw-background-image') %}
+			{% set imageAlt = ("legacytheme.cms.siteBackgroundImageAlt"|trans) %}
+			<div class="body-bg" {% if theme_config('sw-background-pattern-image') %} style="background-image: url('{{ theme_config('sw-background-pattern-image')|sw_encode_url }}');"{% endif %}>
+			{% if theme_config('sw-background-image') %}
+				<picture>
+					<source media="(min-width:768px)" srcset="{{ theme_config('sw-background-image')|sw_encode_url|split('?')[0] }}">
+					{% if theme_config('sw-background-image-mobile') %}
+					<source media="(min-width:0px)" srcset="{{ theme_config('sw-background-image-mobile')|sw_encode_url|split('?')[0] }}">
+					<img src="{{ theme_config('sw-background-image-mobile')|sw_encode_url|split('?')[0] }}" alt="{{imageAlt}}" width="1920" height="1000" loading="eager" fetchpriority="high">
+					{% else %}
+					<img src="{{ theme_config('sw-background-image')|sw_encode_url|split('?')[0] }}" alt="{{imageAlt}}" width="1920" height="1000" loading="eager" fetchpriority="high">
+					{% endif %}
+				</picture>
+			{% endif %}
+			</div>
+		{% endblock %}
+	{% endif %}
+	{{parent()}}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% block block_cmsbundle_recently_viewed_product_slider %}
+	<div class="recently-viewed-product-slider-wrapper">
+		{% block block_recently_viewed_product_slider_foreground %}
+			<div class="recently-viewed-product-slider__foreground">
+				<div class="container">
+					{% block block_recently_viewed_product_slider_products %}
+						{% set element = block.slots.getSlot('product') %}
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					{% endblock %}
+				</div>
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

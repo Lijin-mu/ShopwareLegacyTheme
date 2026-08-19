@@ -1,0 +1,171 @@
+{% block sw_cms_element_product_list_cta_config %}
+	<div class="sw-cms-el-config-product-list-cta">
+		{% block sw_cms_element_product_list_cta_config_tabs %}
+			<sw-tabs default-item="title">
+				<template #default="{ active }">
+					<sw-tabs-item name="title" :active-tab="active">
+						{{ $tc('sw-cms.elements.product-list-cta.general.tabs.title') }}
+					</sw-tabs-item>
+
+					<sw-tabs-item name="products" :active-tab="active">
+						{{ $tc('sw-cms.elements.product-list-cta.general.tabs.products') }}
+					</sw-tabs-item>
+
+					<sw-tabs-item name="count" :active-tab="active">
+						{{ $tc('sw-cms.elements.product-list-cta.general.tabs.count') }}
+					</sw-tabs-item>
+
+					<sw-tabs-item name="button" :active-tab="active">
+						{{ $tc('sw-cms.elements.product-list-cta.general.tabs.button') }}
+					</sw-tabs-item>
+
+					<sw-tabs-item name="settings" :active-tab="active">
+						{{ $tc('sw-cms.elements.product-list-cta.general.tabs.settings') }}
+					</sw-tabs-item>
+				</template>
+
+				<template #content="{ active }">
+					<div v-if="active === 'title'" class="sw-cms-el-config-product-list-cta__tab-content">
+						<div class="sw-field-row">
+							<sw-text-field v-model:value="element.config.title.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.title')"/>
+							<mt-select v-model="element.config.titleHeading.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.title-tag')" :options="[
+														{ label: $tc('sw-cms.elements.product-list-cta.general.config.heading-h1'), value: 'h1' },
+														{ label: $tc('sw-cms.elements.product-list-cta.general.config.heading-h2'), value: 'h2' },
+														{ label: $tc('sw-cms.elements.product-list-cta.general.config.heading-h3'), value: 'h3' },
+														{ label: $tc('sw-cms.elements.product-list-cta.general.config.heading-div'), value: 'div' }
+													]"/>
+						</div>
+
+						<div class="sw-field-row">
+							<sw-text-field v-model:value="element.config.subTitle.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.sub-title')"/>
+							<mt-select v-model="element.config.subTitleHeading.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.sub-title-tag')" :options="[
+														{ label: $tc('sw-cms.elements.product-list-cta.general.config.heading-h3'), value: 'h3' },
+														{ label: $tc('sw-cms.elements.product-list-cta.general.config.heading-h4'), value: 'h4' },
+														{ label: $tc('sw-cms.elements.product-list-cta.general.config.heading-h5'), value: 'h5' },
+														{ label: $tc('sw-cms.elements.product-list-cta.general.config.heading-p'), value: 'p' }
+													]"/>
+						</div>
+
+						<sw-textarea-field v-model:value="element.config.shortDescription.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.short-description')"/>
+					</div>
+
+					<div v-if="active === 'products'" class="sw-cms-el-config-product-list-cta__tab-content">
+						<sw-entity-multi-select v-if="productCollection" v-model:entity-collection="productCollection" :label="$tc('sw-cms.elements.product-list-cta.general.config.select-products')" :placeholder="$tc('sw-cms.elements.product-list-cta.general.config.placeholder-select')" :context="productMultiSelectContext" :criteria="productCriteria" @update:entity-collection="onProductsChange">
+							<template #selection-label-property="{ item }">
+								<sw-product-variant-info :variations="item.variation">
+									{{ item.translated.name || item.name }}
+								</sw-product-variant-info>
+							</template>
+
+							<template #result-item="{ item, index }">
+								<slot name="result-item" v-bind="{ item, index }">
+									<sw-select-result v-bind="{ item, index, selected: isSelected(item.id) }">
+										<span class="sw-select-result__result-item-text">
+											<sw-product-variant-info :variations="item.variation">
+												{{ item.translated.name || item.name }}
+											</sw-product-variant-info>
+										</span>
+									</sw-select-result>
+								</slot>
+							</template>
+						</sw-entity-multi-select>
+					</div>
+
+					<div v-if="active === 'count'" class="sw-cms-el-config-product-list-cta__tab-content">
+						<mt-select v-model="element.config.countDesktop.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.desktop-count')" :options="[
+													{ value: '6', label: '6' },
+													{ value: '5', label: '5' },
+													{ value: '4', label: '4' },
+													{ value: '3', label: '3' },
+													{ value: '2', label: '2' },
+													{ value: '1', label: '1' }
+												]"/>
+
+						<mt-select v-model="element.config.countTablet.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.tablet-count')" :options="[
+													{ value: '6', label: '6' },
+													{ value: '5', label: '5' },
+													{ value: '4', label: '4' },
+													{ value: '3', label: '3' },
+													{ value: '2', label: '2' },
+													{ value: '1', label: '1' }
+												]"/>
+
+						<mt-select v-model="element.config.countMobile.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.mobile-count')" :options="[
+												{ value: '6', label: '6' },
+												{ value: '5', label: '5' },
+												{ value: '4', label: '4' },
+												{ value: '3', label: '3' },
+												{ value: '2', label: '2' },
+												{ value: '1', label: '1' }
+											]"/>
+					</div>
+
+					<div v-if="active === 'button'" class="sw-cms-el-config-product-list-cta__tab-content">
+						<sw-dynamic-url-field v-model:value="element.config.url1.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.button-url')"/>
+
+						<div class="sw-field-row">
+							<sw-text-field v-model:value="element.config.buttonText1.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.button-text')"/>
+							<mt-select v-model="element.config.buttonType1.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.button-type')" :options="[
+														{ label: $tc('sw-cms.elements.product-list-cta.general.config.button-type-primary'), value: 'primary' },
+														{ label: $tc('sw-cms.elements.product-list-cta.general.config.button-type-secondary'), value: 'secondary' },
+														{ label: $tc('sw-cms.elements.product-list-cta.general.config.button-type-danger'), value: 'danger' }
+													]"/>
+						</div>
+
+						<sw-switch-field v-model:value="element.config.newTab1.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.open-link-new-tab')"/>
+					</div>
+
+					<div v-if="active === 'settings'" class="sw-cms-el-config-product-list-cta__tab-content">
+						<mt-select v-model="element.config.displayMode.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.label.displayMode')" :options="[
+													{ value: 'standard', label: $tc('sw-cms.elements.product-list-cta.general.config.label.displayModeStandard') },
+													{ value: 'cover', label: $tc('sw-cms.elements.product-list-cta.general.config.label.displayModeCover') },
+													{ value: 'contain', label: $tc('sw-cms.elements.product-list-cta.general.config.label.displayModeContain') }
+												]"/>
+
+						<mt-select v-model="element.config.titlePosition.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.horizontal-alignment')" :options="[
+													{ label: $tc('sw-cms.elements.product-list-cta.general.config.align-left'), value: 'start' },
+													{ label: $tc('sw-cms.elements.product-list-cta.general.config.align-center'), value: 'center' },
+													{ label: $tc('sw-cms.elements.product-list-cta.general.config.align-right'), value: 'end' }
+												]"/>
+
+						<mt-select v-model="element.config.horizontalAlign.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.label.alignment')" :options="[
+													{ label: $tc('sw-cms.elements.product-list-cta.general.config.align-top'), value: 'start' },
+													{ label: $tc('sw-cms.elements.product-list-cta.general.config.align-middle'), value: 'center' },
+													{ label: $tc('sw-cms.elements.product-list-cta.general.config.align-bottom'), value: 'end' }
+												]"/>
+
+						<mt-select v-model="element.config.verticalAlign.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.label.verticalAlign')" :placeholder="$tc('sw-cms.elements.product-list-cta.general.config.label.verticalAlign')" :options="[
+													{ value: 'flex-start', label: $tc('sw-cms.elements.product-list-cta.general.config.label.verticalAlignTop') },
+													{ value: 'center', label: $tc('sw-cms.elements.product-list-cta.general.config.label.verticalAlignCenter') },
+													{ value: 'flex-end', label: $tc('sw-cms.elements.product-list-cta.general.config.label.verticalAlignBottom') }
+												]"/>
+
+						<mt-select v-model="element.config.boxLayout.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.label.layoutType')" :options="[
+													{ value: 'standard', label: $tc('sw-cms.elements.product-list-cta.general.config.label.layoutTypeStandard') },
+													{ value: 'image', label: $tc('sw-cms.elements.product-list-cta.general.config.label.layoutTypeImage') },
+													{ value: 'minimal', label: $tc('sw-cms.elements.product-list-cta.general.config.label.layoutTypeMinimal') }
+												]"/>
+
+						<sw-text-field v-model:value="element.config.customClass.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.custom-class')"/>
+
+						<sw-switch-field v-model:value="element.config.border.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.label.border')" bordered/>
+
+						<sw-switch-field v-model:value="element.config.active.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.enable-element')"/>
+
+						<sw-switch-field v-model:value="element.config.lazyLoad.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.enable-lazy-load')"/>
+
+						<sw-switch-field v-model:value="element.config.autoPlay.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.enable-autoplay')" type="switch" bordered/>
+
+						<sw-text-field v-model:value="element.config.speed.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.speed')" type="text"/>
+
+						<sw-switch-field v-model:value="element.config.navigation.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.enable-controlls')" bordered/>
+
+						<sw-switch-field v-model:value="element.config.dots.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.enable-dots')" type="switch"/>
+
+						<sw-switch-field v-model:value="element.config.loop.value" :label="$tc('sw-cms.elements.product-list-cta.general.config.enable-loop')" type="switch"/>
+					</div>
+				</template>
+			</sw-tabs>
+		{% endblock %}
+	</div>
+{% endblock %}

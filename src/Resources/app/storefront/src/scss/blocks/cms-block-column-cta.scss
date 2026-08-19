@@ -1,0 +1,41 @@
+.cms-block-column-cta {
+  padding-top: rem(30);
+  padding-bottom: rem(30);
+  @include desktop-medium {
+    padding-top: rem(60);
+    padding-bottom: rem(60);
+  }
+  .column-cta-header {
+    h2,
+    h3,
+    h4,
+    p {
+      margin-bottom: rem(20);
+      @include desktop {
+        margin-bottom: rem(40);
+      }
+    }
+  }
+  .column-cta-footer {
+    margin-top: rem(10);
+    @include desktop {
+      margin-top: rem(30);
+    }
+    .btn {
+      width: auto;
+      display: inline-block;
+    }
+  }
+  .column-cta-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(24);
+    .cta-item {
+      flex: 1;
+      min-width: 18%;
+    }
+  }
+  .content-cta {
+    position: relative;
+  }
+}

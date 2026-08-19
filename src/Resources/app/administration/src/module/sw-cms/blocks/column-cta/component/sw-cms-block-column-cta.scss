@@ -1,0 +1,22 @@
+.sw-cms-block-column-cta{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+}
+.sw-cms-block-column-cta__container{
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-gap: 5px;
+    &.five-column{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr; 
+    }
+    .sw-cms-slot{
+        padding: 10px;
+        border: 1px solid #f1f1f1;
+        .sw-cms-el-cta{
+            min-height: 150px;
+            padding: 10px;
+            background: #f1eaea;
+        }
+    }
+}

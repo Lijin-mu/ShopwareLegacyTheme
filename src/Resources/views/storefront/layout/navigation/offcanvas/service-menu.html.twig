@@ -1,0 +1,20 @@
+{% block layout_header_service_menu %}
+	{% set activeId = shopware.navigation.id ?? context.salesChannel.navigationCategoryId %}
+	{% if page.extensions.serviceMenu is defined and page.extensions.serviceMenu|length > 0 %}
+
+		<div class="navigation-offcanvas-list-item">
+			<span itemprop="name">{{ 'header.indexLinkService'|trans|sw_sanitize }}</span>
+		</div>
+		<ul class="navigation-offcanvas-list">
+
+			{% for serviceMenuItem in page.extensions.serviceMenu %}
+				{% set isActive = serviceMenuItem.id == activeId %}
+				<li class="navigation-offcanvas-list-item">
+					<a class="navigation-offcanvas-link nav-item nav-link {% if isActive %} active{% endif %}" href="{{ serviceMenuItem.seoUrl }}" {% if serviceMenuItem.shouldOpenInNewTab %} target="_blank" {% endif %} itemprop="url" title="{{ serviceMenuItem.translated.name }}">
+						<span itemprop="name">{{ serviceMenuItem.translated.name }}</span>
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% block sw_cms_element_product_list_cta %}
+<div class="sw-cms-el-product-list-cta" :style="containerStyles">
+    <div class="sw-cms-el-product-list-cta__content" :class="element.config.customClass.value">
+        
+      <component :is="element.config.titleHeading.value || 'h2'" 
+                   class="cta-title"
+                   :class="{ 'is--placeholder': !element.config.title.value }">
+            {{ element.config.title.value || 'Product list cta' }}
+        </component>
+
+        <component :is="element.config.subTitleHeading.value || 'h3'" 
+                   v-if="element.config.subTitle.value"
+                   class="cta-subtitle">
+            {{ element.config.subTitle.value }}
+        </component>
+
+        <p v-if="element.config.shortDescription.value" class="cta-description">
+            {{ element.config.shortDescription.value }}
+        </p>
+
+        <div v-if="element.config.buttonText1.value" class="cta-actions">
+            <sw-button :variant="element.config.buttonType1.value">
+                {{ element.config.buttonText1.value }}
+            </sw-button>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

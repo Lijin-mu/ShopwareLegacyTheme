@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/layout/navbar/navbar.html.twig' %}
+
+{% block layout_navbar_menu_home %}
+    {% if context.salesChannel.translated.homeEnabled %}
+        <li class="nav-item nav-item-{{ context.salesChannel.navigationCategoryId }}">
+            <a class="nav-link main-navigation-link home-link root nav-item-{{ context.salesChannel.navigationCategoryId }}-link"
+                href="{{ path('frontend.home.page') }}"
+                itemprop="url"
+                title="{{ homeLabel|striptags }}"
+                aria-label="{{ homeLabel|striptags }}">
+                <span itemprop="name" class="main-navigation-link-text"><i class="icon--house"></i></span>
+            </a>
+        </li>
+    {% endif %}
+{% endblock %}

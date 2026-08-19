@@ -1,0 +1,221 @@
+{% block block_responsive_media %}
+
+ {% if lazyload is not defined %}
+    {% set lazyload = (lazyLoad is defined) ? lazyLoad : true %}
+ {% endif %}
+
+	{% if sizes is not defined %}
+		{% set sizes = {} %}
+	{% endif %}
+
+	{% if sliderLazyload is not defined %}
+		{% set sliderLazyload = false %}
+	{% endif %}
+
+	{% if attributes is not defined %}
+		{% set attributes = {} %}
+	{% endif %}
+
+	{% if fallbackImageTitle is not defined or fallbackImageTitle is null %}
+		{% set fallbackImageTitle = ("legacytheme.cms.contentImageAlt"|trans) ~ ' ' ~ desktopMedia.fileName %}
+	{% endif %}
+
+	{% if not hideOnMobile %}
+		{% set hideOnMobile = false %}
+	{% endif %}
+	<picture>
+
+		{% if desktopMedia != null %}
+			{% set haveThumb1920 = false %}
+			{% set haveThumb800 = false %}
+			{% set haveThumb400 = false %}
+			{% set desktopThumbnailImage = false %}
+			{% set tabletThumbnailImage = false %}
+			{% set mobileThumbnailImage = false %}
+			{% set desktopThumbnailImageUrl = desktopMedia.url %}
+			{% set tabletThumbnailImageUrl = desktopMedia.url %}
+			{% set mobileThumbnailImageUrl = desktopMedia.url %}
+			{% set desktopUrl = desktopMedia.url %}
+			{% set haveThumb1920Url = desktopMedia.url %}
+			{% set haveThumb800Url = desktopMedia.url %}
+			{% set haveThumb400Url = desktopMedia.url %}
+			{% for thumbnailDesktop in desktopMedia.thumbnails %}
+
+				{% if thumbnailDesktop.width == '1920' %}
+					{% set havethumbnail1920 = true %}
+					{% set haveThumb1920Url = thumbnailDesktop.url %}
+				{% endif %}
+				{% if thumbnailDesktop.width == '800' %}
+					{% set haveThumb800 = true %}
+					{% set haveThumb800Url = thumbnailDesktop.url %}
+				{% endif %}
+
+				{% if thumbnailDesktop.width == '400' %}
+					{% set haveThumb400 = true %}
+					{% set haveThumb400Url = thumbnailDesktop.url %}
+				{% endif %}
+
+				{% if sizes.desktop && thumbnailDesktop.width == sizes.desktop %}
+					{% set desktopThumbnailImage = true %}
+					{% set desktopThumbnailImageUrl = thumbnailDesktop.url %}
+				{% endif %}
+				{% if sizes.tablet && thumbnailDesktop.width == sizes.tablet %}
+					{% set tabletThumbnailImage = true %}
+					{% set tabletThumbnailImageUrl = thumbnailDesktop.url %}
+				{% endif %}
+				{% if sizes.mobile && thumbnailDesktop.width == sizes.mobile %}
+					{% set mobileThumbnailImage = true %}
+					{% set mobileThumbnailImageUrl = thumbnailDesktop.url %}
+				{% endif %}
+
+			{% endfor %}
+			{# {% if desktopThumbnailImage %}
+				<span class="thumbnail-image-desktop {{ desktopThumbnailImageUrl }}"></span>
+			{% endif %} #}
+
+			<span class="image-desktop {{ desktopMedia.url }}"></span>
+		
+
+			{% if desktopThumbnailImage %}
+				<source {% if tabletMedia == null %} media="(min-width: {{ theme_config('breakpoint.lg') }}px)" {% else %} media="(min-width: {{ theme_config('breakpoint.xl') }}px)" {% endif %} srcset="{{ desktopThumbnailImageUrl | sw_encode_url|split('?')[0] }}" type="{{ desktopMedia.mimeType }}"/>
+			{% else %}
+				<source {% if tabletMedia == null %} media="(min-width: {{ theme_config('breakpoint.lg') }}px)" {% else %} media="(min-width: {{ theme_config('breakpoint.xl') }}px)" {% endif %} srcset="{{ haveThumb1920Url | sw_encode_url|split('?')[0] }}" type="{{ desktopMedia.mimeType }}"/>
+			{% endif %}
+
+
+			{% if (tabletMedia == null) %}
+				{% if tabletThumbnailImage %}
+					<source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ tabletThumbnailImageUrl | sw_encode_url|split('?')[0] }}" type="{{ desktopMedia.mimeType }}"/>
+				{% else %}
+					<source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ haveThumb1920Url | sw_encode_url|split('?')[0] }}" type="{{ desktopMedia.mimeType }}"/>
+				{% endif %}
+			{% endif %}
+
+			{% if attributes.alt is not defined and desktopMedia.translated.alt is not empty %}
+                {% set attributes = attributes|merge({alt: desktopMedia.translated.alt}) %}
+            {% else %}
+                {% set attributes = attributes|merge({alt: fallbackImageTitle}) %}
+            {% endif %}
+
+            {% if attributes.title is not defined and desktopMedia.translated.title is not empty %}
+                {% set attributes = attributes|merge({title: desktopMedia.translated.title}) %}
+            {% else %}
+                {% set attributes = attributes|merge({title: fallbackImageTitle}) %}
+            {% endif %}
+
+		{% endif %}
+		{% if tabletMedia != null %}
+			{% set haveThumbTablet1920 = false %}
+			{% set haveThumbTablet800 = false %}
+			{% set haveThumbTablet1920Url = tabletMedia.url %}
+			{% set haveThumbTablet800Url = tabletMedia.url %}
+			{% for thumbnailTablet in tabletMedia.thumbnails %}
+				{% if thumbnailTablet.width == '1920' %}
+					{% set haveThumbTablet1920 = true %}
+					{% set haveThumbTablet1920Url = thumbnailTablet.url %}
+				{% endif %}
+				{% if thumbnailTablet.width == '800' %}
+					{% set haveThumbTablet800 = true %}
+					{% set haveThumbTablet800Url = thumbnailTablet.url %}
+				{% endif %}
+				{% if sizes.tablet && thumbnailTablet.width == sizes.tablet %}
+					{% set tabletThumbnailImage = true %}
+					{% set tabletThumbnailImageUrl = thumbnailTablet.url %}
+				{% endif %}
+			{% endfor %}
+			<span class="image-tablet {{ tabletMedia.url }}"></span>
+	
+			{% if tabletThumbnailImage %}
+				<source media="(min-width: {{ theme_config('breakpoint.lg') }}px)" srcset="{{ tabletThumbnailImageUrl | sw_encode_url|split('?')[0] }}" type="{{ tabletMedia.mimeType }}"/>
+				<source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ tabletThumbnailImageUrl | sw_encode_url|split('?')[0] }}" type="{{ tabletMedia.mimeType }}"/>
+			{% else %}
+				<source media="(min-width: {{ theme_config('breakpoint.lg') }}px)" srcset="{{ haveThumbTablet1920Url | sw_encode_url|split('?')[0] }}" type="{{ tabletMedia.mimeType }}"/>
+				<source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ haveThumbTablet1920Url | sw_encode_url|split('?')[0] }}" type="{{ tabletMedia.mimeType }}"/>
+			{% endif %}
+		{% endif %}
+
+		{% if mobileMedia != null %}
+			{% set haveThumbMobile400 = false %}
+			{% set haveThumbMobile800 = false %}
+			{% set MobileUrl = mobileMedia.url %}
+			{% set haveThumbMobile400Url = mobileMedia.url %}
+			{% set haveThumbMobile800Url = mobileMedia.url %}
+			{% set mobileThumbnailImageUrl = mobileMedia.url %}
+
+			{% for thumbnailMobile in mobileMedia.thumbnails %}
+				{% if thumbnailMobile.width == '800' %}
+					{% set haveThumbMobile400 = true %}
+					{% set haveThumbMobile800Url = thumbnailMobile.url %}
+				{% endif %}
+				{% if thumbnailMobile.width == '400' %}
+					{% set haveThumbMobile400 = true %}
+					{% set haveThumbMobile400Url = thumbnailMobile.url %}
+				{% endif %}
+				{% if sizes.mobile && thumbnailMobile.width == sizes.mobile %}
+					{% set mobileThumbnailImage = true %}
+					{% set mobileThumbnailImageUrl = thumbnailMobile.url %}
+				{% endif %}
+			{% endfor %}
+			<span class="image-mobile {{ mobileMedia.url }}"></span>
+			{% if mobileThumbnailImage %}
+				<source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ mobileThumbnailImageUrl | sw_encode_url|split('?')[0] }}" type="{{ mobileMedia.mimeType }}"/>
+                 {% if not hideOnMobile %}
+				<source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ mobileThumbnailImageUrl | sw_encode_url|split('?')[0] }}" type="{{ mobileMedia.mimeType }}"/>
+                {% endif %}
+			{% else %}
+				<source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ haveThumbMobile800Url | sw_encode_url|split('?')[0] }}" type="{{ mobileMedia.mimeType }}"/>
+                 {% if not hideOnMobile %}
+				<source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ haveThumbMobile400Url | sw_encode_url|split('?')[0] }}" type="{{ mobileMedia.mimeType }}"/>
+                {% endif %}
+			{% endif %}
+
+		{% endif %}
+		{% if mobileMedia == null %}
+			{% if mobileThumbnailImage %}
+				<source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ mobileThumbnailImageUrl | sw_encode_url|split('?')[0] }}" type="{{ desktopMedia.mimeType }}"/>
+                {% if not hideOnMobile %}
+                    <source media="(min-width: 0px)" srcset="{{ mobileThumbnailImageUrl | sw_encode_url|split('?')[0] }}" type="{{ desktopMedia.mimeType }}"/>
+                {% endif %}
+                
+			{% else %}
+				<source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ haveThumb800Url | sw_encode_url|split('?')[0] }}" type="{{ desktopMedia.mimeType }}"/>
+                 {% if not hideOnMobile %}
+                    <source media="(min-width: 0px)" srcset="{{ haveThumb400Url | sw_encode_url|split('?')[0] }}" type="{{ desktopMedia.mimeType }}"/>
+                {% endif %}
+			{% endif %}
+
+		{% endif %}
+		{% if mobileMedia == null %}
+			<img 
+            {% if sliderLazyload == true %}
+             data-src="{{ desktopUrl | sw_encode_url|split('?')[0] }}" 
+            {% else %} src="{{ desktopUrl | sw_encode_url|split('?')[0] }}" 
+            {% endif %} 
+            {% for key, value in attributes %} 
+            {% if value != '' %} 
+            {{ key }}="{{ value }}" {% endif %} 
+            {% endfor %} 
+            width="{{ (desktopMedia.metaData.width) | round }}" 
+            height="{{ (desktopMedia.metaData.height) | round }}" 
+            {% if fetchpriority == true %} fetchpriority="high" {% endif %} 
+            {% if lazyload == true %} loading="lazy" {% else %} loading="eager" fetchpriority="high"
+                 {% endif %} 
+            {% if fetchpriority == true %} fetchpriority="high" {% endif %}/>
+		{% else %}
+			<img {% if sliderLazyload == true %} 
+            data-mob="true" data-src="{{ MobileUrl | sw_encode_url|split('?')[0] }}"
+             {% else %} src="{{ MobileUrl | sw_encode_url|split('?')[0] }}" 
+             {% endif %} 
+             {% for key, value in attributes %} 
+            {% if value != '' %} 
+            {{ key }}="{{ value }}" {% endif %} 
+            {% endfor %} 
+             width="{{ (mobileMedia.metaData.width) | round }}" 
+             height="{{ (mobileMedia.metaData.height) | round }}" 
+              {% if lazyload == true %} loading="lazy" {% else %} loading="eager" fetchpriority="high"
+                 {% endif %}  
+             {% if fetchpriority == true %} fetchpriority="high" {% endif %} />
+		{% endif %}
+	</picture>
+
+{% endblock %}

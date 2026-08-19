@@ -1,0 +1,60 @@
+{% sw_extends '@Storefront/storefront/layout/footer.html.twig' %}
+
+{% block base_footer %}
+{% set enableNewsletterOnFooterTop = config('ShopwareLegacyTheme.config.enableNewsletterOnFooterTop') %}
+{% set enableNewsletterOnFooterColumn = config('ShopwareLegacyTheme.config.enableNewsletterOnFooterColumn') %}
+	{% block custom_footer_top_bar %}
+		<div class="custom-footer-top-bar">
+            <div class="container">
+                {% block custom_footer_top_bar_content %}
+                {% endblock %}
+            </div>
+		</div>
+	{% endblock %}
+    
+    {% if enableNewsletterOnFooterTop and not enableNewsletterOnFooterColumn %} 
+
+    	{% block custom_footer_top_newsletter %}
+            <div class="custom-footer-top-newsletter">
+                {% block custom_footer_top_newsletter_inner %}
+                    <div class="container">
+                        {% block custom_footer_top_newsletter_content %}
+                            <div class="custom-footer-top-newsletter-content">
+                                {% block custom_footer_top_newsletter_title %}
+                                    <h2>{{ "legacytheme.newsletter.title"|trans }}</h2>
+                                {% endblock %}
+
+                                {% block custom_footer_top_newsletter_description %}
+                                    <p>{{ "legacytheme.newsletter.description"|trans }}</p>
+                                {% endblock %}
+
+                                {% block custom_footer_top_newsletter_form %}
+                                    {% sw_include '@Storefront/storefront/component/newsletter/newsletter-form.html.twig' %}
+                                {% endblock %}
+                            </div>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    
+    {% endif %}
+
+	{{ parent() }}
+
+{% endblock %}
+
+{% block base_footer_inner %}
+
+	{% block custom_footer_inner_top_bar %}
+		<div class="custom-footer-inner-top-bar">
+            <div class="container">
+                {% block custom_footer_inner_top_bar_content %}
+                {% endblock %}
+            </div>
+		</div>
+	{% endblock %}
+
+	{{ parent() }}
+
+{% endblock %}

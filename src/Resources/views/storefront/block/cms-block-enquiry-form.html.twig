@@ -1,0 +1,9 @@
+{% block block_default %}
+    <div class="cms-block-enquiry-form">
+    {% block block_cmsbundle_blog_slider_title %}
+        {% set element = block.slots.getSlot('content') %}
+        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+    {% endblock %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,48 @@
+{% block sw_cms_element_enquiry_form %}
+    <div class="sw-cms-el-enquiry-form">
+        <div class="sw-cms-el-enquiry-form__preview">
+            <h3 v-if="title" class="sw-cms-el-enquiry-form__title">{{ title }}</h3>
+            <p v-if="subtitle" class="sw-cms-el-enquiry-form__subtitle">{{ subtitle }}</p>
+            
+            <div class="sw-cms-el-enquiry-form__form">
+                <div class="sw-cms-el-enquiry-form__row">
+                    <div v-if="showSalutation" class="sw-cms-el-enquiry-form__field">
+                        <label>Salutation *</label>
+                        <select disabled>
+                            <option>Please select</option>
+                        </select>
+                    </div>
+                    <div class="sw-cms-el-enquiry-form__field">
+                        <label>First Name *</label>
+                        <input type="text" disabled placeholder="Enter first name" />
+                    </div>
+                    <div class="sw-cms-el-enquiry-form__field">
+                        <label>Last Name *</label>
+                        <input type="text" disabled placeholder="Enter last name" />
+                    </div>
+                </div>
+                
+                <div class="sw-cms-el-enquiry-form__row">
+                    <div class="sw-cms-el-enquiry-form__field">
+                        <label>Email *</label>
+                        <input type="email" disabled placeholder="Enter email" />
+                    </div>
+                    <div v-if="showPhone" class="sw-cms-el-enquiry-form__field">
+                        <label>Phone</label>
+                        <input type="tel" disabled placeholder="Enter phone" />
+                    </div>
+                </div>
+                
+                <div v-if="showDescription" class="sw-cms-el-enquiry-form__field">
+                    <label>Description</label>
+                    <textarea disabled placeholder="Enter description"></textarea>
+                </div>
+                
+                <button disabled class="sw-cms-el-enquiry-form__button">
+                    {{ buttonText }}
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

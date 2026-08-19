@@ -1,0 +1,289 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-cross-selling.html.twig' %}
+
+{% block cms_element_cross_selling_tabs_inner %}
+    {% if not sliderConfig %}
+        {% set sliderConfig = element.fieldConfig.elements %}
+    {% endif %}
+
+    {% set productId = page.product.id %}
+    {% set recommendations = page.extensions.legacyRecommendations ?? null %}
+    {% set customersBoughtProducts = recommendations ? recommendations.customersBought : null %}
+    {% set customersAlsoViewedProducts = recommendations ? recommendations.customersAlsoViewed : null %}
+    {% set hasCustomersBought = customersBoughtProducts is not empty %}
+    {% set hasCustomersAlsoViewed = customersAlsoViewedProducts is not empty %}
+    {% set hasRecommendations = hasCustomersBought or hasCustomersAlsoViewed %}
+    {% set hasCrossSellings = element.data.crossSellings.elements is defined and element.data.crossSellings.elements|filter(item => item.total > 0)|length > 0 %}
+
+    {% if hasCrossSellings or hasRecommendations %}
+        <div class="product-detail-cross-selling" data-product-id="{{ productId }}">
+            <div class="card card-tabs" data-cross-selling="true">
+                {% block cms_element_cross_selling_tabs_navigation %}
+                    <div class="card-header product-detail-tab-navigation product-cross-selling-tab-navigation">
+                        {% block cms_element_cross_selling_tabs_navigation_container %}
+                            <ul class="nav nav-tabs product-detail-tab-navigation-list"
+                                id="product-detail-cross-selling-tabs"
+                                role="tablist">
+                                {% if hasCrossSellings %}
+                                    {% for item in element.data.crossSellings.elements|filter(item => item.total > 0 and item.crossSelling.active == true) %}
+                                        {% set crossSelling = item.crossSelling %}
+                                        {% set products = item.products %}
+                                        {% set id = crossSelling.id %}
+                                            <li class="nav-item">
+                                                <a class="nav-link product-detail-tab-navigation-link{% if loop.first %} active{% endif %}"
+                                                   id="cross-selling-tab-{{ id }}"
+                                                   data-bs-toggle="tab"
+                                                   href="#cross-selling-tab-{{ id }}-pane"
+                                                   role="tab"
+                                                   title="{{ crossSelling.translated.name }}"
+                                                   aria-controls="cross-selling-tab-{{ id }}-pane"
+                                                   aria-selected="true">
+                                                    {{ crossSelling.translated.name }}
+                                                    <span class="product-detail-tab-navigation-icon">
+                                                        {% sw_icon 'arrow-medium-right' style {pack:'solid'} %}
+                                                    </span>
+                                                </a>
+                                            </li>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% set recommendationNavActive = not hasCrossSellings %}
+
+                                {% if hasCustomersBought %}
+                                    {% set isActive = recommendationNavActive %}
+                                    {% if recommendationNavActive %}{% set recommendationNavActive = false %}{% endif %}
+                                    <li class="nav-item">
+                                        <a class="nav-link product-detail-tab-navigation-link{% if isActive %} active{% endif %}"
+                                           id="customers-bought-tab"
+                                           data-bs-toggle="tab"
+                                           href="#customers-bought-tab-pane"
+                                           role="tab"
+                                           title="{{ "legacytheme.customersBought"|trans|sw_sanitize }}"
+                                           aria-controls="customers-bought-tab-pane"
+                                           aria-selected="{{ isActive ? 'true' : 'false' }}">
+                                            {{ "legacytheme.customersBought"|trans|sw_sanitize }}
+                                            <span class="product-detail-tab-navigation-icon">
+                                                {% sw_icon 'arrow-medium-right' style {pack:'solid'} %}
+                                            </span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                {% if hasCustomersAlsoViewed %}
+                                    {% set isActive = recommendationNavActive %}
+                                    {% if recommendationNavActive %}{% set recommendationNavActive = false %}{% endif %}
+                                    <li class="nav-item">
+                                        <a class="nav-link product-detail-tab-navigation-link{% if isActive %} active{% endif %}"
+                                           id="customers-also-viewed-tab"
+                                           data-bs-toggle="tab"
+                                           href="#customers-also-viewed-tab-pane"
+                                           role="tab"
+                                           title="{{ "legacytheme.customersAlsoViewed"|trans|sw_sanitize }}"
+                                           aria-controls="customers-also-viewed-tab-pane"
+                                           aria-selected="{{ isActive ? 'true' : 'false' }}">
+                                            {{ "legacytheme.customersAlsoViewed"|trans|sw_sanitize }}
+                                            <span class="product-detail-tab-navigation-icon">
+                                                {% sw_icon 'arrow-medium-right' style {pack:'solid'} %}
+                                            </span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+
+                {% block cms_element_cross_selling_tabs_content %}
+                    <div class="product-detail-tabs-content card-body">
+                        {% block cms_element_cross_selling_tabs_content_container %}
+                            <div class="tab-content">
+                                {% if hasCrossSellings %}
+                                    {% for item in element.data.crossSellings.elements|filter(item => item.total > 0 and item.crossSelling.active == true) %}
+                                        {% set crossSelling = item.crossSelling %}
+                                        {% set products = item.products %}
+                                        {% set id = crossSelling.id %}
+                                            <div class="tab-pane fade show{% if loop.first %} active{% endif %}"
+                                                 id="cross-selling-tab-{{ id }}-pane"
+                                                 role="tabpanel"
+                                                 aria-labelledby="cross-selling-tab-{{ id }}">
+                                                {% set config = {
+                                                    title: {
+                                                        value: crossSelling.name ?: crossSelling.translated.name
+                                                    },
+                                                    border: {
+                                                        value: false
+                                                    },
+                                                    rotate: {
+                                                        value: false
+                                                    },
+                                                    products: {
+                                                        value: products
+                                                    },
+                                                    boxLayout: {
+                                                        value: sliderConfig.boxLayout.value
+                                                    },
+                                                    elMinWidth: {
+                                                        value: 0
+                                                    },
+                                                    navigation: {
+                                                        value: true
+                                                    },
+                                                     items: {
+                                                        value: 5
+                                                    },
+                                                    navigationArrows: {
+                                                        value: 'outside'
+                                                    },
+                                                    displayMode: {
+                                                        value: sliderConfig.displayMode.value
+                                                    },
+                                                    verticalAlign: {
+                                                        value: 'center'
+                                                    },
+                                                } %}
+
+                                                {% block cms_element_cross_selling_tabs_content_container_slider %}
+                                                    {% sw_include '@Storefront/storefront/element/cms-element-product-slider.html.twig' with {
+                                                        sliderConfig: config,
+                                                        element: {
+                                                            data: {
+                                                                products: products
+                                                            },
+                                                            type: 'product-slider'
+                                                        }
+                                                    } %}
+                                                {% endblock %}
+                                            </div>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% set recommendationContentActive = not hasCrossSellings %}
+
+                                {% if hasCustomersBought %}
+                                    {% set isActive = recommendationContentActive %}
+                                    {% if recommendationContentActive %}{% set recommendationContentActive = false %}{% endif %}
+                                    <div class="tab-pane fade{% if isActive %} show active{% endif %}"
+                                         id="customers-bought-tab-pane"
+                                         role="tabpanel"
+                                         aria-labelledby="customers-bought-tab">
+                                        {% if customersBoughtProducts|length > 0 %}
+                                            {% set config = {
+                                                title: {
+                                                    value: "legacytheme.customersBought"|trans|sw_sanitize
+                                                },
+                                                border: {
+                                                    value: false
+                                                },
+                                                rotate: {
+                                                    value: false
+                                                },
+                                                   items: {
+                                                        value: 5
+                                                    },
+                                                products: {
+                                                    value: customersBoughtProducts
+                                                },
+                                                boxLayout: {
+                                                    value: sliderConfig.boxLayout.value
+                                                },
+                                                elMinWidth: {
+                                                    value: 0
+                                                },
+                                                navigation: {
+                                                    value: true
+                                                },
+                                                navigationArrows: {
+                                                    value: 'outside'
+                                                },
+                                                displayMode: {
+                                                    value: sliderConfig.displayMode.value
+                                                },
+                                                verticalAlign: {
+                                                    value: 'center'
+                                                },
+                                            } %}
+
+                                            {% sw_include '@Storefront/storefront/element/cms-element-product-slider.html.twig' with {
+                                                sliderConfig: config,
+                                                element: {
+                                                    data: {
+                                                        products: customersBoughtProducts
+                                                    },
+                                                    type: 'product-slider'
+                                                }
+                                            } %}
+                                        {% else %}
+                                            <p class="text-center py-4">{{ 'No products found.'|sw_sanitize }}</p>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+
+                                {% if hasCustomersAlsoViewed %}
+                                    {% set isActive = recommendationContentActive %}
+                                    {% if recommendationContentActive %}{% set recommendationContentActive = false %}{% endif %}
+                                    <div class="tab-pane fade{% if isActive %} show active{% endif %}"
+                                         id="customers-also-viewed-tab-pane"
+                                         role="tabpanel"
+                                         aria-labelledby="customers-also-viewed-tab">
+                                        {% if customersAlsoViewedProducts|length > 0 %}
+                                            {% set config = {
+                                                title: {
+                                                    value: "legacytheme.customersAlsoViewed"|trans|sw_sanitize
+                                                },
+                                                border: {
+                                                    value: false
+                                                },
+                                                rotate: {
+                                                    value: false
+                                                },
+                                                products: {
+                                                    value: customersAlsoViewedProducts
+                                                },
+                                                boxLayout: {
+                                                    value: sliderConfig.boxLayout.value
+                                                },
+                                                elMinWidth: {
+                                                    value: 0
+                                                },
+                                                navigation: {
+                                                    value: true
+                                                },
+                                                   items: {
+                                                        value: 5
+                                                    },
+                                                navigationArrows: {
+                                                    value: 'outside'
+                                                },
+                                                  items: {
+                                                        value: 5
+                                                    },
+                                                displayMode: {
+                                                    value: sliderConfig.displayMode.value
+                                                },
+                                                verticalAlign: {
+                                                    value: 'center'
+                                                },
+                                            } %}
+
+                                            {% sw_include '@Storefront/storefront/element/cms-element-product-slider.html.twig' with {
+                                                sliderConfig: config,
+                                                element: {
+                                                    data: {
+                                                        products: customersAlsoViewedProducts
+                                                    },
+                                                    type: 'product-slider'
+                                                }
+                                            } %}
+                                        {% else %}
+                                            <p class="text-center py-4">{{ 'No products found.'|sw_sanitize }}</p>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+

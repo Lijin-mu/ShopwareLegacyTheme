@@ -1,0 +1,35 @@
+.content-cta{
+  .content-cta-image{
+    position: relative;
+      .content-cta-image-shadow {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.2)
+          ),
+          linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0) 57.32%,
+            rgba(0, 0, 0, 0.8) 100%
+          );
+        @include max-mobile {
+          background: linear-gradient(
+              0deg,
+              rgba(0, 0, 0, 0.2),
+              rgba(0, 0, 0, 0.2)
+            ),
+            linear-gradient(
+              180deg,
+              rgba(0, 0, 0, 0) 57.32%,
+              rgba(0, 0, 0, 0.8) 100%
+            );
+        }
+      }
+  }
+
+}

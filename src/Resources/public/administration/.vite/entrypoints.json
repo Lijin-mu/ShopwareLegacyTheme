@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/shopwarelegacytheme/administration/",
+  "entryPoints": {
+    "shopware-legacy-theme": {
+      "css": [
+        "/bundles/shopwarelegacytheme/administration/assets/shopware-legacy-theme-D_kyW9kn.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/shopwarelegacytheme/administration/assets/shopware-legacy-theme-BY6MQY_z.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

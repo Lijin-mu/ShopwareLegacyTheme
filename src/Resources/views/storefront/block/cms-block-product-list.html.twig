@@ -1,0 +1,6 @@
+{% block sw_cms_block_product_list %}
+	{% set element = block.slots.getSlot('productList') %}
+	<div class="sw-cms-block-product-list">
+	{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+	</div>
+{% endblock %}

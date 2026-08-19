@@ -1,0 +1,158 @@
+{% block element_enquiry_form %}
+	<div class="cms-element-enquiry-form" data-enquiry-form="true">
+		{% set config = element.config %}
+		{% set data = element.data %}
+
+		{# Try to get product name - from URL parameters (via resolver) or product detail page #}
+		{% set productName = '' %}
+		{% if data.productName %}
+			{% set productName = data.productName %}
+		{% elseif page.product is defined and page.product %}
+			{% set productName = page.product.translated.name %}
+		{% endif %}
+
+		<div class="enquiry-form-wrapper">
+			{% if data.title %}
+				<h2 class="enquiry-form-title">{{ data.title }}</h2>
+			{% endif %}
+
+			{% if data.subtitle %}
+				<p class="enquiry-form-subtitle">{{ data.subtitle }}</p>
+			{% endif %}
+
+			<form
+				class="enquiry-form" method="post" data-enquiry-form-submit>
+				{# Success Alert - Using Shopware's standard alert component #}
+				<div class="enquiry-form-success-alert d-none">
+					{% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                        type: 'success',
+                        heading: 'legacytheme.enquiryForm.successTitle'|trans,
+                        content: 'legacytheme.enquiryForm.successMessage'|trans,
+                        dismissible: true
+                    } %}
+				</div>
+
+				{# Error Alert - Using Shopware's standard alert component #}
+				<div class="enquiry-form-error-alert d-none">
+					{% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                        type: 'danger',
+                        heading: 'legacytheme.enquiryForm.errorTitle'|trans,
+                        content: 'legacytheme.enquiryForm.errorMessage'|trans,
+                        dismissible: true
+                    } %}
+				</div>
+
+				<div class="form-row">
+					{% if data.showSalutation %}
+						<div class="form-group col-md-6">
+							{% if data.showLabel %}
+								<label for="enquiry-salutation" class="form-label">
+									{{ "legacytheme.enquiryForm.salutation"|trans }}*
+								</label>
+							{% endif %}
+							<div class="form-select-wrapper">
+								<select class="form-control" id="enquiry-salutation" name="salutation" required>
+									{% if data.showLabel %}
+										<option value="">{{ "legacytheme.enquiryForm.salutationPlaceholder"|trans }}</option>
+									{% else %}
+										<option value="">{{ "legacytheme.enquiryForm.salutation"|trans }}</option>
+									{% endif %}
+
+									{% if data.salutations %}
+										{% for salutation in data.salutations %}
+											{% if salutation.salutationKey != 'not_specified' %}
+												<option value="{{ salutation.translated.displayName }}">{{ salutation.translated.displayName }}</option>
+											{% endif %}
+										{% endfor %}
+									{% endif %}
+								</select>
+							</div>
+
+							<div class="invalid-feedback"></div>
+						</div>
+					{% endif %}
+
+					<div class="form-group col-md-12{% if data.showSalutation %} show-salutation{% else %} hide-salutation{% endif %}">
+						{% if data.showLabel %}
+							<label for="enquiry-firstName" class="form-label">
+								{{ "legacytheme.enquiryForm.firstName"|trans }}*
+							</label>
+						{% endif %}
+
+						<input type="text" class="form-control" id="enquiry-firstName" name="firstName" required {% if data.showLabel %} placeholder="{{ "legacytheme.enquiryForm.firstNamePlaceholder"|trans }}" {% else %} placeholder="{{ "legacytheme.enquiryForm.firstName"|trans }}" {% endif %}>
+						<div class="invalid-feedback"></div>
+					</div>
+
+					<div class="form-group col-md-12">
+						{% if data.showLabel %}
+							<label for="enquiry-lastName" class="form-label">
+								{{ "legacytheme.enquiryForm.lastName"|trans }}*
+							</label>
+						{% endif %}
+
+						<input type="text" class="form-control" id="enquiry-lastName" name="lastName" required {% if data.showLabel %} placeholder="{{ "legacytheme.enquiryForm.lastNamePlaceholder"|trans }}" {% else %} placeholder="{{ "legacytheme.enquiryForm.lastName"|trans }}" {% endif %}>
+						<div class="invalid-feedback"></div>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						{% if data.showLabel %}
+							<label for="enquiry-email" class="form-label">
+								{{ "legacytheme.enquiryForm.email"|trans }}*
+							</label>
+						{% endif %}
+
+						<input type="email" class="form-control" id="enquiry-email" name="email" required {% if data.showLabel %} placeholder="{{ "legacytheme.enquiryForm.emailPlaceholder"|trans }}" {% else %} placeholder="{{ "legacytheme.enquiryForm.email"|trans }}" {% endif %}>
+						<div class="invalid-feedback"></div>
+					</div>
+
+					{% if data.showPhone %}
+						<div class="form-group col-md-12">
+							{% if data.showLabel %}
+								<label for="enquiry-phone" class="form-label">
+									{{ "legacytheme.enquiryForm.phone"|trans }}
+								</label>
+							{% endif %}
+
+							<input type="tel" class="form-control" id="enquiry-phone" name="phone" {% if data.showLabel %} placeholder="{{ "legacytheme.enquiryForm.phonePlaceholder"|trans }}" {% else %} placeholder="{{ "legacytheme.enquiryForm.phone"|trans }}" {% endif %}>
+							<div class="invalid-feedback"></div>
+						</div>
+					{% endif %}
+				</div>
+
+				{% if data.showDescription %}
+					<div class="form-group col-md-12">
+						{% if data.showLabel %}
+							<label for="enquiry-description" class="form-label">
+								{{ "legacytheme.enquiryForm.description"|trans }}
+							</label>
+						{% endif %}
+
+						<textarea class="form-control" id="enquiry-description" name="description" rows="5" placeholder="{{ "legacytheme.enquiryForm.descriptionPlaceholder"|trans }}">
+							{% if productName %}{{ "legacytheme.enquiryForm.enquiryAbout"|trans }} {{ productName }}{% endif %}
+						</textarea>
+						<div class="invalid-feedback"></div>
+					</div>
+				{% endif %}
+
+				{# Hidden field to store product name #}
+				{% if productName %}
+					<input type="hidden" name="productName" value="{{ productName }}" data-product-name="{{ productName }}">
+				{% endif %}
+
+				{# Store product number if available #}
+				{% if data.productNumber %}
+					<input type="hidden" name="productNumber" value="{{ data.productNumber }}">
+				{% endif %}
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary enquiry-form-submit">
+						<span class="button-text">{{ data.buttonText }}</span>
+						<span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}

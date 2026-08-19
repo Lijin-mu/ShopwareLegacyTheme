@@ -1,0 +1,11 @@
+Neue Retourenanfrage
+
+Kundennummer: {{ customerNumber }}
+E-Mail: {{ email }}
+Rechnungsnummer: {{ invoiceNumber }}
+Artikelnummer(n): {{ itemNumbers }}
+{% if productName %}Produkt: {{ productName }}{% endif %}
+{% if comment %}Kommentar: {{ comment }}{% endif %}
+
+Dies ist eine automatische Nachricht von Ihrem Retourenformular.
+

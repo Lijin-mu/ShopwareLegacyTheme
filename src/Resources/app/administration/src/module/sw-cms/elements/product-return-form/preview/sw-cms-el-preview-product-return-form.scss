@@ -1,0 +1,61 @@
+.sw-cms-el-preview-product-return-form {
+    border: 1px solid #d1d9e0;
+    border-radius: 4px;
+    padding: 12px;
+    background: #fff;
+
+    &__header {
+        margin-bottom: 10px;
+    }
+
+    &__title,
+    &__subtitle,
+    .shimmer,
+    &__button {
+        display: block;
+        height: 12px;
+        background: linear-gradient(90deg, #f2f4f8 25%, #e5e9f2 37%, #f2f4f8 63%);
+        border-radius: 4px;
+        background-size: 400% 100%;
+        animation: loading 1.2s ease infinite;
+    }
+
+    &__title {
+        width: 60%;
+        margin-bottom: 6px;
+    }
+
+    &__subtitle {
+        width: 40%;
+    }
+
+    &__row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+
+        .shimmer {
+            flex: 1;
+
+            &.wide {
+                flex-basis: 100%;
+            }
+        }
+    }
+
+    &__button {
+        width: 30%;
+        height: 16px;
+        margin-top: 8px;
+    }
+}
+
+@keyframes loading {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+

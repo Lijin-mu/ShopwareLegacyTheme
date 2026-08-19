@@ -1,0 +1,37 @@
+{% sw_extends '@Storefront/storefront/component/product/description.html.twig' %}
+
+
+{% block component_product_description_content %}
+
+{{ parent() }}
+<div class="product-description-links">
+    <h3>{{ 'legacytheme.detail.ArticleTipMoreInformation'|trans}} "{{product.translated.name}}"</h3>
+    <ul class="content--list list--unstyled">
+    <li>
+        {# Get Questions Link from plugin config (selected category), fallback to default #}
+        {% set questionsUrl = '/anfrage-formular' %}
+        {% set questionsCategoryId = config('ShopwareBundleTheme.config.productQuestionsLink') %}
+        
+        {% if questionsCategoryId %}
+            {# Use the selected category's SEO URL #}
+            {% set questionsUrl = seoUrl('frontend.navigation.page', {'navigationId': questionsCategoryId}) %}
+        {% endif %}
+        
+        <a href="{{ questionsUrl ~ '?sInquiry=detail&sOrdernumber=' ~ product.productNumber }}"><i class="icon--arrow-right"></i> {{ 'legacytheme.detail.DetailLinkContact'|trans }}</a>
+    </li>
+    <li>
+        {# Get Manufacturer Link from plugin config (selected category), fallback to default #}
+        {% set manufacturerUrl = '/manufacturer/' %}
+        {% set manufacturerCategoryId = config('ShopwareBundleTheme.config.productManufacturerLink') %}
+        
+        {% if manufacturerCategoryId %}
+            {# Use the selected category's SEO URL #}
+            {% set manufacturerUrl = seoUrl('frontend.navigation.page', {'navigationId': manufacturerCategoryId}) %}
+        {% endif %}
+        
+        <a href="{{ manufacturerUrl ~ '?manufacturer=' ~ product.manufacturerId }}"><i class="icon--arrow-right"></i> {{ 'legacytheme.detail.DetailDescriptionLinkInformation'|trans ({'%manufacturer%': product.manufacturer.translated.name})}}</a>
+     </li>
+    </ul>
+</div>
+
+{% endblock %}

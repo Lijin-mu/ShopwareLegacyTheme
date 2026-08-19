@@ -1,0 +1,44 @@
+.cms-section-sidebar-sidebar-content {
+  .cms-block-text {
+    border: 1px solid $border-color;
+    padding: rem(15) rem(20);
+    h2 {
+      font-size: rem(16);
+      margin-bottom: rem(12);
+      padding-bottom: rem(12);
+      border-bottom: 1px solid $border-color;
+    }
+    ul {
+      padding: 0;
+      list-style: none;
+      li {
+        a {
+          display: block;
+          font-size: rem(14);
+          color: $text-color;
+          padding: rem(5) 0;
+          white-space: wrap;
+          &.active,
+          &:hover,
+          &:focus-visible {
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cms-section-sidebar-main-content {
+  .cms-block-text {
+    .cms-element-text {
+      ul {
+        padding-left: rem(16);
+        margin-bottom: rem(20);
+        li + li {
+          margin-top: rem(8);
+        }
+      }
+    }
+  }
+}

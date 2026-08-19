@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
+
+{% block base_content %}
+	{{ parent() }}
+	{% set productViewsOptions = {
+        'productId': page.product.id,
+    } %}
+	<div data-product-viewed="true" data-product-viewed-options="{{ productViewsOptions|json_encode }}"></div>
+{% endblock %}

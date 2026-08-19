@@ -1,0 +1,234 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
+
+{% block layout_footer_inner_container %}
+{% set enableNewsletterOnFooterTop = config('ShopwareLegacyTheme.config.enableNewsletterOnFooterTop') %}
+{% set enableNewsletterOnFooterColumn = config('ShopwareLegacyTheme.config.enableNewsletterOnFooterColumn') %}
+{% set enableCustomHotLineContent = config('ShopwareLegacyTheme.config.enableCustomHotLineContent') %}
+{% set enableFooterBottomPaymentLogos = config('ShopwareLegacyTheme.config.enableFooterBottomPaymentLogos') %}
+{% set enableFooterBottomShippingLogos = config('ShopwareLegacyTheme.config.enableFooterBottomShippingLogos') %}
+{% set enableCustomVatText = config('ShopwareLegacyTheme.config.enableCustomVatText') %}
+{% set enableCustomCopyRightText = config('ShopwareLegacyTheme.config.enableCustomCopyRightText') %}
+
+    <div class="container">
+        {% block layout_footer_top_section %}
+        <div class="footer-top-section">
+            {% block layout_footer_top_section_content %}
+            {% endblock %}
+        </div>
+        {% endblock %}
+
+        {% block layout_footer_navigation %}
+            <div
+                id="footerColumns"
+                class="row footer-columns"
+                data-collapse-footer-columns="true"
+                role="list"
+            >
+                {% block layout_footer_navigation_hotline %}
+                    <div class="col-md-3 footer-column footer-hotline-column js-footer-column">
+                     {% if enableCustomHotLineContent %}
+                            {% sw_include '@Storefront/storefront/layout/footer/footer-custom-hotline.html.twig' %}
+                        {% else %}
+                            {% block layout_footer_navigation_hotline_headline %}
+                                {{ parent() }}
+                            {% endblock %}
+
+                            {% block layout_footer_navigation_hotline_content %}
+                                {{ parent() }}
+                            {% endblock %}
+                        {% endif %}
+                    </div>
+                {% endblock %}
+
+                {% block layout_footer_navigation_columns %}
+                    {% for root in footer.navigation.tree %}
+                        {% block layout_footer_navigation_column %}
+                            <div class="col-md-3 footer-column footer-navigation-column fc-{{loop.index}} js-footer-column">
+                                {% block layout_footer_navigation_information_headline %}
+                                    {{ parent() }}
+                                {% endblock %}
+
+                                {% block layout_footer_navigation_information_content %}
+                                    {{ parent() }}
+                                {% endblock %}
+                            </div>
+                        {% endblock %}
+                    {% endfor %}
+                {% endblock %}
+
+                {% block layout_footer_newsletter_column %}
+
+                    {% if enableNewsletterOnFooterColumn %}
+                            <div class="col-md-3 footer-column footer-column-last js-footer-column">
+                                {% block layout_footer_newsletter_headline %}
+                                    <div class="footer-column-headline footer-headline js-footer-column-headline"
+                                         id="collapseFooterTitle{{ loop.index }}"
+                                         role="listitem">
+                                            {{ "legacytheme.newsletter.title"|trans }}
+
+                                        {% block layout_footer_newsletter_icons %}
+                                         
+                                                <button class="footer-column-toggle btn btn-link btn-link-inline js-collapse-footer-column-trigger"
+                                                        data-bs-target="#collapseFooter-newsletter"
+                                                        data-bs-toggle="collapse"
+                                                        aria-controls="collapseFooter-newsletter"
+                                                        aria-expanded="true" 
+                                                        aria-label="Toggle newsletter section">
+
+                                                    {% sw_icon 'plus' style {
+                                                        class: 'footer-plus'
+                                                    } %}
+
+                                                    {% sw_icon 'minus' style {
+                                                        class: 'footer-minus'
+                                                    } %}
+                                                </button>
+                                         
+                                        {% endblock %}
+                                    </div>
+                                {% endblock %}
+
+                                {% block layout_footer_newsletter_container %}
+                                    <div id="collapseFooter-newsletter"
+                                         class="footer-column-content collapse js-footer-column-content"
+                                         aria-labelledby="collapseFooter-newsletter"
+                                         role="listitem">
+
+                                        <div class="footer-column-content-inner">
+                                            {% block layout_footer_newsletter_content %}
+
+                                             {% block layout_footer_newsletter_description %}
+
+                                             <p>{{ "legacytheme.newsletter.description"|trans }}</p>
+
+                                            {% endblock %}
+
+                                             {% block layout_footer_newsletter_form %}
+                                                {% sw_include '@Storefront/storefront/component/newsletter/newsletter-form.html.twig' %}
+                                            {% endblock %}
+
+                                            {% endblock %}
+                                        </div>
+                                    </div>
+                                {% endblock %}
+                            </div>
+                            {% endif %}
+                        {% endblock %}
+
+            </div>
+        {% endblock %}
+
+        {% block layout_footer_payment_shipping_logos %}
+            <div class="footer-logos">
+                {% block layout_footer_payment_shipping_combined_logos %}
+                    {% set shippingPaymentLogos = "legacytheme.logos.shippingPaymentLogos"|trans|raw %}
+                    {% if shippingPaymentLogos !=="" %}
+                        <ul class="footer-shipping-payment-logos">{{ shippingPaymentLogos }}</ul>
+                    {% endif %}
+                {% endblock %}
+                {% block layout_footer_payment_logos %}
+                    {% set paymentLogos = "legacytheme.logos.paymentLogos"|trans|raw %}
+                    {% if paymentLogos !=="" %}
+                        <ul class="footer-payment-logos">{{ paymentLogos }}</ul>
+                    {% endif %}
+                    {% if enableFooterBottomPaymentLogos %}
+                        {% for paymentMethod in footer.paymentMethods %}
+                            {% block layout_footer_payment_logo %}
+                                {% if paymentMethod.media %}
+                                    <div class="footer-logo is-payment">
+                                        {% sw_thumbnails 'footer-payment-image-thumbnails' with {
+                                            media: paymentMethod.media,
+                                            sizes: {
+                                                default: '100px'
+                                            },
+                                            attributes: {
+                                                class: 'img-fluid footer-logo-image',
+                                                alt: (paymentMethod.media.translated.alt ?: paymentMethod.translated.name),
+                                                title: (paymentMethod.media.translated.title ?: paymentMethod.translated.name)
+                                            }
+                                        } %}
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+                        {% endfor %}
+                    {% endif %}
+                {% endblock %}
+
+                {% block layout_footer_shipping_logos %}
+                    {% set shippingLogos = "legacytheme.logos.shippingLogos"|trans|raw %}
+                    {% if shippingLogos !=="" %}
+                        <ul class="footer-shipping-logos">{{ shippingLogos }}</ul>
+                    {% endif %}
+                    {% if enableFooterBottomShippingLogos %}
+                        {% for shippingMethod in footer.shippingMethods %}
+                            {% block layout_footer_shipping_logo %}
+                                {% if shippingMethod.media %}
+                                    <div class="footer-logo is-shipping">
+                                        {% sw_thumbnails 'footer-shipping-image-thumbnails' with {
+                                            media: shippingMethod.media,
+                                            sizes: {
+                                                default: '100px'
+                                            },
+                                            attributes: {
+                                                class: 'img-fluid footer-logo-image',
+                                                alt: (shippingMethod.media.translated.alt ?: shippingMethod.translated.name),
+                                                title: (shippingMethod.media.translated.title ?: shippingMethod.translated.name)
+                                            }
+                                        } %}
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+                        {% endfor %}
+                    {% endif %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+
+    {% block layout_footer_bottom %}
+        <div class="footer-bottom">
+            {% block layout_footer_service_menu %}
+                <div class="container">
+                    {% block layout_footer_service_menu_content %}
+                        {% if footer.serviceMenu is not empty %}
+                            <ul class="footer-service-menu-list list-unstyled d-flex justify-content-center">
+                                {% for serviceMenuItem in footer.serviceMenu %}
+                                    {% block layout_footer_service_menu_item %}
+                                        <li class="footer-service-menu-item">
+                                            <a class="footer-service-menu-link"
+                                            href="{{ category_url(serviceMenuItem) }}"
+                                            {% if category_linknewtab(serviceMenuItem) %}target="_blank"{% endif %}
+                                            title="{{ serviceMenuItem.translated.name }}">
+                                                {{ serviceMenuItem.translated.name }}
+                                            </a>
+                                        </li>
+                                    {% endblock %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+
+            {% block layout_footer_vat %}
+                {% if enableCustomVatText %}
+                    <div class="footer-vat">
+                        <p>{{ "legacytheme.footer.vat"|trans|raw }}</p>
+                    </div>
+                {% else %}
+                    {{ parent() }}
+                {% endif %}
+            {% endblock %}
+
+            {% block layout_footer_copyright %}
+                {% if enableCustomCopyRightText %}
+                    <div class="footer-copyright">
+                        <p>{{ "legacytheme.footer.copyrightInfo"|trans|raw }}</p>
+                    </div>
+                {% else %}
+                    {{ parent() }}
+                {% endif %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

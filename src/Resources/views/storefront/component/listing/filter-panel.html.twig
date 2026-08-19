@@ -1,0 +1,53 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
+
+{% block component_filter_panel_header %}
+    {% set searchResult = element %}
+	<div class="filter-panel-header listing--actions">
+		<div class="filter-panel-toggle-container">
+			<button class="btn filter-panel-wrapper-toggle is--small" type="button" data-off-canvas-filter="true" aria-haspopup="true" aria-expanded="false">
+				<i class="icon--filter"></i>
+				{{ 'legacytheme.listing.ListingFilterButton'|trans }}
+			</button>
+			<div class="action--filter-btn">
+				<button type="button" class="filter-panel-toggle-button filter--trigger btn is--small" aria-label="{{ 'legacytheme.listing.ListingFilterButton'|trans }}">
+					<i class="icon--filter"></i>
+					{{ 'legacytheme.listing.ListingFilterButton'|trans }}
+					<span class="action--collapse-icon"></span>
+				</button>
+			</div>
+
+		</div>
+		<div class="filter-panel-sorting-container">
+
+			<div class="sorting-text">{{ 'legacytheme.listing.ListingLabelSort'|trans }}</div>
+
+			{% block element_product_listing_sorting %}
+				{% sw_include '@Storefront/storefront/component/filter-sorting.html.twig' with {
+            current: listing.sorting,
+		    sortings: listing.availableSortings
+        } %}
+			{% endblock %}
+		</div>
+	</div>
+
+	 
+
+    {{ parent() }}
+    
+{% endblock %}
+
+
+{% block component_filter_panel_active_container %}
+{% set enableFilterCountButton = config('ShopwareLegacyTheme.config.enableFilterCountButton') %}
+    {{ parent() }}
+	{% if enableFilterCountButton %}
+    <button
+        type="submit"
+        class="btn is--primary filter--btn-apply is--large is--icon-right"
+    >
+        <span class="filter--count product-listing-count">{{ listing.total }}</span>
+		{{ 'legacytheme.listing.ListingFilterApplyButton'|trans|sw_sanitize }}
+        <i class="icon--cycle"></i>
+    </button>
+	{% endif %}
+{% endblock %}

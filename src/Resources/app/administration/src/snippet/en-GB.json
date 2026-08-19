@@ -1,0 +1,87 @@
+{
+  "sw-cms": {
+    "blocks": {
+      "form": {
+        "enquiryForm": {
+          "label": "Enquiry Form"
+        },
+        "productReturnForm": {
+          "label": "Product Return Form"
+        }
+      }
+    },
+    "elements": {
+      "enquiryForm": {
+        "label": "Enquiry Form",
+        "config": {
+          "title": {
+            "label": "Title",
+            "placeholder": "Enter form title"
+          },
+          "subtitle": {
+            "label": "Subtitle",
+            "placeholder": "Enter form subtitle"
+          },
+          "showPhone": {
+            "label": "Show Phone Field"
+          },
+          "showMessage": {
+            "label": "Show Message Field"
+          },
+          "buttonText": {
+            "label": "Button Text",
+            "placeholder": "Submit Enquiry"
+          },
+          "successMessage": {
+            "label": "Success Message",
+            "placeholder": "Thank you for your enquiry!"
+          }
+        }
+      },
+      "productReturnForm": {
+        "label": "Product Return Form",
+        "config": {
+          "title": {
+            "label": "Title",
+            "placeholder": "Enter form title"
+          },
+          "subtitle": {
+            "label": "Subtitle",
+            "placeholder": "Enter form subtitle"
+          },
+          "showLabel": {
+            "label": "Show field labels"
+          },
+          "showSalutation": {
+            "label": "Show salutation field"
+          },
+          "showPhone": {
+            "label": "Show phone field"
+          },
+          "showProductNumber": {
+            "label": "Show product number field"
+          },
+          "showReason": {
+            "label": "Show reason select"
+          },
+          "showDescription": {
+            "label": "Show description field"
+          },
+          "buttonText": {
+            "label": "Button text",
+            "placeholder": "Submit return"
+          },
+          "successMessage": {
+            "label": "Success message",
+            "placeholder": "We received your return request."
+          },
+          "reasonOptions": {
+            "label": "Return reasons",
+            "placeholder": "Enter one reason per line",
+            "helpText": "Each line becomes an option in the reason select field."
+          }
+        }
+      }
+    }
+  }
+}

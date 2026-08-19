@@ -1,0 +1,30 @@
+{% block layout_footer_navigation_custom_hotline %}
+
+	{% block layout_footer_navigation_custom_hotline_headline %}
+		<div class="footer-column-headline footer-headline js-footer-column-headline" id="collapseFooterHotlineTitle" role="listitem">
+			{{ 'legacytheme.footer.serviceHotlineHeadline'|trans|sw_sanitize }}
+
+			{% block layout_footer_navigation_custom_hotline_icons %}
+				<button class="footer-column-toggle btn btn-link btn-link-inline js-collapse-footer-column-trigger" data-bs-target="#collapseFooterHotline" data-bs-toggle="collapse" aria-controls="collapseFooterHotline" aria-labelledby="collapseFooterHotlineTitle" aria-expanded="true">
+
+					{% sw_icon 'plus' style {
+                                            class: 'footer-plus'
+                                        } %}
+
+					{% sw_icon 'minus' style {
+                                            class: 'footer-minus'
+                                        } %}
+				</button>
+			{% endblock %}
+		</div>
+	{% endblock %}
+
+	{% block layout_footer_navigation_custom_hotline_content %}
+		<div id="collapseFooterHotline" class="footer-column-content collapse js-footer-column-content footer-contact mb-4 mb-md-0" aria-labelledby="collapseFooterHotlineTitle" role="listitem">
+			<div class="footer-column-content-inner">
+				{{ 'legacytheme.footer.serviceHotlineContent'|trans|raw }}
+			</div>
+		</div>
+	{% endblock %}
+
+{% endblock %}

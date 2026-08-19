@@ -1,0 +1,95 @@
+.sw-cms-el-product-return-form {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #d1d9e0;
+    border-radius: 4px;
+
+    &__preview {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #333;
+        text-align: center;
+    }
+
+    &__subtitle {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+
+    &__form {
+        margin-top: 20px;
+    }
+
+    &__row {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 16px;
+
+        .sw-cms-el-product-return-form__field {
+            flex: 1;
+        }
+    }
+
+    &__field {
+        margin-bottom: 16px;
+        flex: 1;
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d1d9e0;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #f9fafb;
+            cursor: not-allowed;
+
+            &::placeholder {
+                color: #999;
+            }
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 12px 9px;
+            padding-right: 2rem;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+    }
+
+    &__button {
+        padding: 10px 24px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+}
+

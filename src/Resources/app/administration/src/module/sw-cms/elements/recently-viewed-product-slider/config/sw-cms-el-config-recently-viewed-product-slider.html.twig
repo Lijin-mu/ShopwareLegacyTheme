@@ -1,0 +1,142 @@
+{% block sw_cms_element_recently_viewed_product_slider_config %}
+	<div class="sw-cms-el-config-recently-viewed-product-slider">
+
+		{% block sw_cms_element_recently_viewed_product_slider_config_tabs %}
+			<sw-tabs position-identifier="sw-cms-element-config-recently-viewed-product-slider" class="sw-cms-el-config-recently-viewed-product-slider__tabs" default-item="count">
+				<template #default="{ active }">
+
+					{% block sw_cms_element_recently_viewed_product_slider_config_tab_count %}
+						<sw-tabs-item :title="$tc('sw-cms.elements.general.config.tab.count')" name="count" :active-tab="active">
+							{{ $tc('sw-cms.elements.general.tabs.count') }}
+						</sw-tabs-item>
+					{% endblock %}
+
+					{% block sw_cms_element_recently_viewed_product_slider_config_tab_options %}
+						<sw-tabs-item :title="$tc('sw-cms.elements.general.config.tab.settings')" name="settings" :active-tab="active">
+							{{ $tc('sw-cms.elements.general.config.tab.settings') }}
+						</sw-tabs-item>
+					{% endblock %}
+				</template>
+
+				<template #content="{ active }">
+					{% block sw_cms_element_product_slider_config_settings %}
+						<sw-container v-if="active === 'settings'" class="sw-cms-el-config-recently-viewed-product-slider__tab-settings">
+
+							{% block sw_cms_element_product_slider_config_settings_display_mode %}
+								<mt-select
+									:label="$tc('sw-cms.elements.general.config.label.displayMode')"
+									v-model="element.config.displayMode.value"
+									:options="[
+										{ value: 'standard', label: $tc('sw-cms.elements.general.config.label.displayModeStandard') },
+										{ value: 'cover', label: $tc('sw-cms.elements.general.config.label.displayModeCover') },
+										{ value: 'contain', label: $tc('sw-cms.elements.general.config.label.displayModeContain') }
+									]"
+								/>
+							{% endblock %}
+
+
+							{% block sw_cms_element_product_slider_config_settings_vertical_align %}
+								<mt-select
+									v-model="element.config.verticalAlign.value"
+									:label="$tc('sw-cms.elements.general.config.label.verticalAlign')"
+									:placeholder="$tc('sw-cms.elements.general.config.label.verticalAlign')"
+									:options="[
+										{ value: 'flex-start', label: $tc('sw-cms.elements.general.config.label.verticalAlignTop') },
+										{ value: 'center', label: $tc('sw-cms.elements.general.config.label.verticalAlignCenter') },
+										{ value: 'flex-end', label: $tc('sw-cms.elements.general.config.label.verticalAlignBottom') }
+									]"
+								/>
+							{% endblock %}
+
+
+							{% block sw_cms_element_product_slider_config_settings_box_layout %}
+								<mt-select
+									v-model="element.config.boxLayout.value"
+									:label="$tc('sw-cms.elements.productBox.config.label.layoutType')"
+									:options="[
+										{ value: 'standard', label: $tc('sw-cms.elements.productBox.config.label.layoutTypeStandard') },
+										{ value: 'image', label: $tc('sw-cms.elements.productBox.config.label.layoutTypeImage') },
+										{ value: 'minimal', label: $tc('sw-cms.elements.productBox.config.label.layoutTypeMinimal') }
+									]"
+								/>
+							{% endblock %}
+
+
+							{% block sw_cms_element_product_slider_config_settings_border %}
+								<sw-switch-field v-model:value="element.config.border.value" bordered :label="$tc('sw-cms.elements.productSlider.config.label.border')"/>
+							{% endblock %}
+							
+							{% block sw_cms_element_cmsbundle_hero_slider_background_config_media_upload_setting %}
+
+								{% block sw_cms_element_cmsbundle_hero_slider_background_backconfig_autoplay %}
+									<div class="sw-cms-el-config-hero-slider-autoplay sw-field-item">
+										<sw-switch-field v-model:value="element.config.autoPlay.value" class="sw-cms-el-config-hero-slider-autoplay" type="switch" :label="$tc('sw-cms.elements.general.config.enable-autoplay')" bordered/>
+									</div>
+								{% endblock %}
+								{% block sw_cms_element_cmsbundle_hero_slider_background_config_speed %}
+									<sw-text-field v-model:value="element.config.speed.value" class="sw-cms-el-config-hero-slider-speed sw-field-item" type="text" :label="$tc('sw-cms.elements.general.config.speed')"/>
+								{% endblock %}
+								{% block sw_cms_element_best_seller_list_config_settings_navigation %}
+								<sw-switch-field v-model:value="element.config.navigation.value" bordered :label="$tc('sw-cms.elements.general.config.enable-controlls')"/>
+							{% endblock %}
+
+								{% block sw_cms_element_cmsbundle_hero_slider_background_backconfig_dots %}
+									<div class="sw-cms-el-config-hero-slider-dots sw-field-item">
+										<sw-switch-field v-model:value="element.config.dots.value" class="sw-cms-el-config-hero-slider-dots" type="switch" :label="$tc('sw-cms.elements.general.config.enable-dots')"/>
+									</div>
+								{% endblock %}
+
+								{% block sw_cms_element_cmsbundle_hero_slider_background_config_loop %}
+									<div class="sw-cms-el-config-hero-slider-loop sw-field-item">
+										<sw-switch-field v-model:value="element.config.loop.value" class="sw-cms-el-config-hero-slider-loop" type="switch" :label="$tc('sw-cms.elements.general.config.enable-loop')"/>
+									</div>
+								{% endblock %}
+
+							{% endblock %}
+
+						</sw-container>
+						<sw-container v-if="active === 'count'" class="sw-cms-el-config-recently-viewed-product-slider__tab-content">
+							<mt-select
+								v-model="element.config.countDesktop.value"
+								:label="$tc('sw-cms.elements.general.config.desktop-count')"
+								:options="[
+									{ value: '6', label: '6' },
+									{ value: '5', label: '5' },
+									{ value: '4', label: '4' },
+									{ value: '3', label: '3' },
+									{ value: '2', label: '2' },
+									{ value: '1', label: '1' }
+								]"
+							/>
+							<mt-select
+								v-model="element.config.countTablet.value"
+								:label="$tc('sw-cms.elements.general.config.tablet-count')"
+								:options="[
+									{ value: '6', label: '6' },
+									{ value: '5', label: '5' },
+									{ value: '4', label: '4' },
+									{ value: '3', label: '3' },
+									{ value: '2', label: '2' },
+									{ value: '1', label: '1' }
+								]"
+							/>
+							<mt-select
+								v-model="element.config.countMobile.value"
+								:label="$tc('sw-cms.elements.general.config.mobile-count')"
+								:options="[
+									{ value: '6', label: '6' },
+									{ value: '5', label: '5' },
+									{ value: '4', label: '4' },
+									{ value: '3', label: '3' },
+									{ value: '2', label: '2' },
+									{ value: '1', label: '1' }
+								]"
+							/>
+						</sw-container>
+					{% endblock %}
+
+				</template>
+			</sw-tabs>
+		{% endblock %}
+	</div>
+{% endblock %}

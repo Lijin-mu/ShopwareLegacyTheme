@@ -1,0 +1,24 @@
+{% block layout_header_service_menu %}
+	{% if header.extensions.serviceMenu is defined and header.extensions.serviceMenu|length > 0 %}
+		<div class="service-navigation">
+			<div class="service-dropdown dropdown" data-service-dropdown="true">
+				<button class="service-link service-menu-toggle" data-bs-toggle="dropdown" data-bs-target="#service-dropdown" aria-expanded="false" aria-haspopup="true" aria-label="{{ 'header.indexLinkService'|trans|sw_sanitize }}">
+					<i class="icon--service"></i>
+					<span>{{ 'header.indexLinkService'|trans|sw_sanitize }}</span>
+				</button>
+				<ul class="service-dropdown-menu dropdown-menu dropdown-menu-end" id="service-dropdown" aria-labelledby="service-dropdown" role="menu">
+					{% for serviceMenuItem in header.extensions.serviceMenu %}
+						{% block layout_header_service_menu_item %}
+						<li class="service-dropdown-item">
+							<a href="{{ serviceMenuItem.seoUrl }}" class="service-dropdown-item" {% if serviceMenuItem.shouldOpenInNewTab %} target="_blank" {% endif %} title="{{ serviceMenuItem.translated.name }}">
+								{{ serviceMenuItem.translated.name }}
+							</a>
+						</li>
+						{% endblock %}
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	{% endif %}
+
+{% endblock %}

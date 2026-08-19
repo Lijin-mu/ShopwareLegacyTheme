@@ -1,0 +1,12 @@
+Neue Anfrage von {{ firstName }} {{ lastName }}
+
+{% if salutationDisplay %}Anrede: {{ salutationDisplay }}{% endif %}
+Vorname: {{ firstName }}
+Nachname: {{ lastName }}
+E-Mail: {{ email }}
+{% if phone %}Telefon: {{ phone }}{% endif %}
+{% if productName %}Produkt: {{ productName }}{% endif %}
+{% if description %}Beschreibung: {{ description }}{% endif %}
+
+Dies ist eine automatische Nachricht von Ihrem Anfrageformular.
+

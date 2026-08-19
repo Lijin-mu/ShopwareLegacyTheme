@@ -1,0 +1,45 @@
+
+{% sw_extends '@Storefront/storefront/component/buy-widget/buy-widget.html.twig' %}
+
+{% block buy_widget %}
+    <div class="product-detail-buy{% if elementId %}-{{ elementId }}{% endif %} js-magnifier-zoom-image-container">
+        {% block buy_widget_rich_snippets %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block buy_widget_buy_container %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block buy_widget_ordernumber_container %}
+        <div class="detail-wishlist-compare-container">
+            
+              <div class="detail-compare-button">
+                {% if activeRoute != 'frontend.compare.content' %}
+                    {% block component_product_box_action_detail_add_to_compare_button %}
+                        {% sw_include '@Storefront/storefront/component/product/card/compare-button.html.twig' %}
+                    {% endblock %}
+                {% endif %}
+              </div>
+
+               {% if config('core.cart.wishlistEnabled') %}
+                <div class="detail-wishlist-button">
+                    {% block buy_widget_wishlist %}
+                        {% sw_include '@Storefront/storefront/component/product/card/wishlist.html.twig' with {
+                            showText: true,
+                            size: 'sm',
+                            productId: product.id
+                        } %}
+                    {% endblock %}
+                </div>
+             {% endif %}
+              <div class="detail-review-button" data-show-tab="true">
+                <button href="#product-detail-tabs" class="btn btn-link" rel="nofollow" title="{{ "legacytheme.general.detaillinkreviewshort"|trans }}"> 
+                    <i class="icon--star"></i> {{ "legacytheme.general.detaillinkreviewshort"|trans }} 
+                </button>
+              </div>
+        </div>
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}

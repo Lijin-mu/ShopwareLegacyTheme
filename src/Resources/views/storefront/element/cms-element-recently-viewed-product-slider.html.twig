@@ -1,0 +1,90 @@
+
+{% block element_product_slider %}
+	{% if not sliderConfig %}
+		{% set sliderConfig = element.fieldConfig.elements %}
+	{% endif %}
+	<div class="cms-element-{{ element.type }}{% if sliderConfig.displayMode.value == " standard" and sliderconfig.verticalalign.value %} has-vertical-alignment{% endif %}">
+		{% block element_product_slider_alignment %}
+			{% if config.verticalAlign.value %}
+				<div class="cms-element-alignment{% if sliderConfig.verticalAlign.value == " center" %} align-self-center{% elseif sliderConfig.verticalAlign.value == " flex-end" %} align-self-end{% else %} align-self-start{% endif %}">
+				{% endif %}
+
+				{% set productSliderOptions = {
+							gutter: 20,
+							autoplayButtonOutput: false,
+							nav: sliderConfig.dots.value,
+							slideBy: 1,
+							mouseDrag: true,
+							items: sliderConfig.countMobile.value,
+							controls: sliderConfig.navigation.value ? true : false,
+							autoplay: sliderConfig.autoPlay.value ? true : false,
+							speed: sliderConfig.speed.value,
+							loop: sliderConfig.loop.value,
+							prevButton: '.recent-view-slider__controls_prev',
+							nextButton: '.recent-view-slider__controls_next',
+							navPosition: 'bottom',
+							responsive: {
+								lg: {
+									items: sliderConfig.countDesktop.value
+								},
+								md: {
+									items: sliderConfig.countTablet.value
+								},
+								sm: {
+									items: sliderConfig.countMobile.value
+								}
+							}
+						} 
+					%}
+
+					{% set recentlyViewedProductSliderOptions = {
+						containerSelector: "[data-recently-viewed-product=true] .recent-view-slider-container",
+						controlsWrapper: "[data-recently-viewed-slider-controls=true]",
+						replaceSelectors: ".js-recently-viewed-product-slider",
+						titleSelector: ".js-recently-viewed-product-slider-title",
+						route: path('frontend.recently-viewed-product.slider'),
+						boxLayout: sliderConfig.boxLayout.value,
+						displayMode: sliderConfig.displayMode.value,
+						sliderOptions: productSliderOptions,
+					} %}
+
+				{% block element_product_slider_slider %}
+					<div class="cms-element-recently-viewed-product-slider-title js-recently-viewed-product-slider-title">
+						<h2>{{ "legacytheme.recentlyViewed"|trans|sw_sanitize }}</h2>
+					</div>
+					<div class="base-slider recent-view-slider{% if sliderConfig.border.value %} has-border{% endif %}{% if sliderConfig.navigation.value %} has-nav{% endif %}" data-recently-viewed-product="true" data-recently-viewed-product-options="{{ recentlyViewedProductSliderOptions|json_encode }}">
+
+						{% block element_product_slider_inner %}
+							{% block element_product_slider_element %}
+								<div class="recent-view-slider-container js-recently-viewed-product-slider"></div>
+							{% endblock %}
+
+							{% block element_product_slider_controls %}
+								<div class="product-slider-controls-container">
+									{% if sliderConfig.navigation.value %}
+										<div class="base-slider-controls" data-recently-viewed-slider-controls="true">
+											{% block element_product_slider_controls_items %}
+												<button class="base-slider-controls-prev recent-view-slider__controls_prev{% if sliderConfig.border.value %} has-border{% endif %} start-0" aria-label="{{ 'general.previous'|trans|striptags }}">
+													{% block element_product_slider_controls_items_prev_icon %}
+														{% sw_icon 'arrow-head-left' %}
+													{% endblock %}
+												</button>
+												<button class="base-slider-controls-next recent-view-slider__controls_next{% if sliderConfig.border.value %} has-border{% endif %} end-0" aria-label="{{ 'general.next'|trans|striptags }}">
+													{% block element_product_slider_controls_items_next_icon %}
+														{% sw_icon 'arrow-head-right' %}
+													{% endblock %}
+												</button>
+											{% endblock %}
+										</div>
+									{% endif %}
+								</div>
+							{% endblock %}
+						{% endblock %}
+					</div>
+				{% endblock %}
+				{% if config.verticalAlign.value %}
+				</div>
+			{% endif %}
+		{% endblock %}
+	</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-description-reviews.html.twig' %}
+{% block element_product_description_reviews_tabs_navigation_review %}
+    {% if config('core.listing.showReview') %}
+        <li class="nav-item">
+            <a class="nav-link {% if (ratingSuccess == 1) or (ratingSuccess == -1) %}active{% endif %} product-detail-tab-navigation-link review-tab"
+                id="{{ reviewTabId }}"
+                data-bs-toggle="tab"
+                data-off-canvas-tabs="true"
+                href="{{ reviewTabHref }}"
+                role="tab"
+                aria-controls="{{ reviewTabContent }}"
+                aria-selected="true">
+                <span>{{ "detail.tabsReview"|trans|sw_sanitize }} <span class="product--rating-count">{{element.data.reviews.total}}</span> </span>
+                <span class="product-detail-tab-navigation-icon">
+                    {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                </span>
+            </a>
+        </li>
+    {% endif %}
+{% endblock %}

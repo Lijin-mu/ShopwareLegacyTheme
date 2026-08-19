@@ -1,0 +1,66 @@
+{% block sw_cms_element_product_return_form_config %}
+    <div class="sw-cms-el-config-product-return-form">
+        <sw-text-field
+            v-model:value="element.config.title.value"
+            :label="$tc('sw-cms.elements.productReturnForm.config.title.label')"
+            :placeholder="$tc('sw-cms.elements.productReturnForm.config.title.placeholder')"
+        />
+
+        <sw-text-field
+            v-model:value="element.config.subtitle.value"
+            :label="$tc('sw-cms.elements.productReturnForm.config.subtitle.label')"
+            :placeholder="$tc('sw-cms.elements.productReturnForm.config.subtitle.placeholder')"
+        />
+
+        <sw-switch-field
+            v-model:value="element.config.showLabel.value"
+            :label="$tc('sw-cms.elements.productReturnForm.config.showLabel.label')"
+        />
+
+        <sw-switch-field
+            v-model:value="element.config.showSalutation.value"
+            :label="$tc('sw-cms.elements.productReturnForm.config.showSalutation.label')"
+        />
+
+        <sw-switch-field
+            v-model:value="element.config.showPhone.value"
+            :label="$tc('sw-cms.elements.productReturnForm.config.showPhone.label')"
+        />
+
+        <sw-switch-field
+            v-model:value="element.config.showProductNumber.value"
+            :label="$tc('sw-cms.elements.productReturnForm.config.showProductNumber.label')"
+        />
+
+        <sw-switch-field
+            v-model:value="element.config.showReason.value"
+            :label="$tc('sw-cms.elements.productReturnForm.config.showReason.label')"
+        />
+
+        <sw-switch-field
+            v-model:value="element.config.showDescription.value"
+            :label="$tc('sw-cms.elements.productReturnForm.config.showDescription.label')"
+        />
+
+        <sw-text-field
+            v-model:value="element.config.buttonText.value"
+            :label="$tc('sw-cms.elements.productReturnForm.config.buttonText.label')"
+            :placeholder="$tc('sw-cms.elements.productReturnForm.config.buttonText.placeholder')"
+        />
+
+        <sw-text-field
+            v-model:value="element.config.successMessage.value"
+            :label="$tc('sw-cms.elements.productReturnForm.config.successMessage.label')"
+            :placeholder="$tc('sw-cms.elements.productReturnForm.config.successMessage.placeholder')"
+        />
+
+        <sw-textarea-field
+            v-model:value="element.config.reasonOptions.value"
+            :label="$tc('sw-cms.elements.productReturnForm.config.reasonOptions.label')"
+            :placeholder="$tc('sw-cms.elements.productReturnForm.config.reasonOptions.placeholder')"
+            :helpText="$tc('sw-cms.elements.productReturnForm.config.reasonOptions.helpText')"
+            :rows="4"
+        />
+    </div>
+{% endblock %}
+

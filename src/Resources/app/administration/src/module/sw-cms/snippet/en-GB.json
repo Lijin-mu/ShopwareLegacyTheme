@@ -1,0 +1,244 @@
+{
+  "sw-cms": {
+    "blocks": {
+      "form": {
+        "enquiryForm": {
+          "label": "Enquiry Form"
+        }
+      },
+      "recently-viewed-product-slider": {
+        "label": "Recently Viewed Product Slider"
+      },
+      "hero-slider": {
+        "label": "Hero CTA Slider"
+      },
+       "column-cta":{
+        "label":"column cta"
+      },
+      "product-list": {
+        "label": "Product List"
+      }
+    },
+    "elements": {
+      "enquiryForm": {
+        "label": "Enquiry Form",
+        "config": {
+          "title": {
+            "label": "Title",
+            "placeholder": "Enter form title"
+          },
+          "subtitle": {
+            "label": "Subtitle",
+            "placeholder": "Enter form subtitle"
+          },
+          "showLabel": {
+            "label": "Display labels"
+          },
+          "showSalutation": {
+            "label": "Show Salutation Field"
+          },
+          "showPhone": {
+            "label": "Show Phone Field"
+          },
+          "showDescription": {
+            "label": "Show Description Field"
+          },
+          "buttonText": {
+            "label": "Button Text",
+            "placeholder": "Submit Enquiry"
+          },
+          "successMessage": {
+            "label": "Success Message",
+            "placeholder": "Thank you for your enquiry!"
+          }
+        }
+      },
+      "cta": {
+        "label": "cta",
+        "componentLabel": "cta element",
+        "general": {
+          "tabs": {
+            "title": "Title & Intro",
+            "content": "Content",
+            "media": "Images",
+            "button": "Buttons",
+            "settings": "Display Settings"
+          },
+          "config": {
+            "title": "Heading",
+            "title-tag": "Heading Tag",
+            "sub-title": "Sub-Heading",
+            "sub-title-tag": "Sub-Heading Tag",
+            "short-description": "Intro Text",
+            "desktop": "Desktop (Large Screens)",
+            "tablet": "Tablet (Portrait)",
+            "mobile": "Mobile (Phone)",
+            "button-text": "Button Label",
+            "button-url": "Link / URL",
+            "button-type": "Button Style",
+            "add-more-button": "Add Secondary Button",
+            "open-link-new-tab": "Open in new tab",
+            "enable-lazy-load": "Enable Lazy Loading",
+            "enable-element": "Activate Element",
+            "horizontal-alignment": "Text Alignment",
+            "custom-class": "Custom CSS Class",
+            "content": {
+              "label": "Main Content Body",
+              "placeholder": "Enter your detailed description here..."
+            }
+          }
+        }
+      },
+      "product-list-cta": {
+        "label": "Product List",
+        "componentLabel": "Product List CTA Element",
+        "general": {
+          "tabs": {
+            "title": "Title & Intro",
+            "button": "Buttons",
+            "settings": "Settings",
+            "products": "Products",
+            "count": "Count"
+          },
+          "config": {
+            "title": "Heading",
+            "title-tag": "Heading Tag",
+            "sub-title": "Sub-Heading",
+            "sub-title-tag": "Sub-Heading Tag",
+            "short-description": "Intro Text",
+            "button-text": "Button Label",
+            "button-url": "Link / URL",
+            "button-type": "Button Style",
+            "add-more-button": "Add Secondary Button",
+            "open-link-new-tab": "Open in new tab",
+            "enable-lazy-load": "Enable Lazy Loading",
+            "enable-element": "Activate Element",
+            "horizontal-alignment": "Text Alignment",
+            "custom-class": "Custom CSS Class",
+            "select-products": "Select Products",
+            "desktop-count": "Desktop Count",
+            "tablet-count": "Tablet Count",
+            "mobile-count": "Mobile Count",
+            "enable-autoplay": "Enable Autoplay",
+            "speed": "Animation Speed (ms)",
+            "enable-controlls": "Enable Navigation Controls",
+            "enable-dots": "Enable Dots",
+            "enable-loop": "Enable Loop",
+            "placeholder-select": "Select products to display in the product list.",
+            "heading-h1": "H1",
+            "heading-h2": "H2",
+            "heading-h3": "H3",
+            "heading-h4": "H4",
+            "heading-h5": "H5",
+            "heading-div": "DIV",
+            "heading-p": "Paragraph",
+            "align-left": "Left",
+            "align-center": "Center",
+            "align-right": "Right",
+            "align-top": "Top",
+            "align-middle": "Middle",
+            "align-bottom": "Bottom",
+            "content": {
+              "label": "Main Content Body",
+              "placeholder": "Enter your detailed description here..."
+            },
+            "label": {
+              "displayMode": "Display Mode",
+              "displayModeStandard": "Standard",
+              "displayModeCover": "Cover",
+              "displayModeContain": "Contain",
+              "alignment": "Alignment",
+              "verticalAlign": "Vertical Alignment",
+              "verticalAlignTop": "Top",
+              "verticalAlignCenter": "Center",
+              "verticalAlignBottom": "Bottom",
+              "layoutType": "Box Layout",
+              "layoutTypeStandard": "Standard",
+              "layoutTypeImage": "Image",
+              "layoutTypeMinimal": "Minimal",
+              "border": "Show Border"
+            }
+          }
+        }
+      },
+      "general": {
+        "config": {
+          "short-description": "Short Description",
+          "active": "Active",
+          "image": "Image",
+          "setting": "Setting",
+          "desktop": "Desktop",
+          "tablet": "Tablet",
+          "mobile": "Mobile",
+          "enable-lazy-load": "Enable Lazy Load",
+          "custom-class": "Custom Class",
+          "enable-autoplay": "Enable Autoplay",
+          "background-color": "Background Color",
+          "speed": "Speed",
+          "enable-controlls": "Enable Arrows",
+          "enable-dots": "Enable Dots",
+          "enable-loop": "Enable Loop",
+          "theme-color": "Theme Color",
+          "content-color": "Content Color",
+          "alignment": "Alignment",
+          "open-link-new-tab": "Open link in new tab",
+          "button-text": "Button Text",
+          "button-type": "Button Type",
+          "add-more-button": "Add More Button",
+          "category": "Category",
+          "image-position": "Image Position",
+          "title": "Title",
+          "title-tag": "Title Heading Tag",
+          "sub-title": "Sub Title",
+          "sub-title-tag": "Sub Title Heading Tag",
+          "title-position": "Title Position",
+          "horizontal-alignment": "Horizontal Alignment",
+          "content": {
+            "label": "Content",
+            "placeholder": "Enter image-text link..."
+          },
+          "enable-cta": "Enable Call To Action Button",
+          "desktop-count": "Desktop Count",
+          "tablet-count": "Tablet Count",
+          "mobile-count": "Mobile Count",
+          "bestSeller": "Best Seller",
+          "productsPerPage": "Number of products per page",
+          "max-height": "Maximum Height",
+          "object-fit": "Object Fit",
+          "contain": "Contain",
+          "cover": "Cover",
+          "fill": "Fill",
+          "scale": "Scale",
+          "none": "None",
+          "linkTo": "Link To",
+          "buttonText": "Button Text",
+          "slideTitle": "Slide Title",
+          "slideTag": "Slide Tag",
+          "addSliderItem": "Add Slider Item",
+          "sliderItems": "Slider Items",
+          "sliderItem": "Slider Item ",
+          "removeSliderItem": "Remove Slider Item",
+          "sliderSettings": "Slider Settings",
+          "navigation": "Navigation",
+          "remove-button": "Remove Button",
+          "add-button": "Add Button",
+          "product": "Product"
+        },
+        "tabs": {
+          "background": "Background",
+          "settings": "Settings",
+          "title": "Title",
+          "content": "Content",
+          "image": "Image",
+          "button": "Button",
+          "count": "Count",
+          "content-settings": "Content settings",
+          "slider-settings": "Slider settings",
+          "media": "Media",
+          "options": "Options"
+        }
+      }
+    }
+  },
+  "apps.sw-cms.detail.label.blockCategory.legacy": "Legacy Theme"
+}

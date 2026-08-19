@@ -1,0 +1,31 @@
+.sw-cms-block-hero-slider{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    grid-gap: 20px;
+}
+.sw-cms-block-hero-slider__container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+     .sw-cms-slot{
+        padding: 10px;
+        border: 1px solid #f1f1f1;
+        .sw-cms-el-cta{
+            min-height: 150px;
+            padding: 10px;
+            background: #f1eaea;
+        }
+    }
+}
+
+.sw-cms-block-image-two-column{
+    .sw-cms-slot{
+        padding: 10px;
+        border: 1px solid #f1f1f1;
+        .sw-cms-el-cta{
+            min-height: 150px;
+            padding: 10px;
+            background: #f1eaea;
+        }
+    }
+}

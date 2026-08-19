@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="ShopwareLegacyTheme\Storefront\Controller\HeaderController"
+            decorates="Shopware\Storefront\Controller\NavigationController"
+            public="true">
+            <argument type="service"
+                id="ShopwareLegacyTheme\Storefront\Controller\HeaderController.inner" />
+            <argument type="service" id="Shopware\Storefront\Pagelet\Header\HeaderPageletLoader" />
+            <argument type="service" id="Shopware\Storefront\Pagelet\Footer\FooterPageletLoader" />
+            <argument type="service"
+                id="Shopware\Storefront\Pagelet\Menu\Offcanvas\MenuOffcanvasPageletLoader" />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <!-- Enquiry Form Controller -->
+        <service id="ShopwareLegacyTheme\Storefront\Controller\EnquiryFormController" public="true">
+            <argument type="service" id="validator" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="logger" />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <tag name="controller.service_arguments" />
+        </service>
+
+        <!-- Product Return Form Controller -->
+        <service id="ShopwareLegacyTheme\Storefront\Controller\ProductReturnFormController"
+            public="true">
+            <argument type="service" id="validator" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="logger" />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <tag name="controller.service_arguments" />
+        </service>
+
+        <!-- Flow Builder Event -->
+        <service id="ShopwareLegacyTheme\Core\Event\EnquiryFormSubmittedEvent" />
+        <service id="ShopwareLegacyTheme\Core\Event\ProductReturnFormSubmittedEvent" />
+
+        <!-- Mail Sent Subscriber for tracking -->
+        <service id="ShopwareLegacyTheme\Core\Event\EnquiryMailSentSubscriber">
+            <argument type="service" id="logger" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <!-- Product Return Form Mail Sent Subscriber for tracking -->
+        <service id="ShopwareLegacyTheme\Core\Event\ProductReturnFormMailSentSubscriber">
+            <argument type="service" id="logger" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <!-- CMS Enquiry Form Element Resolver -->
+        <service
+            id="ShopwareLegacyTheme\Core\Content\Cms\DataResolver\Element\EnquiryFormElementResolver">
+            <argument type="service" id="salutation.repository" />
+            <argument type="service" id="product.repository" />
+            <argument type="service" id="request_stack" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+
+        <!-- CMS Product Return Form Element Resolver -->
+        <service
+            id="ShopwareLegacyTheme\Core\Content\Cms\DataResolver\Element\ProductReturnFormElementResolver">
+            <argument type="service" id="salutation.repository" />
+            <argument type="service" id="product.repository" />
+            <argument type="service" id="request_stack" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <!-- CMS Call to Action Element Resolver -->
+        <service id="ShopwareLegacyTheme\Core\Content\Cms\DataResolver\Element\CtaResolver">
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <!-- CMS Product List CTA Element Resolver -->
+        <service
+            id="ShopwareLegacyTheme\Core\Content\Cms\DataResolver\Element\ProductListCtaResolver">
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <!-- Flow Installer -->
+        <service id="ShopwareLegacyTheme\Core\Content\Flow\EnquiryFormFlowInstaller">
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+        </service>
+
+        <!-- Product Return Form Flow Installer -->
+        <service id="ShopwareLegacyTheme\Core\Content\Flow\ProductReturnFormFlowInstaller">
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+        </service>
+
+        <!-- Product Recommendation Services -->
+        <service id="ShopwareLegacyTheme\Storefront\Service\ProductFormatter" />
+
+        <service id="ShopwareLegacyTheme\Storefront\Service\CustomersBoughtService">
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+            <argument type="service"
+                id="Shopware\Core\Content\Product\SalesChannel\ProductListRoute" />
+            <argument type="service" id="ShopwareLegacyTheme\Storefront\Service\ProductFormatter" />
+        </service>
+
+        <service id="ShopwareLegacyTheme\Storefront\Service\CustomersAlsoViewedService">
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+            <argument type="service"
+                id="Shopware\Core\Content\Product\SalesChannel\ProductListRoute" />
+            <argument type="service" id="ShopwareLegacyTheme\Storefront\Service\ProductFormatter" />
+        </service>
+
+        <service id="ShopwareLegacyTheme\Storefront\Subscriber\ProductRecommendationPageSubscriber">
+            <argument type="service"
+                id="ShopwareLegacyTheme\Storefront\Service\CustomersBoughtService" />
+            <argument type="service"
+                id="ShopwareLegacyTheme\Storefront\Service\CustomersAlsoViewedService" />
+            <argument type="service" id="logger" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="ShopwareLegacyTheme\Storefront\Controller\ProductRecommendationController"
+            public="true">
+            <argument type="service" id="sales_channel.product.repository" />
+            <argument type="service" id="logger" />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <tag name="controller.service_arguments" />
+        </service>
+
+        <!-- Customers Also Viewed Entity Definition -->
+        <service
+            id="ShopwareLegacyTheme\Core\Content\Product\CustomersAlsoViewed\CustomersAlsoViewedDefinition">
+            <tag name="shopware.entity.definition" entity="s_customers_also_viewed" />
+        </service>
+
+        <!-- Customers Also Viewed Subscriber -->
+        <service id="ShopwareLegacyTheme\Storefront\Subscriber\CustomersAlsoViewedSubscriber">
+            <argument type="service" id="Doctrine\DBAL\Connection" />
+            <argument type="service" id="request_stack" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,50 @@
+{% block block_column_cta %}
+	<div class="col-12">
+		<div class="column-cta-container">
+			{% block block_column_cta_content %}
+
+				{% block block_column_cta_header %}
+					{% set element = block.slots.getSlot('slotHeader') %}
+					<div class="column-cta-header">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+					</div>
+				{% endblock %}
+
+				{% block block_column_cta_columns %}
+					<div class="column-cta-columns">
+
+						{% set totalslides = 9 %}
+							{% for i in 0..totalslides %}
+								{% set slotName = "slot0"~ i %}
+								{% set slide = 'block_slider_slide_' ~ i %}
+								{% set slideInner = 'block_slider_slide_inner_' ~ i %}
+								{% block slide %}
+								{% set element = block.slots.getSlot(slotName) %}
+								{% if element.translated.config.active.value && element.translated.config.active.value === true %}
+									<div class="cta-item">
+										{% block slideInner %}
+											{% set sizes = {
+										'desktop': '1680',
+										'tablet': '800',
+										'mobile': '400'
+									} %}
+											{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing with { sliderLazyload: false , sizes:sizes } %}
+										{% endblock %}
+									</div>
+								{% endif %}
+							{% endblock %}
+						{% endfor %}
+
+					</div>
+				{% endblock %}
+
+				{% block block_column_cta_footer %}
+					{% set element = block.slots.getSlot('slotFooter') %}
+					<div class="column-cta-footer">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+					</div>
+				{% endblock %}
+			{% endblock %}
+		</div>
+	</div>
+{% endblock %}

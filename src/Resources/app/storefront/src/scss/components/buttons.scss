@@ -1,0 +1,138 @@
+.btn-primary,
+.btn-buy {
+  padding: 0.125rem 0.75rem 0.125rem 0.75rem;
+  line-height: 2.125rem;
+  background-color: $primary-color;
+  background-image: linear-gradient(
+    to bottom,
+    $primary-color 0%,
+    lighten($primary-color, 15%) 100%
+  );
+  border: 0 none;
+  color: $white-color;
+  position: relative;
+  display: flex;
+  align-items: center;
+  &:hover,
+  &:focus-visible {
+    background-image: linear-gradient(
+      to bottom,
+      $primary-color 0%,
+      $primary-color 100%
+    );
+    color: $white-color;
+  }
+}
+
+form {
+  .btn-primary,
+  .btn-buy {
+    padding-right: rem(28);
+
+    &::before {
+      content: "\e60f";
+      font-family: "shopware";
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      position: absolute;
+      top: calc(50% - 0.3em);
+      right: rem(12);
+      font-size: 0.7em;
+    }
+  }
+}
+.widget-newsletter {
+  form {
+    .btn-primary,
+    .btn-buy {
+      padding-right: rem(12);
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
+
+.paypal-button-container {
+  .paypal-button {
+    margin-top: rem((12));
+  }
+}
+
+.offcanvas-cart-actions {
+  .d-grid + .d-grid {
+    margin-top: rem(16);
+  }
+  .d-grid + .btn-block {
+    margin-top: rem(16);
+  }
+  .btn-link {
+    text-decoration: none;
+  }
+
+  .btn-primary,
+  .btn-link {
+    padding-right: rem(28);
+
+    &::before {
+      content: "\e60f";
+      font-family: "shopware";
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      position: absolute;
+      top: calc(50% - 0.3em);
+      right: rem(12);
+      font-size: 0.7em;
+    }
+  }
+}
+
+.compare-float-button {
+  .btn {
+    &.btn-primary {
+      display: block;
+      .icon {
+        color: $white-color;
+      }
+    }
+  }
+}
+
+.scroll-up-button {
+  .btn-primary {
+    display: block;
+    background-color: $primary-color;
+    background-image: none;
+    .icon {
+      color: $white-color;
+    }
+  }
+}
+
+.compare-float-button {
+  .btn {
+    overflow: visible;
+    .icon {
+      color: $text-color;
+    }
+    .badge {
+      &.bg-danger {
+        background-color: $primary-color;
+      }
+    }
+  }
+}
+
+.btn {
+  &.btn-outline-secondary {
+    background: transparent;
+  }
+}
