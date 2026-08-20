@@ -1,0 +1,9 @@
+.offcanvas-cart-header h4{
+    font-weight: $font-weight-semibold;
+}
+
+.offcanvas-cart-items{
+    .line-item-row{
+        flex-wrap: nowrap;
+    }
+}
