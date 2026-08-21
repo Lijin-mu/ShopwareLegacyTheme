@@ -135,6 +135,12 @@ main{
   }
 }
 
+.alert-success,
+.alert-info{
+  padding:rem(20);
+}
+
+
 
 .nav-main {
   border-bottom: 1px solid $primary-color;
@@ -198,9 +204,6 @@ main{
 }
 }
 
-.alert{
-  margin-top: rem(16);
-}
 
 .base-slider-controls{
   button{

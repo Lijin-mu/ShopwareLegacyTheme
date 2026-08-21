@@ -1,9 +1,82 @@
-.offcanvas-cart-header h4{
-    font-weight: $font-weight-semibold;
-}
+.offcanvas.cart-offcanvas {
+    width: rem(500);
+    max-width: 100%;
 
-.offcanvas-cart-items{
-    .line-item-row{
+    .offcanvas-cart-header h4 {
+        font-weight: $font-weight-semibold;
+    }
+
+    .offcanvas-image-text {
         flex-wrap: nowrap;
+        gap:rem(16);
+    }
+
+    .line-item-unit-price,
+    .line-item-total-price {
+        display: flex;
+        align-items: center;
+        flex: 1 1 50%;
+        width: 50%;
+        max-width: 50%;
+    }
+
+    .line-item-unit-price {
+        order: 4;
+        justify-content: flex-start;
+    }
+
+    .line-item-total-price {
+        order: 5;
+        justify-content: flex-end;
+    }
+
+    .line-item-quantity-group {
+        .btn-minus {
+            border-radius: rem(60) rem(0) rem(0) rem(60);
+        }
+        .btn-plus {
+            border-radius: rem(0) rem(60) rem(60) rem(0);
+        }
+    }
+
+    .line-item-img{
+        border: 1px solid $box-border;
+        border-radius: rem(3);
+    }
+
+    .offcanvas-cart-items{
+        .line-item-product{
+            padding-bottom:rem(28);
+        }
+    }
+
+    .offcanvas-summary{
+        margin-top:rem(28);
+    }
+
+    .offcanvas-cart-actions{
+        input,
+        a{
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        .offcanvas-cart-promotion-button{
+            background-color: $black-color;
+            color: $white-color;
+
+            &:hover{
+                background-color: $primary-color;
+                color: $white-color;
+            }
+        }
+    }
+
+    .shipping-label{
+        button{
+            background-color: transparent;
+            box-shadow: none;
+            background-image: none;
+        }
     }
 }

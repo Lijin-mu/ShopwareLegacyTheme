@@ -25,5 +25,26 @@
   border-bottom: 1px solid $primary-color;
   .header-minimal-back-to-shop {
     width: auto;
+    padding: 0px;
+  }
+  .header-minimal-back-to-shop-button{
+    background-image: none;
+    background-color: $primary-color;
+    color: $white-color;
+    box-shadow: none;
+    border-color: $primary-color;
+
+    &:hover{
+      background-image: none;
+      background-color: $white-color;
+      color: $black-color;
+    }
+
+    @include max-mobile {
+      margin-right: rem(24);
+    }
+  }
+  .header-row{
+    padding: rem(24) 0px;
   }
 }

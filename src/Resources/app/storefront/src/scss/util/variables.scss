@@ -30,6 +30,13 @@ $font-headline: $sw-font-family-headline, $theme-fallback-fonts;
 $text-color: $sw-text-color;
 $headline-color: $sw-headline-color;
 
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
 //Status Colors (default in shopware)
 $success-color: $sw-color-success;
 $info-color: $sw-color-info;
@@ -45,6 +52,7 @@ $form-background-color: #f5f5f8;
 $product-image-background-color: #f6f6f6;
 $sidebar-category-navigation-link-color: #4a4a4a;
 $input-gray-color:#f8f8fa;
+$box-border:#dddddd;
 
 $header-background-color:$sw-header-background-color;
 $header-navigation-background-color: $sw-navbar-background-color;

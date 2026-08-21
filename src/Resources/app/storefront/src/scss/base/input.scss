@@ -9,10 +9,7 @@ textarea, textarea.form-control, input[type="text"],input[type="search"],input[t
     font-size: .875rem;
     max-width: 100%;
     padding: .625rem .625rem .5625rem .625rem;
-    box-shadow: inset 0 1px 1px #dadae5;
-    background: $input-gray-color;
     border: 1px solid #dadae5;
-    border-top-color: #cbcbdb;
     color: #098236;
     text-align: left;
     &:focus{
@@ -161,7 +158,6 @@ select.form-control,
         position: absolute;
         right: 0;
         font-size: 5px;
-        border-left: 1px solid #dadae5;
         text-align: center;
         font-family: 'shopware';
         pointer-events: none;

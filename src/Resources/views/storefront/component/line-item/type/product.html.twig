@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/component/line-item/type/product.html.twig' %}
+
+{% block component_line_item_type_product_info_row %}
+    <div class="row line-item-row offcanvas-image-text">
+        {% set showLineItemModal = activeRoute is same as('frontend.checkout.confirm.page') %}
+
+        {% if nestingLevel < 1 %}
+            {% block component_line_item_type_product_image %}
+                {{ parent() }}
+            {% endblock %}
+        {% endif %}
+
+        {% block component_line_item_type_product_details %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
