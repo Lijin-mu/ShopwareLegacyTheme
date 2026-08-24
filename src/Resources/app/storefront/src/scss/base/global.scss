@@ -140,6 +140,29 @@ main{
   padding:rem(20);
 }
 
+.form-check-input.is-invalid{
+  border-color: $box-border;
+  &:focus{
+    border-color: $box-border;
+    box-shadow: none;
+  }
+}
+
+body:has(.header-main) .content-main > .container:has(.account),
+body:has(.header-main) .content-main > .container:has(.account-register) {
+  max-width: rem(1300);
+}
+
+body:has(.header-minimal) .content-main > .container:has(.account),
+body:has(.header-minimal) .content-main > .container:has(.account-register) {
+  max-width: rem(1260);
+
+  @media (min-width: 1252px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 
 
 .nav-main {
@@ -149,6 +172,7 @@ main{
 }
 
 .content-main{
+  background-color: $white-color;
   .container,
   .cms-section .boxed {
     background: $white-color;

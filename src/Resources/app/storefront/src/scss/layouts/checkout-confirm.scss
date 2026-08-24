@@ -1,0 +1,250 @@
+.is-act-confirmpage,
+.is-active-route-frontend-checkout-confirm-page {
+    .content-main{
+        background-color: $white-color;
+    }
+  .content-main > .container {
+    max-width: rem(1260);
+
+    @media (min-width: 1252px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .confirm-main-header-item-counter{
+        font-size: rem(16);
+    }
+
+    .confirm-main-header{
+        margin-bottom: rem(64);
+
+        @include max-mobile {
+            margin-bottom: rem(32);
+        }
+    }
+  }
+
+  .checkout {
+    @media (min-width: 1252px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .checkout-container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      column-gap: rem(56) !important;
+
+      @media (min-width: 992px) {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        grid-template-areas:
+          "main aside"
+          "additional aside";
+        align-items: start;
+        column-gap: rem(24);
+      }
+    }
+
+    .checkout-main {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+      margin-left: 0;
+
+      @media (min-width: 992px) {
+        grid-area: main;
+        width: auto;
+        max-width: none;
+        flex: unset;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      @include max-mobile {
+        padding: 0px;
+      }
+    }
+
+    .checkout-additional {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+      margin-left: 0;
+
+      @media (min-width: 992px) {
+        grid-area: additional;
+        width: auto;
+        max-width: none;
+        flex: unset;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    .checkout-aside,
+    .checkout-aside-no-offset {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+      margin-left: 0;
+
+      @media (min-width: 992px) {
+        grid-area: aside;
+        width: auto;
+        max-width: none;
+        flex: unset;
+        padding-left: 0;
+        padding-right: 0;
+        align-self: start;
+        position: sticky;
+        top: rem(24);
+        z-index: 2;
+      }
+    }
+  }
+  .cms-section.cms-section-default .cms-block:first-child {
+    padding-top: 0;
+  }
+  .confirm-tos,
+  .confirm-address,
+  .confirm-payment-shipping{
+    margin-bottom: rem(36);
+
+    @include max-mobile {
+      margin-bottom: rem(32);
+    }
+  }
+
+  .confirm-shipping-address{
+    @include max-mobile {
+      margin-bottom: rem(32);
+    }
+  }
+
+  .confirm-address-billing p{
+    @include max-mobile {
+    margin-bottom: 0px;
+    }
+  }
+
+  .checkout-confirm-tos-checkbox {
+    border-color: $box-border;
+
+    &:focus,
+    &:focus-visible,
+    &:checked:focus,
+    &:checked:focus-visible {
+      border-color: $box-border;
+      outline: none;
+      box-shadow: none;
+    }
+
+    &:checked {
+      background-color: $primary-color;
+      border-color: $primary-color;
+    }
+
+    &.is-invalid,
+    &:invalid {
+      border-color: $box-border;
+      background-color: var(--bs-form-check-bg, $white-color);
+
+      &:checked {
+        background-color: $primary-color;
+        border-color: $primary-color;
+      }
+
+      &:focus,
+      &:focus-visible {
+        border-color: $box-border;
+        box-shadow: none;
+      }
+
+      ~ .checkout-confirm-tos-label,
+      ~ .form-check-label {
+        color: inherit;
+      }
+    }
+  }
+
+  .confirm-product {
+    .card {
+      border: 1px solid $box-border;
+      padding: rem(24);
+      border-radius: rem(3);
+    }
+
+    .card-body {
+      padding: 0;
+    }
+  }
+  .card-actions {
+    a{
+        box-shadow: none;
+        background-color: transparent;
+        background-image: none;
+    }
+  }
+
+  .checkout-card{
+    .card-title{
+        margin-bottom: rem(18);
+    }
+  }
+
+  // Payment method radio: inactive uses box color, active (checked) uses primary color.
+  .payment-method-radio .form-check-input {
+    background-color: $box-border;
+    border-color: $box-border;
+
+    &:focus,
+    &:focus-visible {
+      border-color: $box-border;
+      box-shadow: none;
+    }
+  }
+
+  .payment-method-radio .form-check-input:checked {
+    background-color: $primary-color;
+    border-color: $primary-color;
+
+    &:focus,
+    &:focus-visible {
+      border-color: $primary-color;
+      box-shadow: none;
+      background-color: $primary-color;
+    }
+  }
+
+  .payment-method-radio .form-check-input,
+  .payment-method-radio .form-check-label,
+  .shipping-method-radio .form-check-input,
+  .shipping-method-radio .form-check-label {
+    cursor: pointer;
+  }
+
+  .payment-method-radio:hover {
+    cursor: pointer;
+  }
+
+  .shipping-method-radio:hover {
+    cursor: pointer;
+  }
+
+  .shipping-method-radio .form-check-input:checked {
+    background-color: $box-border;
+    border-color: $box-border;
+    &:focus,
+    &:focus-visible {
+      border-color: $box-border;
+      box-shadow: none;
+      background-color: $primary-color;
+    }
+  }
+
+}

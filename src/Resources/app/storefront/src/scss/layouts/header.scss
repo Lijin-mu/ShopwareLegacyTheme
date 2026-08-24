@@ -47,4 +47,12 @@
   .header-row{
     padding: rem(24) 0px;
   }
+  .container {
+    max-width: rem(1260);
+
+    @media (min-width: 1252px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }

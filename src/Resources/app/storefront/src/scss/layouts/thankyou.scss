@@ -1,0 +1,142 @@
+.is-act-finishpage,
+.is-active-route-frontend-checkout-finish-page {
+  .content-main {
+    background-color: $white-color;
+  }
+
+  .content-main > .container {
+    max-width: rem(1260);
+
+    @media (min-width: 1252px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .checkout {
+    @media (min-width: 1252px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .checkout-container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      column-gap: rem(56) !important;
+
+      @media (min-width: 992px) {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        grid-template-areas:
+          "main aside"
+          "additional aside";
+        align-items: start;
+        column-gap: rem(24);
+      }
+    }
+
+    .checkout-main {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+      margin-left: 0;
+
+      @media (min-width: 992px) {
+        grid-area: main;
+        width: auto;
+        max-width: none;
+        flex: unset;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      @include max-mobile {
+        padding: 0;
+      }
+    }
+
+    .checkout-additional {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+      margin-left: 0;
+
+      @media (min-width: 992px) {
+        grid-area: additional;
+        width: auto;
+        max-width: none;
+        flex: unset;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    .checkout-aside,
+    .checkout-aside-no-offset {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+      margin-left: 0;
+
+      @media (min-width: 992px) {
+        grid-area: aside;
+        width: auto;
+        max-width: none;
+        flex: unset;
+        padding-left: 0;
+        padding-right: 0;
+        align-self: start;
+        position: sticky;
+        top: rem(24);
+        z-index: 2;
+      }
+    }
+  }
+
+  .finish-header,
+  .finish-ordernumber,
+  .finish-teaser{
+    text-align: start;
+  }
+
+  .finish-content{
+    margin-bottom: rem(64);
+
+    @include max-mobile {
+      margin-bottom: rem(28);
+    }
+  }
+
+  .checkout-product-table{
+    border: 1px solid $box-border;
+    padding: rem(24);
+    border-radius: rem(3);
+    @include max-mobile {
+      margin-bottom: 0px;
+    }
+  }
+
+  .finish-address{
+    .col-sm-6{
+        @include max-mobile {
+            margin-bottom: rem(24);
+        }
+    }
+  }
+
+  .finish-order-details p{
+    @include max-mobile {
+      margin-bottom: rem(8);
+    }
+  }
+
+  .checkout-aside {
+    padding: 0px !important;
+  }
+
+
+}

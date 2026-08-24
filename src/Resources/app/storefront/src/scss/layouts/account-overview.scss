@@ -1,0 +1,48 @@
+.account{
+.account-content-main{
+    @include max-mobile {
+        padding: 0px;
+    }
+}
+    .account-content-aside{
+        height: fit-content;
+        padding: 0px;
+        padding: rem(24);
+        background-color: $checkout-box-bg;
+        border-radius: rem(3);
+        border: none;
+
+        .account-aside{
+            border: none !important;
+        }
+        .account-aside-header{
+            font-size: rem(18);
+        }
+        .account-aside-item {
+            background-color: $checkout-box-bg;
+        }
+        .account-aside-btn{
+            background-color: transparent;
+            box-shadow: none;
+            background-image: none;
+        }
+    }
+
+
+    .account-overview{
+        .card-body{
+            p{
+                margin-bottom: rem(8);
+            }
+        }
+
+        .account-overview-card{
+            margin-bottom: rem(24);
+
+            @include max-mobile {
+                margin-bottom: rem(32);
+            }
+        }
+
+    }
+}

@@ -1,6 +1,71 @@
+
 .account-register {
-  padding: rem(30);
+  padding: rem(30) rem(20);
+
+  h1 {
+    margin-bottom: rem(48);
+
+    @include max-mobile {
+      margin-bottom: rem(24);
+      margin-top: rem(8);
+    }
+  
+  }
+
+  .login-advantages{
+    @include max-mobile {
+      margin-bottom: rem(40);
+    }
+  }
+
+  .login-card {
+    background-color: $checkout-box-bg;
+    padding: rem(24);
+    border-radius: rem(3);
+    margin-bottom: rem(32);
+  }
+
+  .register-card {
+    .card-body {
+      padding: rem(24) 0;
+      
+    }
+  }
+
+  .login-advantages-header{
+    font-size: rem(18);
+    margin-bottom: rem(18);
+
+    ul{
+      display: flex;
+      flex-direction: column;
+      gap: rem(14);
+
+      li{
+        font-size: rem(14);
+      }
+    }
+  }
+
+  .login-advantages ul{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    li{
+      font-size: rem(14);
+    }
+  }
+
+  .card-title{
+    margin-bottom: rem(24);
+  }
+
+  .register-submit{
+    margin-left: inherit;
+  }
 }
+
 .account-welcome {
   padding-top: 0;
 }
@@ -8,38 +73,43 @@
 .address {
   margin-bottom: rem(16);
 }
+
 .badge {
   &.order-item-status-badge {
     margin: rem(5) 0;
   }
 }
+
 .notification-dot.notification-dot-danger {
   z-index: 1;
 }
+
 .container-main {
   & > .account {
-    padding: rem(30) rem(5);
+    padding: rem(30) rem(20);
     margin: 0;
-    @include min-tablet {
-      padding: rem(30) rem(20);
-    }
+
     .account-content-aside {
       .account-aside {
         padding: rem(10);
         border: 1px solid $border-color;
         border-radius: rem(5);
       }
+
       .account-aside-item {
         padding: rem(5) 0;
       }
+
       .account-aside-footer {
         margin-top: rem(16);
       }
     }
   }
 }
+
 .account-aside-btn {
   text-decoration: none;
+
   &:hover {
     text-decoration: none;
   }
