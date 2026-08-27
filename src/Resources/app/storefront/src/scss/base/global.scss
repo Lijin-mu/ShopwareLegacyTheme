@@ -140,6 +140,10 @@ main{
   padding:rem(20);
 }
 
+.alert-success{
+  margin: rem(24) rem(16) rem(0);
+}
+
 .form-check-input.is-invalid{
   border-color: $box-border;
   &:focus{
@@ -164,6 +168,44 @@ body:has(.header-minimal) .content-main > .container:has(.account-register) {
 }
 
 
+.form-control,
+.form-select,
+textarea,
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not([type="image"]):not([type="submit"]):not([type="button"]):not([type="reset"]) {
+  border-radius: 3px;
+}
+
+.form-select {
+  &:focus,
+  &:focus-visible,
+  &:valid:focus,
+  &:invalid:focus,
+  &.is-valid:focus,
+  &.is-invalid:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+.input-group {
+  .form-select {
+    &:focus,
+    &:focus-visible,
+    &:valid:focus,
+    &:invalid:focus,
+    &.is-valid:focus,
+    &.is-invalid:focus {
+      box-shadow: none;
+      outline: none;
+    }
+  }
+}
+
+.form-check-input{
+  &:focus{
+    box-shadow: none;
+  }
+}
 
 .nav-main {
   border-bottom: 1px solid $primary-color;

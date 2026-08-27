@@ -1,0 +1,71 @@
+.account-content-main{
+    .account-welcome{
+        margin-bottom: rem(8);
+    }
+    p{
+        margin-bottom: rem(32);
+    }
+
+    .address-manager-select-address{
+        border: 1px solid $box-border;
+        border-radius: 3px;
+        padding: rem(24);
+    }
+
+    .dropdown-menu.show{
+        padding: 0px;
+    }
+
+    .account-address-form{
+        h1{
+            margin-bottom: rem(32);
+        }
+
+        .account-address-back {
+            .d-none {
+                display: inline !important;
+            }
+
+            &:hover,
+            &:focus,
+            &:focus-visible,
+            &:active {
+                background-color: $primary-color;
+                background-image: none;
+                color: $white-color;
+                border-color: $primary-color;
+
+                .icon,
+                .icon svg,
+                .icon svg path {
+                    color: $white-color;
+                    fill: currentColor;
+                }
+            }
+        }
+    }
+
+    .address-manager-list-base{
+        > .justify-content-between{
+            @include max-mobile {
+                flex-direction: column;
+                gap: rem(16);
+
+                .address-manager-list-search,
+                .address-manager-modal-address-form {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .address-manager-modal-address-form{
+        box-shadow: none;
+        background-color: transparent;
+        background-image: none;
+    }
+
+    .dropdown-menu.show{
+        border-radius: 3px;
+    }
+}

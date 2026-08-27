@@ -1,0 +1,73 @@
+.order-table {
+  border: 1px solid $box-border;
+  border-radius: rem(3);
+  overflow: hidden;
+
+  .order-item-header {
+    padding: rem(24);
+  }
+}
+
+.order-header-quantity,
+.order-header-price,
+.order-header-total {
+display: flex;
+justify-content: flex-end;
+padding-right: 0px !important;
+}
+
+
+.order-detail-content-header{
+    margin-bottom: rem(16);
+}
+
+.order-table-header-context-menu,
+.order-hide-btn{
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+}
+
+.order-item-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn.btn-light.order-table-header-context-menu,
+.btn.btn-light.order-hide-btn {
+    --bs-btn-hover-bg: #{$primary-color};
+    --bs-btn-hover-color: #{$white-color};
+    --bs-btn-hover-border-color: #{$primary-color};
+    --bs-btn-active-bg: #{$primary-color};
+    --bs-btn-active-color: #{$white-color};
+    --bs-btn-active-border-color: #{$primary-color};
+    --bs-btn-active-shadow: none;
+
+    &:hover,
+    &:focus,
+    &:focus-visible,
+    &:active,
+    &:active:focus,
+    &.active,
+    &.show,
+    &[aria-expanded="true"] {
+        background: $primary-color !important;
+        color: $white-color !important;
+        border-color: $primary-color !important;
+        box-shadow: none !important;
+
+        .icon,
+        .icon svg,
+        .icon svg path {
+            color: $white-color !important;
+            fill: currentColor !important;
+        }
+    }
+}
+
+.btn.btn-light.order-hide-btn:not(.collapsed) {
+    background: $primary-color !important;
+    color: $white-color !important;
+    border-color: $primary-color !important;
+    box-shadow: none !important;
+}

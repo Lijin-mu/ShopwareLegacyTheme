@@ -32,7 +32,7 @@
     .account-overview{
         .card-body{
             p{
-                margin-bottom: rem(8);
+                margin-bottom:0px;
             }
         }
 
@@ -44,5 +44,24 @@
             }
         }
 
+        .account-overview-card {
+            margin-bottom: rem(40);
+        }
+        .card-title{
+            margin-bottom: rem(18);
+        }
+    }
+
+    .account-welcome{
+        margin-bottom: rem(28);
+        @include max-mobile {
+            margin-bottom: rem(40);
+        }
+        h1{
+            margin-bottom: rem(8);
+            @include max-mobile {
+                margin-bottom: rem(8);
+            }
+        }
     }
 }

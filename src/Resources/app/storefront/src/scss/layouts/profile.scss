@@ -1,0 +1,42 @@
+.account-profile{
+    .account-welcome{
+        @include max-mobile {
+            margin-bottom: rem(8);
+        }
+    }
+.account-profile-personal{
+    margin-bottom: rem(40);
+    .card-title{
+        margin-bottom: rem(16);
+    }
+
+}
+
+.account-profile-credentials{
+    margin-bottom: rem(40);
+    .card-title{
+        margin-bottom: rem(16);
+    }
+}
+
+.account-email,
+.account-password{
+    .card-title{
+        margin-bottom: rem(16);
+    }
+    .form-text{
+        font-size: rem(14);
+    }
+}
+
+.profile-form-submit{
+    background-color: transparent;
+    box-shadow: none;
+    background-image: none;
+
+    &:hover{
+        background-color: $primary-color;
+        color: $white-color;
+    }
+}
+}

@@ -132,10 +132,19 @@ select.form-control,
     &:focus{
         color: $primary-color;
         border-color: $primary-color;
+        box-shadow: none;
+        outline: none;
         &::-ms-value{
             color: $primary-color;
             background: none;
         }
+    }
+    &:valid:focus,
+    &:invalid:focus,
+    &.is-valid:focus,
+    &.is-invalid:focus {
+        box-shadow: none;
+        outline: none;
     }
     &:disabled{
          opacity: .5;
@@ -352,6 +361,9 @@ select.form-control,
 }
 
 .form-control{
+    border-radius: 3px;
+    border-color: $box-border;
+
     &:valid,
     &:invalid{
         &:focus{

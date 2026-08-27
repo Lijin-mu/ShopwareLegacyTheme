@@ -16,7 +16,7 @@
     }
 
     .confirm-main-header{
-        margin-bottom: rem(64);
+        margin-bottom: rem(40);
 
         @include max-mobile {
             margin-bottom: rem(32);
@@ -126,6 +126,16 @@
     }
   }
 
+  .confirm-shipping-address .card,
+  .confirm-billing-address .card {
+    border: 1px solid $box-border;
+    border-radius: rem(3);
+
+    .card-body {
+      padding: rem(24);
+    }
+  }
+
   .confirm-address-billing p{
     @include max-mobile {
     margin-bottom: 0px;
@@ -181,6 +191,21 @@
 
     .card-body {
       padding: 0;
+    }
+
+    @include max-mobile {
+      .line-item-total-price {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+        justify-content: flex-end !important;
+      }
+
+      .line-item-unit-price.is-shown ~ .line-item-total-price {
+        flex: 0 0 50%;
+        width: 50%;
+        max-width: 50%;
+      }
     }
   }
   .card-actions {
@@ -246,5 +271,116 @@
       background-color: $primary-color;
     }
   }
+  
+   .modal-content{
+    border-radius: 3px;
+   }
+
+  .address-manager-modal{
+    padding: rem(24);
+    border-radius: 3px;
+
+  .address-manager-modal-tab-navigation-list{
+    gap: 24px;
+    margin-bottom: rem(24);
+
+    .btn-outline-secondary {
+      background-color: transparent;
+      color: $black-color;
+      border-radius: 3px;
+    }
+
+    .btn-check:checked + .btn-outline-secondary {
+      background-color: $primary-color;
+      color: $white-color;
+    }
+  }
+
+  .address-manager-modal-content-wrapper{
+    .address-manager-select-address{
+      border: 1px solid $box-border;
+      border-radius: 3px;
+      padding: rem(24);
+    }
+    .dropdown-menu.show {
+      padding: 0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .dropdown-item {
+      &:hover {
+        background-color: $primary-color;
+        color: $white-color;
+      }
+    }
+
+    .address-manager-modal-address-form {
+      .icon {
+        color: currentColor;
+
+        svg {
+          fill: currentColor;
+        }
+      }
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        background-color: $primary-color;
+        background-image: none;
+        color: $white-color;
+        border-color: $primary-color;
+
+        .icon,
+        .icon svg,
+        .icon svg path {
+          color: $white-color;
+          fill: currentColor;
+        }
+      }
+    }
+  }
+
+}
+
+.address-manager-modal .modal-footer{
+  background-color: transparent;
+
+  .address-form-create-cancel {
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      .icon,
+      .icon svg,
+      .icon svg path {
+        color: $primary-color;
+        fill: currentColor;
+      }
+    }
+  }
+}
+
+.cart-header-tax-price{
+  font-size: rem(16);
+}
+
+.address-manager-list-base {
+  > .justify-content-between{
+    @include max-mobile {
+      display: flex;
+      flex-direction: column;
+      gap: rem(16);
+
+      .address-manager-list-search,
+      .address-manager-modal-address-form {
+        width: 100%;
+      }
+    }
+  }
+}
 
 }
