@@ -40,6 +40,9 @@
               </div>
         </div>
             {{ parent() }}
+            {% block buy_widget_garan_label %}
+                {{ parent() }}
+            {% endblock %}
         {% endblock %}
     </div>
 {% endblock %}

@@ -1,2 +1,1 @@
 # ShopwareLegacyTheme
-# ShopwareLegacyTheme

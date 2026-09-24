@@ -1,20 +1,20 @@
 {% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
 
 {% block layout_footer_inner_container %}
-{% set enableNewsletterOnFooterTop = config('ShopwareLegacyTheme.config.enableNewsletterOnFooterTop') %}
-{% set enableNewsletterOnFooterColumn = config('ShopwareLegacyTheme.config.enableNewsletterOnFooterColumn') %}
-{% set enableCustomHotLineContent = config('ShopwareLegacyTheme.config.enableCustomHotLineContent') %}
-{% set enableFooterBottomPaymentLogos = config('ShopwareLegacyTheme.config.enableFooterBottomPaymentLogos') %}
-{% set enableFooterBottomShippingLogos = config('ShopwareLegacyTheme.config.enableFooterBottomShippingLogos') %}
-{% set enableCustomVatText = config('ShopwareLegacyTheme.config.enableCustomVatText') %}
-{% set enableCustomCopyRightText = config('ShopwareLegacyTheme.config.enableCustomCopyRightText') %}
+    {% set enableNewsletterOnFooterTop = config('ShopwareLegacyTheme.config.enableNewsletterOnFooterTop') %}
+    {% set enableNewsletterOnFooterColumn = config('ShopwareLegacyTheme.config.enableNewsletterOnFooterColumn') %}
+    {% set enableCustomHotLineContent = config('ShopwareLegacyTheme.config.enableCustomHotLineContent') %}
+    {% set enableFooterBottomPaymentLogos = config('ShopwareLegacyTheme.config.enableFooterBottomPaymentLogos') %}
+    {% set enableFooterBottomShippingLogos = config('ShopwareLegacyTheme.config.enableFooterBottomShippingLogos') %}
+    {% set enableCustomVatText = config('ShopwareLegacyTheme.config.enableCustomVatText') %}
+    {% set enableCustomCopyRightText = config('ShopwareLegacyTheme.config.enableCustomCopyRightText') %}
 
     <div class="container">
         {% block layout_footer_top_section %}
-        <div class="footer-top-section">
-            {% block layout_footer_top_section_content %}
-            {% endblock %}
-        </div>
+            <div class="footer-top-section">
+                {% block layout_footer_top_section_content %}
+                {% endblock %}
+            </div>
         {% endblock %}
 
         {% block layout_footer_navigation %}
@@ -26,8 +26,44 @@
             >
                 {% block layout_footer_navigation_hotline %}
                     <div class="col-md-3 footer-column footer-hotline-column js-footer-column">
-                     {% if enableCustomHotLineContent %}
-                            {% sw_include '@Storefront/storefront/layout/footer/footer-custom-hotline.html.twig' %}
+                        {% if enableCustomHotLineContent %}
+
+                            {% block layout_footer_navigation_custom_hotline %}
+
+                                {% block layout_footer_navigation_custom_hotline_headline %}
+                                    <div class="footer-column-headline footer-headline js-footer-column-headline" id="collapseFooterHotlineTitle" role="listitem">
+                                        {{ 'legacytheme.footer.serviceHotlineHeadline'|trans|sw_sanitize }}
+
+                                        {% block layout_footer_navigation_custom_hotline_icons %}
+                                            <button class="footer-column-toggle btn btn-link btn-link-inline js-collapse-footer-column-trigger" data-bs-target="#collapseFooterHotline" data-bs-toggle="collapse" aria-controls="collapseFooterHotline" aria-labelledby="collapseFooterHotlineTitle" aria-expanded="true">
+
+                                        {% sw_icon 'plus' style {
+                                                                class: 'footer-plus'
+                                                            } %}
+
+                                        {% sw_icon 'minus' style {
+                                            class: 'footer-minus'
+                                        } %}
+                                            </button>
+                                        {% endblock %}
+                                    </div>
+                                {% endblock %}
+
+                                {% block layout_footer_navigation_custom_hotline_content %}
+                                    <div id="collapseFooterHotline" class="footer-column-content collapse js-footer-column-content footer-contact mb-4 mb-md-0" aria-labelledby="collapseFooterHotlineTitle" role="listitem">
+                                        <div class="footer-column-content-inner">
+                                            {{ 'legacytheme.footer.serviceHotlineContent'|trans|raw }}
+
+                                            {% block layout_footer_navigation_revocation_button %}
+                                                {% set cmsPath = 'frontend.cms.page.full' %}
+                                                {{ parent() }}
+                                            {% endblock %}
+                                        </div>
+                                    </div>
+                                {% endblock %}
+
+                            {% endblock %}
+
                         {% else %}
                             {% block layout_footer_navigation_hotline_headline %}
                                 {{ parent() }}
@@ -43,7 +79,7 @@
                 {% block layout_footer_navigation_columns %}
                     {% for root in footer.navigation.tree %}
                         {% block layout_footer_navigation_column %}
-                            <div class="col-md-3 footer-column footer-navigation-column fc-{{loop.index}} js-footer-column">
+                            <div class="col-md-3 footer-column footer-navigation-column fc-{{ loop.index }} js-footer-column">
                                 {% block layout_footer_navigation_information_headline %}
                                     {{ parent() }}
                                 {% endblock %}
@@ -59,21 +95,25 @@
                 {% block layout_footer_newsletter_column %}
 
                     {% if enableNewsletterOnFooterColumn %}
-                            <div class="col-md-3 footer-column footer-column-last js-footer-column">
-                                {% block layout_footer_newsletter_headline %}
-                                    <div class="footer-column-headline footer-headline js-footer-column-headline"
-                                         id="collapseFooterTitle{{ loop.index }}"
-                                         role="listitem">
-                                            {{ "legacytheme.newsletter.title"|trans }}
+                        <div class="col-md-3 footer-column footer-column-last js-footer-column">
+                            {% block layout_footer_newsletter_headline %}
+                                <div
+                                    class="footer-column-headline footer-headline js-footer-column-headline"
+                                    id="collapseFooterTitle{{ loop.index }}"
+                                    role="listitem"
+                                >
+                                    {{ "legacytheme.newsletter.title"|trans }}
 
-                                        {% block layout_footer_newsletter_icons %}
+                                    {% block layout_footer_newsletter_icons %}
                                          
-                                                <button class="footer-column-toggle btn btn-link btn-link-inline js-collapse-footer-column-trigger"
-                                                        data-bs-target="#collapseFooter-newsletter"
-                                                        data-bs-toggle="collapse"
-                                                        aria-controls="collapseFooter-newsletter"
-                                                        aria-expanded="true" 
-                                                        aria-label="Toggle newsletter section">
+                                        <button
+                                            class="footer-column-toggle btn btn-link btn-link-inline js-collapse-footer-column-trigger"
+                                            data-bs-target="#collapseFooter-newsletter"
+                                            data-bs-toggle="collapse"
+                                            aria-controls="collapseFooter-newsletter"
+                                            aria-expanded="true"
+                                            aria-label="Toggle newsletter section"
+                                        >
 
                                                     {% sw_icon 'plus' style {
                                                         class: 'footer-plus'
@@ -82,38 +122,40 @@
                                                     {% sw_icon 'minus' style {
                                                         class: 'footer-minus'
                                                     } %}
-                                                </button>
+                                        </button>
                                          
-                                        {% endblock %}
-                                    </div>
-                                {% endblock %}
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
 
-                                {% block layout_footer_newsletter_container %}
-                                    <div id="collapseFooter-newsletter"
-                                         class="footer-column-content collapse js-footer-column-content"
-                                         aria-labelledby="collapseFooter-newsletter"
-                                         role="listitem">
+                            {% block layout_footer_newsletter_container %}
+                                <div
+                                    id="collapseFooter-newsletter"
+                                    class="footer-column-content collapse js-footer-column-content"
+                                    aria-labelledby="collapseFooter-newsletter"
+                                    role="listitem"
+                                >
 
-                                        <div class="footer-column-content-inner">
-                                            {% block layout_footer_newsletter_content %}
+                                    <div class="footer-column-content-inner">
+                                        {% block layout_footer_newsletter_content %}
 
-                                             {% block layout_footer_newsletter_description %}
+                                            {% block layout_footer_newsletter_description %}
 
-                                             <p>{{ "legacytheme.newsletter.description"|trans }}</p>
+                                                <p>{{ "legacytheme.newsletter.description"|trans }}</p>
 
                                             {% endblock %}
 
-                                             {% block layout_footer_newsletter_form %}
+                                            {% block layout_footer_newsletter_form %}
                                                 {% sw_include '@Storefront/storefront/component/newsletter/newsletter-form.html.twig' %}
                                             {% endblock %}
 
-                                            {% endblock %}
-                                        </div>
+                                        {% endblock %}
                                     </div>
-                                {% endblock %}
-                            </div>
-                            {% endif %}
-                        {% endblock %}
+                                </div>
+                            {% endblock %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
 
             </div>
         {% endblock %}
@@ -122,13 +164,13 @@
             <div class="footer-logos">
                 {% block layout_footer_payment_shipping_combined_logos %}
                     {% set shippingPaymentLogos = "legacytheme.logos.shippingPaymentLogos"|trans|raw %}
-                    {% if shippingPaymentLogos !=="" %}
+                    {% if shippingPaymentLogos !== "" %}
                         <ul class="footer-shipping-payment-logos">{{ shippingPaymentLogos }}</ul>
                     {% endif %}
                 {% endblock %}
                 {% block layout_footer_payment_logos %}
                     {% set paymentLogos = "legacytheme.logos.paymentLogos"|trans|raw %}
-                    {% if paymentLogos !=="" %}
+                    {% if paymentLogos !== "" %}
                         <ul class="footer-payment-logos">{{ paymentLogos }}</ul>
                     {% endif %}
                     {% if enableFooterBottomPaymentLogos %}
@@ -156,7 +198,7 @@
 
                 {% block layout_footer_shipping_logos %}
                     {% set shippingLogos = "legacytheme.logos.shippingLogos"|trans|raw %}
-                    {% if shippingLogos !=="" %}
+                    {% if shippingLogos !== "" %}
                         <ul class="footer-shipping-logos">{{ shippingLogos }}</ul>
                     {% endif %}
                     {% if enableFooterBottomShippingLogos %}
@@ -195,10 +237,12 @@
                                 {% for serviceMenuItem in footer.serviceMenu %}
                                     {% block layout_footer_service_menu_item %}
                                         <li class="footer-service-menu-item">
-                                            <a class="footer-service-menu-link"
-                                            href="{{ category_url(serviceMenuItem) }}"
-                                            {% if category_linknewtab(serviceMenuItem) %}target="_blank"{% endif %}
-                                            title="{{ serviceMenuItem.translated.name }}">
+                                            <a
+                                                class="footer-service-menu-link"
+                                                href="{{ category_url(serviceMenuItem) }}"
+                                                {% if category_linknewtab(serviceMenuItem) %}target="_blank"{% endif %}
+                                                title="{{ serviceMenuItem.translated.name }}"
+                                            >
                                                 {{ serviceMenuItem.translated.name }}
                                             </a>
                                         </li>

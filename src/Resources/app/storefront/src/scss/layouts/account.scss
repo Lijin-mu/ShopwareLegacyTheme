@@ -44,3 +44,18 @@
     text-decoration: none;
   }
 }
+
+.account-guest-conversion {
+  padding: 50px 20px;
+  max-width: 800px;
+  margin: auto;
+}
+.account-recover-password-form{
+  padding: 50px 20px;
+}
+
+.account-recover-password-form-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
