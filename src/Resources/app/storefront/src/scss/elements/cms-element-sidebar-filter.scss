@@ -86,17 +86,28 @@
   }
 
   .filter-panel {
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
+    min-height: 0;
     max-height: 0;
+    margin-bottom: 0;
     overflow: hidden;
     transition: max-height 0.5s ease;
-    &.show {
-      max-height: 1000px;
+
+    > * {
+      min-height: 0;
     }
   }
 }
 
 .offcanvas-filter {
+  .filter-panel {
+    display: flex;
+    max-height: none;
+    overflow: visible;
+  }
+
   .filter--btn-apply {
     display: none;
   }

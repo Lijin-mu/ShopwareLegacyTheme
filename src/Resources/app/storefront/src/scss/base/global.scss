@@ -603,6 +603,16 @@ main{
 }
 
 .cart-shipping-costs-container{
+  align-self: end;
+  .cart-shipping-costs-btn{
+    margin-bottom: 0;
+    &:hover{
+      text-decoration: none;
+    }
+    @include tablet{
+      margin-top: 28px;
+    }
+  }
   label{
     margin-bottom: rem(6);
   }
@@ -634,4 +644,15 @@ main{
             }
         }
     }
+}
+
+.address-manager-modal .btn-icon-hover-white:hover span.icon, .address-manager-modal .btn-icon-hover-white:focus span.icon{
+  color:inherit;
+}
+.address-form-create-cancel{
+  &.btn{
+    &:hover{
+      color: $primary-color;
+    }
+  }
 }

@@ -100,7 +100,8 @@ export default class ListingPlugin extends BaseListingPlugin {
 
     updateNextPage() {
         const paginationEl = this.el.querySelector('[data-listing-pagination-options]');
-        let total = 0, limit = 0;
+        const listingRow = this.el.querySelector('.cms-listing-row');
+        let total = 0, limit = 0, productCount = 0;
         
         try {
             if (paginationEl) {
@@ -112,10 +113,19 @@ export default class ListingPlugin extends BaseListingPlugin {
             console.error('[InfiniteScroll] Error parsing pagination data:', e);
         }
 
-        let nextPage = Math.max(...this.loadedPages) + 1;
-        if (total && limit) {
-            const maxPages = Math.ceil(total / limit);
-            if (nextPage > maxPages) nextPage = NaN;
+        if (listingRow) {
+            if (!total) total = parseInt(listingRow.getAttribute('data-total') || 0, 10);
+            if (!limit) limit = parseInt(listingRow.getAttribute('data-limit') || 0, 10);
+            productCount = parseInt(listingRow.getAttribute('data-product-count') || 0, 10);
+        }
+
+        let nextPage = this.loadedPages.length ? Math.max(...this.loadedPages) + 1 : NaN;
+        const currentPage = this.loadedPages.length ? Math.max(...this.loadedPages) : 1;
+        if (limit > 0 && (total === 0 || nextPage > Math.ceil(total / limit))) {
+            nextPage = NaN;
+        }
+        if (!isNaN(nextPage) && currentPage === 1 && limit > 0 && productCount < limit) {
+            nextPage = NaN;
         }
 
         if (!isNaN(nextPage) && nextPage !== this.correctPageIndexWithThreshold(nextPage) && !this.config.allowLoadingPastThreshold) {
@@ -128,8 +138,20 @@ export default class ListingPlugin extends BaseListingPlugin {
         if (isNaN(nextPage)) {
             this._isEndReached = () => true;
             if (this.observer) this.observer.disconnect();
+            this.removePageLoaders();
             this.showNoMoreProductsMessage();
         }
+    }
+
+    removePageLoaders() {
+        this.el.querySelectorAll('.page-loader-dummy-div').forEach((loader) => {
+            const page = loader.closest('.cms-listing-row');
+            if (page && !page.querySelector('.cms-listing-col')) {
+                page.remove();
+                return;
+            }
+            loader.remove();
+        });
     }
 
     registerLoadNextPageButton() {
@@ -170,9 +192,10 @@ export default class ListingPlugin extends BaseListingPlugin {
         super._buildLabels();
     }
 
-    resetAllFilter() {
-        this._removeAllLoaders();
-        this._registry.forEach(filterPlugin => filterPlugin.resetAll());
+    resetFilter(label) {
+        this._registry.forEach((filterPlugin) => {
+            this._callFilterPlugin(filterPlugin, 'reset', undefined, label.dataset.id);
+        });
 
         if (!this.infinityScrollEnabled) {
             this._buildRequest();
@@ -180,9 +203,21 @@ export default class ListingPlugin extends BaseListingPlugin {
             return;
         }
 
-        this.resetPages();
-        this._buildRequest(true, { p: 1 }, false);
-        if (this._filterPanelActive) this._buildLabels();
+        this.changeListing(true, { p: 1 }, 'filter');
+    }
+
+    resetAllFilter() {
+        this._registry.forEach((filterPlugin) => {
+            this._callFilterPlugin(filterPlugin, 'resetAll', undefined);
+        });
+
+        if (!this.infinityScrollEnabled) {
+            this._buildRequest();
+            this._buildLabels();
+            return;
+        }
+
+        this.changeListing(true, { p: 1 }, 'filter');
     }
 
     _removeAllLoaders() {
@@ -201,7 +236,6 @@ export default class ListingPlugin extends BaseListingPlugin {
         this.createdPages = [];
         this._removeAllLoaders();
         this.addEmptyPage(1);
-        this.updateNextPage();
 
         const loadMoreEl = this.el.querySelector('.' + this.options.jsLoadMoreClassName);
         if (loadMoreEl) {
@@ -327,14 +361,14 @@ export default class ListingPlugin extends BaseListingPlugin {
         Object.assign(mapped, overrideParams);
         if (!mapped['p']) mapped['p'] = 1;
 
-        let query = new URLSearchParams(mapped).toString();
-        this.sendDataRequest(query, mapped['p'] || 1, forceScroll);
+        let queryParams = new URLSearchParams(mapped);
+        this.sendDataRequest(queryParams.toString(), mapped['p'] || 1, forceScroll);
 
         ['slots', 'no-aggregations', 'reduce-aggregations', 'only-aggregations'].forEach(k => delete mapped[k]);
-        query = new URLSearchParams(mapped).toString();
+        queryParams = new URLSearchParams(mapped);
 
         if (pushHistory) {
-            this._updateHistory(query);
+            this._updateHistory(queryParams);
         }
     }
 
@@ -408,6 +442,7 @@ export default class ListingPlugin extends BaseListingPlugin {
                 const index = this.createdPages.indexOf(pageNum);
                 if (index > -1) this.createdPages.splice(index, 1);
             }
+            this.removePageLoaders();
         });
     }
 
@@ -433,6 +468,7 @@ export default class ListingPlugin extends BaseListingPlugin {
             }
             
             this._removeAllLoaders();
+            this.removePageLoaders();
             this.$emitter.publish('Listing/afterRenderResponse', {response});
             return;
         }
@@ -467,12 +503,12 @@ export default class ListingPlugin extends BaseListingPlugin {
             this._isEndReached = () => true;
             this.observer.disconnect();
             if (productCount === 0) pageEl.remove();
+            this.removePageLoaders();
             this.showNoMoreProductsMessage();
-            this.$emitter.publish('Listing/afterRenderResponse', {response});
-            return;
+        } else {
+            this.updateNextPage();
         }
 
-        this.updateNextPage();
         this._registry.forEach(item => {
             if (typeof item.afterContentChange === 'function') item.afterContentChange();
         });
@@ -587,23 +623,6 @@ export default class ListingPlugin extends BaseListingPlugin {
             return;
         }
         this.retrievePageHandle(page);
-    }
-
-    sendDisabledFiltersRequest() {
-        const filters = this._fetchValuesOfRegisteredFilters();
-        const mapped = this._mapFilters(filters);
-        if (this.options.params) Object.assign(mapped, this.options.params);
-        this._allFiltersInitializedDebounce = () => {};
-
-        const filterParams = this._getDisabledFiltersParamsFromParams(mapped);
-        this.httpClient.get(`${this.options.filterUrl}?${new URLSearchParams(filterParams).toString()}`, (response) => {
-            const filter = JSON.parse(response);
-            const count = parseInt(filter.total_product_count?.count) + parseInt(filter.total_variant_product_count?.buckets?.length);
-            document.querySelectorAll('.filter-product-count').forEach(el => el.innerHTML = count);
-            this._registry.forEach(item => {
-                if (typeof item.refreshDisabledState === 'function') item.refreshDisabledState(filter, filterParams);
-            });
-        });
     }
 
     showNoMoreProductsMessage() {

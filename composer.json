@@ -3,7 +3,7 @@
   "description": "Shopware Legacy Theme",
   "type": "shopware-platform-plugin",
   "license": "MIT",
-  "version": "0.1.12",
+  "version": "0.1.19",
   "autoload": {
     "psr-4": {
       "ShopwareLegacyTheme\\": "src/"

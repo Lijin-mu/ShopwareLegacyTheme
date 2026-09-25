@@ -152,7 +152,7 @@
             <name>themeListingLayout</name>
             <label>Listing Layout</label>
             <label lang="de-DE">Listing Layout</label>
-            <defaultValue>Layout1</defaultValue>
+            <defaultValue>Layout2</defaultValue>
             <options>
                 <option>
                     <id>Layout1</id>

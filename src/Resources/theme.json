@@ -6,6 +6,7 @@
      "@Plugins",
      "@ShopwareLegacyTheme"
   ],
+  "previewMedia": "app/storefront/src/assets/preview.jpg",
   "style": [
     "app/storefront/src/scss/overrides.scss",
     "@Storefront",
@@ -48,6 +49,17 @@
         "editable": true,
         "block": "themeColors",
         "order": 400
+      },
+      "sw-body-background-color": {
+        "label": {
+          "en-GB": "Body Background Color",
+          "de-DE": "Body Hintergrundfarbe"
+        },
+        "type": "color",
+        "value": "transparent",
+        "editable": true,
+        "block": "themeColors",
+        "order": 450
       },
        "sw-header-background-color": {
          "label": {
@@ -172,7 +184,7 @@
       },
       "sw-logo-desktop": {
         "type": "media",
-        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "value": "app/storefront/src/assets/logo/demostore-logo.png",
         "editable": true,
         "block": "media",
         "order": 100,
@@ -180,7 +192,7 @@
       },
       "sw-logo-tablet": {
         "type": "media",
-        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "value": "app/storefront/src/assets/logo/demostore-logo.png",
         "editable": true,
         "block": "media",
         "order": 200,
@@ -188,7 +200,7 @@
       },
       "sw-logo-mobile": {
         "type": "media",
-        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "value": "app/storefront/src/assets/logo/demostore-logo.png",
         "editable": true,
         "block": "media",
         "order": 300,
@@ -203,33 +215,33 @@
       },
       "sw-logo-favicon": {
         "type": "media",
-        "value": "app/storefront/dist/assets/logo/favicon.png",
+        "value": "app/storefront/src/assets/logo/favicon.png",
         "editable": true,
         "block": "media",
         "order": 500
       },
-       "sw-background-pattern-image": {
+      "sw-background-pattern-image": {
         "type": "media",
-        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "value": "",
         "editable": true,
         "block": "media",
         "order": 600,
         "fullWidth": true
       },
-        "sw-background-image": {
+      "sw-background-image": {
         "type": "media",
-        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "value": "",
         "editable": true,
         "block": "media",
-        "order": 600,
+        "order": 700,
         "fullWidth": true
       },
       "sw-background-image-mobile": {
         "type": "media",
-        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "value": "",
         "editable": true,
         "block": "media",
-        "order": 600,
+        "order": 800,
         "fullWidth": true
       }
     }

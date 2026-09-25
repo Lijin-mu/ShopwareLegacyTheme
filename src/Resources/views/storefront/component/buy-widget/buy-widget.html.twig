@@ -12,8 +12,10 @@
         {% endblock %}
 
         {% block buy_widget_ordernumber_container %}
+        {% set compareEnable = config('ShopwareLegacyTheme.config.enableProductCompare') %}
+
         <div class="detail-wishlist-compare-container">
-            
+            {% if compareEnable and config('FroshProductCompare.config.active') %}
               <div class="detail-compare-button">
                 {% if activeRoute != 'frontend.compare.content' %}
                     {% block component_product_box_action_detail_add_to_compare_button %}
@@ -21,6 +23,7 @@
                     {% endblock %}
                 {% endif %}
               </div>
+              {% endif %}
 
                {% if config('core.cart.wishlistEnabled') %}
                 <div class="detail-wishlist-button">
@@ -46,3 +49,6 @@
         {% endblock %}
     </div>
 {% endblock %}
+
+ {% block page_product_detail_add_to_compare_button %}
+ {% endblock %}

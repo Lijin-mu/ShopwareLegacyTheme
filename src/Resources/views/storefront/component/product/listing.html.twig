@@ -1,5 +1,20 @@
 {% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
 
+{% set boxStyle = config('ShopwareLegacyTheme.config.productBoxStyle') %}
+{% set listingLayout = config('ShopwareLegacyTheme.config.themeListingLayout') %}
+
+{% if listingLayout == 'Layout1' %}
+    {% set columnClasses = 'col-12' %}
+{% elseif listingLayout == 'Layout3' %}
+    {% set columnClasses = 'col-sm-6 col-lg-4' %}
+{% elseif listingLayout == 'Layout4' %}
+    {% set columnClasses = 'col-sm-6 col-lg-4 col-xl-3' %}
+{% else %}
+    {% set columnClasses = 'col-md-6' %}
+{% endif %}
+
+{% set boxStyleClass = sidebar ? 'product-box-wrapper-sidebar' : 'product-box-wrapper' %}
+{% set listingColumns = columnClasses ~ ' ' ~ boxStyleClass ~ ' list-' ~ boxStyle %}
 
 {% set currentPage = ((searchResult.criteria.offset + 1) / searchResult.criteria.limit )|round(0, 'ceil') %}
 {% set paginationConfig = {
@@ -73,11 +88,11 @@
 						data-page="{{ searchResult.page }}"
 						data-total="{{ searchResult.total }}"
 						data-limit="{{ searchResult.limit }}"
-						data-product-count="{{ searchResult|length }}">
+						data-product-count="{{ searchResult.entities|length }}">
 						{% if searchResult.total > 0 %}
                             <span class="loaded-data-total" data-total="{{ searchResult.total }}"></span>
 							{% block element_product_listing_col %}
-								{% for product in searchResult %}
+								{% for product in searchResult.entities %}
 									<div class="cms-listing-col {{ listingColumns }} {{isWishlist}}">
 										{% block element_product_listing_box %}
 											{% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {

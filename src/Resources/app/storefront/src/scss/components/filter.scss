@@ -104,7 +104,6 @@
   display: none;
 }
 
-.action--filter-btn .filter--trigger:before,
 .action--filter-btn .filter--trigger:after {
   -webkit-transition: margin-top 0.4s cubic-bezier(0.02, 0.01, 0.47, 1);
   transition: margin-top 0.4s cubic-bezier(0.02, 0.01, 0.47, 1);
@@ -124,8 +123,12 @@
 }
 
 .action--filter-btn .filter--trigger:after {
-  margin-top: -3rem;
+  content: "\e612";
+}
+.is-open{
+  .action--filter-btn .filter--trigger:after {
   content: "\e610";
+}
 }
 
 .action--filter-btn .filter--trigger.is--active {

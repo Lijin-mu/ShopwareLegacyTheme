@@ -1,7 +1,8 @@
 .btn-primary,
 .btn-buy {
   padding: 0.125rem 0.75rem 0.125rem 0.75rem;
-  line-height: 2.125rem;
+  line-height: 1.2;
+  min-height: rem(38);
   background-color: $primary-color;
   background-image: linear-gradient(
     to bottom,
